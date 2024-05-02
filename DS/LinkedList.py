@@ -20,12 +20,14 @@ class LinkedList:
         
         return True
 
-    def get_penultimate_node(self) -> Node:
-        current_node : Node = self.head 
-        next_node : Node = self.head.next 
-        while next_node.next:
+    def get(self, index):
+        # Handles invalid index
+        if index < 0 or index >= self.length:
+            return None
+        
+        current_node = self.head
+        for iter in range(0, index):
             current_node = current_node.next
-            next_node = next_node.next 
         return current_node
     
     def pop(self) -> Node:
@@ -37,11 +39,26 @@ class LinkedList:
         if self.length == 1:
             self.head = self.tail = None
         else:
-            self.tail = self.get_penultimate_node()
+            penultimate_node_index = self.length-2
+            self.tail = self.get(penultimate_node_index)
             self.tail.next = None
         
         self.length-=1
         return prev_tail
+
+    def pop_first(self) -> Node:
+        if self.length == 0:
+            return None
+        
+        prev_head = self.head
+        if self.length == 1:
+            self.head = self.tail = None
+        else:
+            # Moves head a step forward
+            self.head = self.head.next
+        self.length-=1
+
+        return prev_head
 
     def prepend(self, value) -> bool:
         new_node = Node(value)
