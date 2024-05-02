@@ -20,7 +20,48 @@ class LinkedList:
         
         return True
 
-    def get(self, index):
+    def set_value(self, index, value):
+        target_node = self.get(index)
+        if not target_node: 
+            return False
+
+        target_node.value = value 
+        return True
+    
+    def insert(self, index, value):
+        if index < 0 or index > self.length:
+            return False
+        # Adds to beginning
+        if index == 0:
+            self.prepend(value)
+            return True
+        # Adds to last
+        if index == self.length:
+            self.append(value)
+            return True
+        
+        new_node = Node(value)
+        prev_node = self.get(index-1)
+        new_node.next = prev_node.next
+        prev_node.next = new_node 
+        self.length+=1
+        return True
+
+    def remove(self, index) -> Node:
+        if index < 0 or index >= self.length:
+            return False
+        if index == 0:
+            return self.pop_first()
+        if index == self.length-1:
+            return self.pop()
+        
+        prev_node = self.get(index-1)
+        target_node : Node = prev_node.next
+        prev_node.next = target_node.next
+        self.length-=1
+        return target_node
+
+    def get(self, index) -> Node:
         # Handles invalid index
         if index < 0 or index >= self.length:
             return None

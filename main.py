@@ -7,7 +7,8 @@ def main():
     my_linked_list.append(3)
     my_linked_list.append(4)
     print(my_linked_list)
-    print(my_linked_list.get(my_linked_list.length-1))
+    print(my_linked_list.remove(0))
+    print(my_linked_list)
 
 if __name__ == "__main__":
     main()
