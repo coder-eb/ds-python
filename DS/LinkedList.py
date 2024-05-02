@@ -49,7 +49,7 @@ class LinkedList:
 
     def remove(self, index) -> Node:
         if index < 0 or index >= self.length:
-            return False
+            return None
         if index == 0:
             return self.pop_first()
         if index == self.length-1:
