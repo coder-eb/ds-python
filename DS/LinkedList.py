@@ -1,11 +1,5 @@
-class Node:
-    def __init__(self, value):
-        self.value = value
-        self.next = None
+from DS.Node import Node
 
-    def __str__(self) -> str:
-        return f"The current node is: {self.value}"
-    
 class LinkedList:
     def __init__(self, value) -> None:
         self.head = self.tail = None
@@ -27,8 +21,8 @@ class LinkedList:
         return True
 
     def get_penultimate_node(self) -> Node:
-        current_node = self.head 
-        next_node = self.head.next 
+        current_node : Node = self.head 
+        next_node : Node = self.head.next 
         while next_node.next:
             current_node = current_node.next
             next_node = next_node.next 
@@ -78,17 +72,3 @@ class LinkedList:
 
     def print_list(self):
         print(self.__str__())
-
-
-def main():
-    linked_list = LinkedList(5)
-    print(linked_list.pop())
-    # linked_list.append(10)
-    # linked_list.prepend(11)
-    linked_list.prepend(8)
-    linked_list.prepend(6)
-    # print(linked_list.pop())
-    linked_list.print_list()
-
-if __name__ == '__main__':
-    main()
