@@ -113,6 +113,20 @@ class LinkedList:
         self.length+=1
         return True            
 
+    def reverse(self) -> None:
+        prev_head = self.head
+        self.head = self.tail
+        self.tail = prev_head
+
+        before = None
+        current = self.tail
+        after = self.tail
+        for iter in range(self.length):
+            after = after.next
+            current.next = before
+            before = current
+            current = after
+
     def __str__(self) -> str:
         if self.length == 0:
             return "EMPTY"
