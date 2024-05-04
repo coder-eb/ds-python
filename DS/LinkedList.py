@@ -131,16 +131,15 @@ class LinkedList:
         if self.length == 0:
             return "EMPTY"
         
-        linked_list_str = "HEAD"
-
+        items_str = "HEAD"
         current_node = self.head
         while current_node:
-            linked_list_str += " => "
+            items_str += " => "
             value = current_node.value
-            linked_list_str += f"{value}"
+            items_str += f"{value}"
             current_node = current_node.next
 
-        return linked_list_str
+        return items_str
 
     def print_list(self):
         print(self.__str__())
