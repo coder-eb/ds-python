@@ -1,4 +1,4 @@
-from DS.Node import Node
+from DS.Nodes import ForwardNode as Node
 
 class Stack:
     def __init__(self, value) -> None:
