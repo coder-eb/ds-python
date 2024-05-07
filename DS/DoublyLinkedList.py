@@ -6,6 +6,33 @@ class DoublyLinkedList:
         self.head = self.tail = new_node
         self.length = 1
 
+    def append(self, value) -> None:
+        new_node = Node(value)
+
+        if self.length == 0:
+            self.head = self.tail = new_node
+        else:
+            self.tail.next = new_node
+            new_node.prev = self.tail
+            self.tail = new_node
+        self.length += 1 
+
+        return True    
+
+    def pop(self) -> Node:
+        if self.length == 0:
+            return None
+
+        prev_tail = self.tail
+        if self.length == 1:
+            self.head = self.tail = None
+        else:
+            self.tail = prev_tail.prev
+            self.tail.next = None
+        self.length -= 1
+
+        return prev_tail
+
     def __str__(self) -> str:
         if self.length == 0:
             return "EMPTY"
