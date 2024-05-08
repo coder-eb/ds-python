@@ -70,6 +70,54 @@ class DoublyLinkedList:
         
         return current_node
 
+    def set_value(self, index, value) -> bool:
+        target_node = self.get(index)
+        if not target_node:
+            return False
+        
+        target_node.value = value
+        return True
+
+    def insert(self, index, value) -> bool:
+        # Insert at first position  
+        if index == 0:
+            return self.prepend(value)
+        # Insert at last position
+        if index == self.length:
+            return self.append(value)
+
+        prev_node = self.get(index-1)
+        # Invalid index
+        if not prev_node: 
+            return False
+
+        new_node = Node(value)
+        next_node : Node = prev_node.next
+        new_node.next = next_node 
+        new_node.prev = prev_node
+        prev_node.next = new_node
+        next_node.prev = new_node
+        
+        return True
+    
+    def remove(self, index) -> Node:
+        if index < 0 or index >= self.length:
+            return None
+        
+        if index == 0:
+            return self.pop_first()
+        if index == self.length - 1:
+            return self.pop()
+        
+        target_node = self.get(index)
+        prev_node : Node = target_node.prev 
+        next_node : Node = target_node.next
+
+        prev_node.next = next_node
+        next_node.prev = prev_node
+
+        return target_node 
+    
     def __str__(self) -> str:
         if self.length == 0:
             return "EMPTY"
