@@ -67,7 +67,7 @@ class LinkedList:
             return None
         
         current_node = self.head
-        for iter in range(0, index):
+        for iter in range(index):
             current_node = current_node.next
         return current_node
     
