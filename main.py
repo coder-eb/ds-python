@@ -4,12 +4,12 @@ from DS.Queue import Queue
 from DS.DoublyLinkedList import DoublyLinkedList
 
 def main():
-    dll = DoublyLinkedList(1)
-    dll.append(2)
-    dll.append(4)
-    dll.append(2)
-    dll.append(1)
-    print(dll.is_palindrome())
+    ll = LinkedList(0)
+    # ll.append(1)
+    # ll.append(2)
+    # ll.append(3)
+    # ll.append(4)
+    print(ll.find_middle_node())
 
 if __name__ == "__main__":
     main()

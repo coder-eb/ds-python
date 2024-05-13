@@ -143,3 +143,19 @@ class LinkedList:
 
     def print_list(self):
         print(self.__str__())
+
+    def find_middle_node(self) -> Node:
+        slow = fast = self.head
+        while fast is not None and fast.next is not None:
+            fast = fast.next.next
+            slow = slow.next
+        return slow
+    
+    def has_loop(self):
+        slow = fast = self.head
+        while fast is not None and fast.next is not None:
+            slow = slow.next
+            fast = fast.next.next
+            if slow == fast:
+                return True
+        return False
