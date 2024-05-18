@@ -159,3 +159,22 @@ class LinkedList:
             if slow == fast:
                 return True
         return False
+
+    def remove_duplicates(self) -> None:
+        seen = set()
+        prev_node = self.head
+        # Handles empty linked list
+        if not prev_node: return
+        seen.add(prev_node.value)
+
+        curr_node: Node = prev_node.next
+        while curr_node:
+            curr_value = curr_node.value
+
+            if curr_value in seen:
+                prev_node.next = curr_node.next
+            else:
+                seen.add(curr_value)
+                prev_node = prev_node.next
+
+            curr_node = curr_node.next
