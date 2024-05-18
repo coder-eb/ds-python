@@ -139,6 +139,35 @@ class DoublyLinkedList:
             backward = backward.prev
         return True
 
+    def swap_pairs(self) -> None:
+        first: Node = self.head
+        if first is None:
+            return
+        second: Node = self.head.next
+        if second is None:
+            return
+
+        self.head = second
+        prev_second = None
+        while first and second:
+            temp = first.prev
+            first.prev = first.next
+            first.next = second.next
+            second.prev = temp
+            second.next = first
+
+            if prev_second:
+                prev_second.next = second 
+
+            # continue iteration
+            prev_second = first
+            first = first.next
+            if first is None:
+                return
+            second = first.next
+
+
+
     def __str__(self) -> str:
         if self.length == 0:
             return "EMPTY"

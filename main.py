@@ -17,12 +17,14 @@ def find_kth_from_end(ll: LinkedList, k):
     return slow
 
 def main():
-    ll = LinkedList(1)
-    ll.append(1)
-    ll.append(1)
-    ll.remove_duplicates()
-    print(ll)
-    print(ll.tail)
+    dl = DoublyLinkedList(1)
+    dl.append(2)
+    dl.append(3)
+    dl.append(4)
+    dl.append(5)
+    dl.append(6)
+    dl.swap_pairs()
+    print(dl)
      
 if __name__ == "__main__":
     main()
