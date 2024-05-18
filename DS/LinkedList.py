@@ -173,6 +173,8 @@ class LinkedList:
 
             if curr_value in seen:
                 prev_node.next = curr_node.next
+                if curr_node.next == None:
+                    self.tail = prev_node
             else:
                 seen.add(curr_value)
                 prev_node = prev_node.next
