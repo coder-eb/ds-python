@@ -16,3 +16,11 @@ class TwoWayNode:
 
     def __str__(self) -> str:
         return get_formatted_value(self.value)
+
+class TreeNode:
+    def __init__(self, value) -> None:
+        self.value = value
+        self.left = self.right = None
+    
+    def __str__(self) -> str:
+        return get_formatted_value(self.value)
