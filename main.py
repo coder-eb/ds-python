@@ -1,3 +1,4 @@
+from codecs import namereplace_errors
 from DS.BinarySearchTree import BinarySearchTree
 from DS.LinkedList import LinkedList
 from DS.Stack import Stack
@@ -18,15 +19,18 @@ def find_kth_from_end(ll: LinkedList, k):
 
     return slow
 
+def item_in_common(list1, list2):
+    my_dict = {}
+    for item in list1:
+        my_dict[item] = True
+    for item in list2:
+        if item in my_dict:
+            return True
+        
+    return False
+
 def main():
-    ht = HashTable()
-    ht.set_item('bolts', 20)
-    ht.set_item('washers', 30)
-    ht.set_item('nuts', 10)
-    print(ht)
-    print(ht.get_item('nuts'))
-    print(ht.get_item('washer'))
-    print(ht.keys())
+    print(item_in_common([1], [1]))
     
 if __name__ == "__main__":
     main()
