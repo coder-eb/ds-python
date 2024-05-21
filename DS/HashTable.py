@@ -27,6 +27,15 @@ class HashTable:
                 return value
         return None
     
+    def keys(self) -> list:
+        all_keys = []
+        for items in self.data_map:
+            if not items: continue
+
+            for [key, value] in items:
+                all_keys.append(key)
+        return all_keys
+    
     def __str__(self) -> str:
         formatted_string = ""
         for index, value in enumerate(self.data_map):

@@ -26,6 +26,7 @@ def main():
     print(ht)
     print(ht.get_item('nuts'))
     print(ht.get_item('washer'))
-
+    print(ht.keys())
+    
 if __name__ == "__main__":
     main()
