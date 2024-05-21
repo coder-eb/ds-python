@@ -29,8 +29,27 @@ def item_in_common(list1, list2):
         
     return False
 
+def first_non_repeating_char(word):
+    letters = {}
+    for letter in word:
+        letters[letter] = letters.get(letter, 0) + 1
+
+    for letter in word:
+        if letters[letter] == 1:
+            return letter
+
+def find_duplicates(numbers):
+    seen = {}
+    duplicates = []
+    for number in numbers:
+        if number in seen:
+            duplicates.append(number)
+            continue
+        seen[number] = None
+    return duplicates
+
 def main():
-    print(item_in_common([1], [1]))
+    print(first_non_repeating_char('gello'))
     
 if __name__ == "__main__":
     main()
