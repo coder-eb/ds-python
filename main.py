@@ -1,3 +1,4 @@
+from DS.BinarySearchTree import BinarySearchTree
 from DS.LinkedList import LinkedList
 from DS.Stack import Stack
 from DS.Queue import Queue
@@ -17,14 +18,12 @@ def find_kth_from_end(ll: LinkedList, k):
     return slow
 
 def main():
-    dl = DoublyLinkedList(1)
-    dl.append(2)
-    dl.append(3)
-    dl.append(4)
-    dl.append(5)
-    dl.append(6)
-    dl.swap_pairs()
-    print(dl)
+    bst = BinarySearchTree()
+    bst.insert(10)
+    bst.insert(20)
+    bst.insert(5)
+    bst.insert(15)
+    print(bst)
      
 if __name__ == "__main__":
     main()
