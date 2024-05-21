@@ -3,6 +3,7 @@ from DS.LinkedList import LinkedList
 from DS.Stack import Stack
 from DS.Queue import Queue
 from DS.DoublyLinkedList import DoublyLinkedList
+from DS.HashTable import HashTable
 
 def find_kth_from_end(ll: LinkedList, k):
     slow = fast = ll.head
@@ -18,12 +19,13 @@ def find_kth_from_end(ll: LinkedList, k):
     return slow
 
 def main():
-    bst = BinarySearchTree()
-    bst.insert(10)
-    bst.insert(20)
-    bst.insert(5)
-    bst.insert(15)
-    print(bst.contains(15))
-     
+    ht = HashTable()
+    ht.set_item('bolts', 20)
+    ht.set_item('washers', 30)
+    ht.set_item('nuts', 10)
+    print(ht)
+    print(ht.get_item('nuts'))
+    print(ht.get_item('washer'))
+
 if __name__ == "__main__":
     main()
