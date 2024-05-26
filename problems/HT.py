@@ -26,3 +26,15 @@ def find_duplicates(numbers):
             continue
         seen[number] = None
     return duplicates
+
+def group_anagrams(strings):
+    groups = {}
+
+    for string in strings:
+        sorted_str = "".join(sorted(string))
+
+        group = groups.get(sorted_str, [])
+        group.append(string)
+        groups[sorted_str] = group
+
+    return list(groups.values())
