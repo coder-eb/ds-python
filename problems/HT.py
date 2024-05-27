@@ -38,3 +38,16 @@ def group_anagrams(strings):
         groups[sorted_str] = group
 
     return list(groups.values())
+
+def two_sum(nums, target):
+    seen = {}
+
+    for index in range(len(nums)):
+        num = nums[index]
+        remainder = target - num
+        if remainder in seen:        
+            return [index, seen[remainder]]
+        
+        seen[num] = index
+
+    return []
