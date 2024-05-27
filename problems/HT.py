@@ -51,3 +51,6 @@ def two_sum(nums, target):
         seen[num] = index
 
     return []
+
+def remove_duplicates(nums):
+    return list(set(nums))
