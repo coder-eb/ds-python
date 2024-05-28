@@ -54,3 +54,38 @@ def two_sum(nums, target):
 
 def remove_duplicates(nums):
     return list(set(nums))
+
+def has_unique_chars(word):
+    # Solution 1
+    seen = set()
+    for letter in word:
+        if letter in seen:
+            return False
+        seen.add(letter)
+    return True
+
+    # Solution 2
+    return len(string) == len(set([letter for letter in string]))
+
+def find_pairs(arr1, arr2, target):
+    pairs = list()
+
+    arr2 = set(arr2)
+    for num in arr1:
+        remainder = target - num
+        if remainder in arr2:
+            pairs.append((num, remainder))
+    return pairs
+
+def longest_consecutive_sequence(nums):
+    num_set = set(nums)
+    longest_seq = 0
+    for num in nums:
+        seq = 1
+        temp = num
+        while(temp+1 in num_set):
+            seq += 1
+            temp += 1
+        if seq > longest_seq: 
+            longest_seq = seq
+    return longest_seq
