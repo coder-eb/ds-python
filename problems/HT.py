@@ -80,12 +80,17 @@ def find_pairs(arr1, arr2, target):
 def longest_consecutive_sequence(nums):
     num_set = set(nums)
     longest_seq = 0
+
     for num in nums:
+        if num - 1 in num_set:
+            continue
+
         seq = 1
         temp = num
         while(temp+1 in num_set):
             seq += 1
             temp += 1
+        
         if seq > longest_seq: 
             longest_seq = seq
     return longest_seq
