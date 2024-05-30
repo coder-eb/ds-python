@@ -94,3 +94,16 @@ def longest_consecutive_sequence(nums):
         if seq > longest_seq: 
             longest_seq = seq
     return longest_seq
+
+def subarray_sum(nums, k):
+    sums = {0: -1}
+    total = 0
+    for index, num in enumerate(nums):
+        total+=num
+        remainder = total - k
+        if remainder in sums:
+            return [sums[remainder]+1, index]
+        sums[total] = index
+    return []
+
+        
