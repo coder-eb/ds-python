@@ -42,6 +42,14 @@ def missingNumber(nums):
     
     for num in range(len(nums)+1):
         if num not in seen: return num
-
+        
+def removeDuplicates(nums):
+    j = 1
+    for i in range(1, len(nums)):
+        if nums[i] != nums[i-1]:
+            nums[j] = nums[i]
+            j+=1
+    return nums
+    
 if __name__ == "__main__":
-    print(missingNumber([0,1]))
+    print(removeDuplicates([1,1,1,1,2]))
