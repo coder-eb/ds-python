@@ -35,5 +35,13 @@ def containsNearbyDuplicate(nums, k):
         seen[num] = index
     return False
 
+def missingNumber(nums):
+    seen = {}
+    for num in nums:
+        seen[num] = 1
+    
+    for num in range(len(nums)+1):
+        if num not in seen: return num
+
 if __name__ == "__main__":
-    print(containsNearbyDuplicate([1,0,1,1], 2))
+    print(missingNumber([0,1]))
