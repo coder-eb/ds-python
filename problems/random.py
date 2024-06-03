@@ -50,6 +50,16 @@ def removeDuplicates(nums):
             nums[j] = nums[i]
             j+=1
     return nums
+   
+def isPalindrome(x):
+    if x < 0: return False
     
+    temp = x
+    reversed_num = 0
+    while temp:
+        reversed_num = (reversed_num * 10) + temp % 10
+        temp = temp // 10
+    return reversed_num == x
+   
 if __name__ == "__main__":
-    print(removeDuplicates([1,1,1,1,2]))
+    print(isPalindrome(423234))
