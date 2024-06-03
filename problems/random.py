@@ -60,6 +60,26 @@ def isPalindrome(x):
         reversed_num = (reversed_num * 10) + temp % 10
         temp = temp // 10
     return reversed_num == x
-   
+
+def romanToInt(s):
+    map = {
+        "I": 1,
+        "V": 5,
+        "X": 10,
+        "L": 50,
+        "C": 100,
+        "D": 500,
+        "M": 1000
+    }
+
+    total = 0
+    for index in range(len(s)):
+        if index < len(s)-1 and map[s[index]] < map[s[index+1]]:
+            total -= map[s[index]]
+        else:
+            total += map[s[index]]
+
+    return total
+
 if __name__ == "__main__":
-    print(isPalindrome(423234))
+    print(romanToInt("IV"))
