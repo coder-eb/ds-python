@@ -104,6 +104,21 @@ def removeElement_1(nums, target):
             curr_index+=1
         iteration += 1
     return curr_index
-        
+
+def isAnagram(s, t):
+    l = len(s)
+    if l != len(t): return False
+    
+    letters_s = {}
+    letters_t = {}
+    for index in range(l):
+        letters_s[s[index]] = letters_s.get(s[index], 0) + 1
+        letters_t[t[index]] = letters_t.get(t[index], 0) + 1
+    
+    for letter in s:
+        if letters_s.get(letter, 0) != letters_t.get(letter, 0):
+            return False
+    return True
+
 if __name__ == "__main__":
-    print(removeElement([3,2,2,3], 3))
+    print(isAnagram("rat", "car"))
