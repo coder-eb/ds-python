@@ -116,5 +116,18 @@ def isAnagram(s, t):
         letters_t[t[index]] = letters_t.get(t[index], 0) + 1
     return letters_s == letters_t
 
+def isAnagram(s, t):
+    alphabets = [0] * 26
+
+    for letter in s:
+        alphabets[ord(letter) - ord('a')] += 1
+    for letter in t:
+        alphabets[ord(letter) - ord('a')] -= 1
+
+    for alphabet in alphabets:
+        if alphabet != 0:
+            return False
+    return True
+
 if __name__ == "__main__":
-    print(isAnagram("rat", "car"))
+    print(isAnagram("rac", "car"))
