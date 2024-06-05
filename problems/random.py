@@ -1,3 +1,6 @@
+from os import remove
+
+
 def main():
     prices = [10, 100, 200, 300, 50, 500]
     profits = {}
@@ -81,5 +84,18 @@ def romanToInt(s):
 
     return total
 
+def removeElement_1(nums, target):
+    l = len(nums)
+    curr_index = 0
+    iteration = 0
+    while iteration < l:
+        if nums[curr_index] == target:
+            del nums[curr_index]
+            nums.append(target)
+        else:
+            curr_index+=1
+        iteration += 1
+    return curr_index
+        
 if __name__ == "__main__":
-    print(romanToInt("IV"))
+    print(removeElement([0,1,2,2,3,0,4,2], 2))
