@@ -114,11 +114,7 @@ def isAnagram(s, t):
     for index in range(l):
         letters_s[s[index]] = letters_s.get(s[index], 0) + 1
         letters_t[t[index]] = letters_t.get(t[index], 0) + 1
-    
-    for letter in s:
-        if letters_s.get(letter, 0) != letters_t.get(letter, 0):
-            return False
-    return True
+    return letters_s == letters_t
 
 if __name__ == "__main__":
     print(isAnagram("rat", "car"))
