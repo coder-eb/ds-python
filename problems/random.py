@@ -129,5 +129,14 @@ def isAnagram(s, t):
             return False
     return True
 
+def groupAnagrams(strs):
+    combinations = {}
+    for word in strs:
+        canonical = "".join(sorted(word))
+        combination = combinations.get(canonical, [])
+        combination.append(word)
+        combinations[canonical] = combination
+    return list(combinations.values())
+
 if __name__ == "__main__":
-    print(isAnagram("rac", "car"))
+    print(groupAnagrams(["eat","tea","tan","ate","nat","bat"]))
