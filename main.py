@@ -1,4 +1,3 @@
-from codecs import namereplace_errors
 from DS.BinarySearchTree import BinarySearchTree
 from DS.Graph import Graph
 from DS.LinkedList import LinkedList
@@ -12,7 +11,11 @@ def main():
     graph = Graph() 
     graph.add_vertex('A')
     graph.add_vertex('B')
+    graph.add_vertex('C')
     graph.add_edge('A','B')
+    print(graph)
+    graph.remove_edge('A','B')
+    graph.remove_edge('A','C')
     print(graph)
     
 if __name__ == "__main__":
