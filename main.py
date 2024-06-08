@@ -11,6 +11,8 @@ from problems.HT import find_pairs, has_unique_chars, longest_consecutive_sequen
 def main():
     graph = Graph() 
     graph.add_vertex('A')
+    graph.add_vertex('B')
+    graph.add_edge('A','B')
     print(graph)
     
 if __name__ == "__main__":
