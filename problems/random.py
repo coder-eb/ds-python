@@ -1,3 +1,4 @@
+from curses.ascii import isalnum
 from os import remove
 
 
@@ -149,5 +150,24 @@ def groupAnagrams(strs):
         combinations[canonical] = combination
     return list(combinations.values())
 
+def isPalindrome_1(s: str) -> bool:
+    left, right = 0, len(s)-1
+    while left < right: 
+        left_char = s[left]
+        right_char = s[right]
+
+        if not left_char.isalnum() or not right_char.isalnum(): 
+            if not left_char.isalnum():
+                left += 1
+            if not right_char.isalnum():
+                right -= 1
+            continue
+
+        if left_char.lower() != right_char.lower():
+            return False
+        left += 1
+        right -= 1
+    return True
+
 if __name__ == "__main__":
-    print(groupAnagrams(["eat","tea","tan","ate","nat","bat"]))
+    print(isPalindrome_1("Was it a car or a cat I saw?"))
