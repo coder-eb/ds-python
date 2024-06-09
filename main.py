@@ -1,3 +1,4 @@
+from math import factorial
 from DS.BinarySearchTree import BinarySearchTree
 from DS.Graph import Graph
 from DS.LinkedList import LinkedList
@@ -10,7 +11,7 @@ from problems.HT import find_pairs, has_unique_chars, longest_consecutive_sequen
 from problems.MH import find_kth_smallest, stream_max
 
 def main():
-    print(find_kth_smallest([7, 9, 2], 3))
+    print(factorial(5))
 
 if __name__ == "__main__":
     main()
