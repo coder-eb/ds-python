@@ -7,14 +7,10 @@ from DS.Queue import Queue
 from DS.DoublyLinkedList import DoublyLinkedList
 from DS.HashTable import HashTable
 from problems.HT import find_pairs, has_unique_chars, longest_consecutive_sequence, subarray_sum
+from problems.MH import find_kth_smallest, stream_max
 
 def main():
-    heap = MaxHeap([99, 72, 61, 58])
-    heap.insert(100)
-    heap.insert(75)
-    print(heap)
-    print(heap.remove())
-    print(heap)
+    print(find_kth_smallest([7, 9, 2], 3))
 
 if __name__ == "__main__":
     main()
