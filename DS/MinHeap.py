@@ -1,24 +1,24 @@
 from DS.Heap import Heap
 
 
-class MaxHeap(Heap):
+class MinHeap(Heap):
     def _sink_down(self, index):
-        max_index = index
+        min_index = index
         while True:
             left_index = self._left_child(index)
             right_index = self._right_child(index)
 
-            if left_index < len(self.heap) and self.heap[left_index] > self.heap[max_index]:
-                max_index = left_index
-            if right_index < len(self.heap) and self.heap[right_index] > self.heap[max_index]:
-                max_index = right_index
+            if left_index < len(self.heap) and self.heap[left_index] < self.heap[min_index]:
+                min_index = left_index
+            if right_index < len(self.heap) and self.heap[right_index] < self.heap[min_index]:
+                min_index = right_index
             
             # Heap is valid if current index is the max index
-            if index == max_index:
+            if index == min_index:
                 return
             
-            self._swap(index, max_index)
-            index = max_index
+            self._swap(index, min_index)
+            index = min_index
         
 
     def insert(self, value):
@@ -28,7 +28,7 @@ class MaxHeap(Heap):
         # breaks when top is reached
         while current_index > 0: 
             parent_index = self._parent(current_index)
-            if self.heap[parent_index] > self.heap[current_index]:
+            if self.heap[parent_index] < self.heap[current_index]:
                 break # Heap is already valid
             self._swap(parent_index, current_index)
             current_index = parent_index
@@ -41,8 +41,8 @@ class MaxHeap(Heap):
         if len(self.heap) == 1:
             return self.heap.pop()
         
-        max_value = self.heap[0]
+        min_value = self.heap[0]
         self.heap[0] = self.heap.pop()
         self._sink_down(0)
-        return max_value
+        return min_value
 
