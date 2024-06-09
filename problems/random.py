@@ -84,6 +84,17 @@ def romanToInt(s):
 
     return total
 
+def remove_element(nums, val):
+    target_index = 0
+    for index in range(len(nums)):
+        if nums[index] != val:
+            nums[target_index] = nums[index]
+            target_index += 1
+
+    for index in range(target_index, len(nums)):
+        nums.pop()
+    return target_index
+
 def removeElement(nums, val):
     replace_index = 0
     for num in nums:

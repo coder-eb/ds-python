@@ -9,9 +9,10 @@ from DS.DoublyLinkedList import DoublyLinkedList
 from DS.HashTable import HashTable
 from problems.HT import find_pairs, has_unique_chars, longest_consecutive_sequence, subarray_sum
 from problems.MH import find_kth_smallest, stream_max
+from problems.random import remove_element
 
 def main():
-    print(factorial(5))
+    print(remove_element([1, 1, 1, 1], 1))
 
 if __name__ == "__main__":
     main()
