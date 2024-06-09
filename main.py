@@ -12,6 +12,7 @@ def main():
     heap = MaxHeap([99, 72, 61, 58])
     heap.insert(100)
     heap.insert(75)
+    print(heap.remove())
     print(heap)
 
 if __name__ == "__main__":
