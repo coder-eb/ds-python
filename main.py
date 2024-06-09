@@ -13,9 +13,9 @@ def main():
     graph.add_vertex('B')
     graph.add_vertex('C')
     graph.add_edge('A','B')
+    graph.add_edge('C','B')
     print(graph)
-    graph.remove_edge('A','B')
-    graph.remove_edge('A','C')
+    graph.remove_vertex('B')
     print(graph)
     
 if __name__ == "__main__":
