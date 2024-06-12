@@ -1,9 +1,18 @@
-from curses.ascii import isalnum
-from os import remove
+def profit_stock(prices):
+    buy = 0
+    max_profit = 0
+    r_buy, r_sell = 0, 0
+    for sell in range(len(prices)):
+        profit = prices[sell] - prices[buy]
+        if profit > max_profit:
+            max_profit = profit
+            r_buy, r_sell = buy, sell
+        if prices[sell] < prices[buy]:
+            buy = sell
+    return r_buy, r_sell
 
 
-def main():
-    prices = [10, 100, 200, 300, 50, 500]
+def main(prices):
     profits = {}
 
     max_profit = 0
@@ -170,4 +179,6 @@ def isPalindrome_1(s: str) -> bool:
     return True
 
 if __name__ == "__main__":
-    print(isPalindrome_1("Was it a car or a cat I saw?"))
+    prices = [500000, 10, 800, 300, 1, 00000]
+    print(profit_stock(prices))
+    main(prices)
