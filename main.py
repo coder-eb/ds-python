@@ -13,11 +13,11 @@ from problems.random import remove_element
 
 def main():
     bst = BinarySearchTree()
-    bst.insert(10)
-    bst.insert(5)
-    bst.insert(20)
-    bst.insert(2)
-    bst.insert(32)
+    bst.r_insert(10)
+    bst.r_insert(5)
+    bst.r_insert(20)
+    bst.r_insert(2)
+    bst.r_insert(32)
     print(bst.r_contains(32))
 
 
