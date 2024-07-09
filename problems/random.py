@@ -178,7 +178,21 @@ def isPalindrome_1(s: str) -> bool:
         right -= 1
     return True
 
+def isValid(s):
+    pairs = {
+        ")": "(",
+        "}": "{",
+        "]": "[",
+    }
+    stack = []
+    for bracket in s:
+        if bracket in pairs.keys():
+            expected_bracket = pairs[bracket]
+            if not stack or stack.pop() != expected_bracket:
+                return False
+        else:
+            stack.append(bracket)
+    return len(stack) == 0
+
 if __name__ == "__main__":
-    prices = [500000, 10, 800, 300, 1, 00000]
-    print(profit_stock(prices))
-    main(prices)
+    print(isValid("}{[]}"))
