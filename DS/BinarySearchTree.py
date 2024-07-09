@@ -44,3 +44,16 @@ class BinarySearchTree:
                 curr_node = curr_node.right
 
         return False
+
+    def __r_contains(self, node: Node, value):
+        if node == None:
+            return False
+        if node.value == value:
+            return True 
+        if value > node.value:
+            return self.__r_contains(node.right, value)
+        if value < node.value:
+            return self.__r_contains(node.left, value)
+        
+    def r_contains(self, value):
+        return self.__r_contains(self.root, value)

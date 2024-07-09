@@ -12,7 +12,15 @@ from problems.MH import find_kth_smallest, stream_max
 from problems.random import remove_element
 
 def main():
-    print(remove_element([1, 1, 1, 1], 1))
+    bst = BinarySearchTree()
+    bst.insert(10)
+    bst.insert(5)
+    bst.insert(20)
+    bst.insert(2)
+    bst.insert(32)
+    print(bst.r_contains(32))
+
+
 
 if __name__ == "__main__":
     main()
