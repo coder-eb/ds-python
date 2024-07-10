@@ -19,6 +19,8 @@ def main():
     bst.r_insert(2)
     bst.r_insert(32)
     print(bst.r_contains(32))
+    bst.delete_node(32)
+    print(bst.r_contains(32))
 
 
 

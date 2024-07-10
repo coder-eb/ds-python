@@ -10,7 +10,7 @@ class BinarySearchTree:
             self.root = new_node
             return True
         
-        curr_node: Node = self.root
+        curr_node: Node|None = self.root
         while curr_node:
             # BST can't contain duplicates
             if new_node.value == curr_node.value:
@@ -45,7 +45,7 @@ class BinarySearchTree:
 
         return False
 
-    def __r_contains(self, node: Node, value):
+    def __r_contains(self, node: Node|None, value):
         if node == None:
             return False
         if node.value == value:
@@ -55,7 +55,7 @@ class BinarySearchTree:
         if value < node.value:
             return self.__r_contains(node.left, value)
 
-    def __r_insert(self, curr_node:Node, value):
+    def __r_insert(self, curr_node: Node|None, value):
         if curr_node is None:
             return Node(value)
         if value < curr_node.value:
@@ -64,6 +64,28 @@ class BinarySearchTree:
             curr_node.right = self.__r_insert(curr_node.right, value)
         return curr_node
 
+    def __delete_node(self, current_node: Node|None, value):
+        if current_node == None:
+            return None
+        if value < current_node.value:
+            current_node.left = self.__delete_node(current_node.left, value)
+        elif value > current_node.value:
+            current_node.right = self.__delete_node(current_node.right, value)
+        else:
+            if current_node.left == None and current_node.right == None:
+                return None
+            elif current_node.left == None:
+                return current_node.right
+            elif current_node.right == None:
+                return current_node.left
+            else:
+                pass #TODO
+            
+        return current_node
+    
+    def delete_node(self, value):
+        return self.__delete_node(self.root, value)
+    
     def r_insert(self, value):
         if self.root is None:
             self.root = Node(value)
