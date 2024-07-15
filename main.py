@@ -13,12 +13,8 @@ from problems.random import remove_element
 
 def main():
     bst = BinarySearchTree()
-    bst.r_insert(10)
-    bst.r_insert(9)
-    bst.r_insert(2)
-    bst.r_insert(5)
-    bst.r_insert(6)
-    bst.delete_node(9)
+    nums = [0, 1, 2, 3, 4, 5, 6, 7]
+    bst.sorted_list_to_bst(nums)
 
 if __name__ == "__main__":
     main()

@@ -97,6 +97,21 @@ class BinarySearchTree:
         # if self.root is None:
         #     self.root = Node(value)
         self.root = self.__r_insert(self.root, value)
-     
+    
+    def __sorted_list_to_bst(self, nums, left, right):
+        if left > right:
+            return None
+            
+        middle = (left + right) // 2
+        current = Node(nums[middle])
+        
+        current.left = self.__sorted_list_to_bst(nums, left, middle - 1)
+        current.right = self.__sorted_list_to_bst(nums, middle + 1, right)
+        
+        return current
+    
+    def sorted_list_to_bst(self, nums):
+        self.root = self.__sorted_list_to_bst(nums, 0, len(nums) - 1)
+        
     def r_contains(self, value):
         return self.__r_contains(self.root, value)
