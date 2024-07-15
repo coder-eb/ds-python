@@ -194,5 +194,33 @@ def isValid(s):
             stack.append(bracket)
     return len(stack) == 0
 
+def longest_consecutive_sequence(nums):
+    nums = set(nums)
+    longest_sequence = current_sequence = 0
+    for num in nums:
+        current_sequence = 1
+        if num - 1 not in nums:
+            while num + 1 in nums:
+                current_sequence += 1
+                num = num + 1
+        longest_sequence = max(longest_sequence, current_sequence)
+    return longest_sequence    
+
+def longest_consecutive_sequence_by_order(nums):
+    if not len(nums): return 0
+
+    prev_num = nums[0]
+    longest_seq = current_seq = 1
+    for index in range(1, len(nums)):
+        current_num = nums[index]
+
+        if ((current_num - 1 == prev_num) or (current_num == prev_num)):
+            current_seq += 1
+        else:
+            current_seq = 1
+        longest_seq = max(current_seq, longest_seq)
+        prev_num = current_num
+    return longest_seq     
+
 if __name__ == "__main__":
-    print(isValid("}{[]}"))
+    print(longest_consecutive_sequence_by_order([1, 2, 2, 3, 4, 10, 21, 22, 23, 24]))

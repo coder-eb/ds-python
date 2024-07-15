@@ -16,13 +16,9 @@ def main():
     bst.r_insert(10)
     bst.r_insert(9)
     bst.r_insert(2)
-    bst.r_insert(3)
-    print(bst.r_contains(9))
+    bst.r_insert(5)
+    bst.r_insert(6)
     bst.delete_node(9)
-    print(bst.r_contains(9))
-    print(bst.min_value(bst.root))
-
-
 
 if __name__ == "__main__":
     main()
