@@ -94,9 +94,9 @@ class BinarySearchTree:
         return current_node.value
      
     def r_insert(self, value):
-        if self.root is None:
-            self.root = Node(value)
-        return self.__r_insert(self.root, value)
+        # if self.root is None:
+        #     self.root = Node(value)
+        self.root = self.__r_insert(self.root, value)
      
     def r_contains(self, value):
         return self.__r_contains(self.root, value)
