@@ -1,4 +1,5 @@
 from DS.Nodes import TreeNode as Node
+from helpers import timeit
 
 class BinarySearchTree:
     def __init__(self) -> None:
@@ -112,6 +113,43 @@ class BinarySearchTree:
     
     def sorted_list_to_bst(self, nums):
         self.root = self.__sorted_list_to_bst(nums, 0, len(nums) - 1)
+    
+    def __invert_tree(self, current_node: Node|None):
+        if current_node == None:
+            return None
         
+        current_node.left = self.__invert_tree(current_node.right)
+        current_node.right = self.__invert_tree(current_node.left)
+        return current_node
+
+    def invert_tree(self):
+        self.root = self.__invert_tree(self.root)
+
     def r_contains(self, value):
         return self.__r_contains(self.root, value)
+    
+
+
+def populate_slow_bst(bst: BinarySearchTree, length):
+    for number in range(0, length + 1):
+        bst.insert(number)
+
+def populate_fast_bst(bst: BinarySearchTree, length):
+    numbers = list(range(0, length + 1))
+    bst.sorted_list_to_bst(numbers)
+
+@timeit
+def check_bst_performance(bst: BinarySearchTree, value):
+    is_exists = bst.contains(value)
+    print(f"BST contains value: {value} - {is_exists}")
+
+def test_balanced_bst():
+    slow_bst = BinarySearchTree()
+    fast_bst = BinarySearchTree()
+    NO_OF_ELEMENTS = 90_000
+
+    populate_slow_bst(slow_bst, NO_OF_ELEMENTS)
+    populate_slow_bst(fast_bst, NO_OF_ELEMENTS)
+
+    check_bst_performance(slow_bst, 1_00_000)
+    check_bst_performance(fast_bst, 1_00_000)

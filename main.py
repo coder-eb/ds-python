@@ -18,32 +18,6 @@ from problems.MH import find_kth_smallest, stream_max
 from problems.random import remove_element
 
 
-def populate_slow_bst(bst: BinarySearchTree, length):
-    for number in range(0, length + 1):
-        bst.insert(number)
-
-
-def populate_fast_bst(bst: BinarySearchTree, length):
-    numbers = list(range(0, length + 1))
-    bst.sorted_list_to_bst(numbers)
-
-
-@timeit
-def check_bst_performance(bst: BinarySearchTree, value):
-    is_exists = bst.contains(value)
-    print(f"BST contains value: {value} - {is_exists}")
-
-
-def test_balanced_bst():
-    slow_bst = BinarySearchTree()
-    fast_bst = BinarySearchTree()
-    NO_OF_ELEMENTS = 90_000
-
-    populate_slow_bst(slow_bst, NO_OF_ELEMENTS)
-    populate_slow_bst(fast_bst, NO_OF_ELEMENTS)
-
-    check_bst_performance(slow_bst, 1_00_000)
-    check_bst_performance(fast_bst, 1_00_000)
 
 
 def main():
