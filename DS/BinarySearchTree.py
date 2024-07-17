@@ -118,13 +118,23 @@ class BinarySearchTree:
         if current_node == None:
             return None
         
-        current_node.left = self.__invert_tree(current_node.right)
+        """ 
+        Method 1:
+        
+        temp_left = self.__invert_tree(current_node.right)
         current_node.right = self.__invert_tree(current_node.left)
+        current_node.left = temp_left
+        """
+        
+        # Method 2:
+        current_node.left, current_node.right = self.__invert_tree(current_node.right), self.__invert_tree(current_node.left)
+
         return current_node
 
     def invert_tree(self):
         self.root = self.__invert_tree(self.root)
-
+        return self.root
+    
     def r_contains(self, value):
         return self.__r_contains(self.root, value)
     
@@ -153,3 +163,10 @@ def test_balanced_bst():
 
     check_bst_performance(slow_bst, 1_00_000)
     check_bst_performance(fast_bst, 1_00_000)
+
+def test_invert_tree():
+    bst = BinarySearchTree()
+    nums = [1, 2, 3]
+    bst.sorted_list_to_bst(nums)
+    bst.invert_tree()
+    print()

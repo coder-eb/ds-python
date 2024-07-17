@@ -1,5 +1,5 @@
 from math import factorial
-from DS.BinarySearchTree import BinarySearchTree
+from DS.BinarySearchTree import BinarySearchTree, test_invert_tree
 from DS.Graph import Graph
 from DS.LinkedList import LinkedList
 from DS.MaxHeap import MaxHeap
@@ -19,10 +19,8 @@ from problems.random import remove_element
 
 
 
-
 def main():
-    test_balanced_bst()
-
+    test_invert_tree()
 
 if __name__ == "__main__":
     main()
