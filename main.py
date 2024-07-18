@@ -20,7 +20,13 @@ from problems.random import remove_element
 
 
 def main():
-    test_invert_tree()
+    bst = BinarySearchTree()
+    bst.insert(47)
+    bst.insert(21)
+    bst.insert(76)
+    bst.insert(18)
+    bst.insert(27)
+    print(bst.BFS())
 
 if __name__ == "__main__":
     main()

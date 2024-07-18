@@ -138,7 +138,18 @@ class BinarySearchTree:
     def r_contains(self, value):
         return self.__r_contains(self.root, value)
     
+    def BFS(self):
+        results = []
 
+        queue = [self.root]
+        while len(queue) > 0:
+            current_node: Node = queue.pop(0)
+            results.append(current_node.value)
+            if current_node.left is not None:
+                queue.append(current_node.left)
+            if current_node.right is not None:
+                queue.append(current_node.right)
+        return results
 
 def populate_slow_bst(bst: BinarySearchTree, length):
     for number in range(0, length + 1):
