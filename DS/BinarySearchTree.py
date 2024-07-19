@@ -199,7 +199,18 @@ class BinarySearchTree:
 
         traverse(self.root)
         return results
-    
+
+    def is_valid_bst(self):
+        values = self.DFS_inorder()
+        prev_index = 0
+        for curr_index in range(1, len(values)):
+            prev_value = values[prev_index]
+            curr_value = values[curr_index]
+            if curr_value <= prev_value:
+                return False
+            prev_index = curr_index
+            
+        return True 
 
 def populate_slow_bst(bst: BinarySearchTree, length):
     for number in range(0, length + 1):
