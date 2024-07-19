@@ -28,8 +28,8 @@ def main():
     bst.insert(27)
     bst.insert(52)
     bst.insert(82)
-    
-    print(bst.DFS_preorder())
+
+    print(bst.DFS_postorder())
 
 if __name__ == "__main__":
     main()
