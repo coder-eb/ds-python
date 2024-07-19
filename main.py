@@ -29,7 +29,7 @@ def main():
     bst.insert(52)
     bst.insert(82)
 
-    print(bst.DFS_postorder())
+    print(bst.DFS_inorder())
 
 if __name__ == "__main__":
     main()

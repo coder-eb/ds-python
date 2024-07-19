@@ -177,6 +177,23 @@ class BinarySearchTree:
         traverse(self.root)
         return results
     
+    def DFS_inorder(self):
+        results = []
+
+        def traverse(current_node: Node):
+            if current_node is None:
+                return
+            
+            if current_node.left is not None:
+                traverse(current_node.left)
+            results.append(current_node.value)
+
+            if current_node.right is not None:
+                traverse(current_node.right)
+
+        traverse(self.root)
+        return results
+    
 
 def populate_slow_bst(bst: BinarySearchTree, length):
     for number in range(0, length + 1):
