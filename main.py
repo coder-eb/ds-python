@@ -26,7 +26,10 @@ def main():
     bst.insert(76)
     bst.insert(18)
     bst.insert(27)
-    print(bst.BFS())
+    bst.insert(52)
+    bst.insert(82)
+    
+    print(bst.DFS_preorder())
 
 if __name__ == "__main__":
     main()
