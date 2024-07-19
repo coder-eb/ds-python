@@ -154,7 +154,10 @@ class BinarySearchTree:
     def DFS_preorder(self):
         results = []
 
-        def traverse(current_node: Node):
+        def traverse(current_node: Node | None):
+            if current_node is None:
+                return
+
             results.append(current_node.value)
             if current_node.left is not None:
                 traverse(current_node.left)
@@ -167,7 +170,10 @@ class BinarySearchTree:
     def DFS_postorder(self):
         results = []
 
-        def traverse(current_node: Node):
+        def traverse(current_node: Node | None):
+            if current_node is None:
+                return
+
             if current_node.left is not None:
                 traverse(current_node.left)
             if current_node.right is not None:
@@ -180,7 +186,7 @@ class BinarySearchTree:
     def DFS_inorder(self):
         results = []
 
-        def traverse(current_node: Node):
+        def traverse(current_node: Node | None):
             if current_node is None:
                 return
             
