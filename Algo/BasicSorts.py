@@ -1,9 +1,23 @@
-def bubble_sort(numbers):
-    for items_to_compare in range(len(numbers)-1, 0, -1):
+def __bubble_sort_for(nums):
+    for items_to_compare in range(len(nums)-1, 0, -1):
         for index in range(items_to_compare):
-            if numbers[index] > numbers[index+1]:
-                numbers[index], numbers[index+1] = numbers[index+1], numbers[index]
-    return numbers
+            if nums[index] > nums[index+1]:
+                nums[index], nums[index+1] = nums[index+1], nums[index]
+    return nums 
+
+def __bubble_sort_while(nums):
+    sorted_until = len(nums)
+    while sorted_until > 0:
+        j = 0
+        while j + 1 < sorted_until:
+            if nums[j+1] < nums[j]:
+                nums[j+1], nums[j] = nums[j], nums[j+1]
+            j += 1
+        sorted_until = j
+    return nums
+
+def bubble_sort(nums):
+    return __bubble_sort_while(nums)    
 
 def selection_sort(numbers):
     for index_to_replace in range(len(numbers)-1):
@@ -29,7 +43,7 @@ def insertion_sort(nums):
     return nums
 
 def main():
-    sorted_list = insertion_sort([1, 3, 6, 4, 5, 2]) 
+    sorted_list = bubble_sort([4, 5, 2]) 
     print(sorted_list)
     
 if __name__ == "__main__":
