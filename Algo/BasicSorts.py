@@ -18,9 +18,18 @@ def selection_sort(numbers):
         
     return numbers
 
+def insertion_sort(nums):
+    for i in range(1, len(nums)):
+        temp = nums[i]
+        j = i-1
+        while j > -1 and (nums[j] > temp):
+            nums[j+1] = nums[j]
+            nums[j] = temp
+            j -= 1
+    return nums
 
 def main():
-    sorted_list = selection_sort([4, 2, 6, 5, 1, 3]) 
+    sorted_list = insertion_sort([1, 3, 6, 4, 5, 2]) 
     print(sorted_list)
     
 if __name__ == "__main__":
