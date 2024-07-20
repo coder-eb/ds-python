@@ -180,3 +180,29 @@ class LinkedList:
                 prev_node = prev_node.next
 
             curr_node = curr_node.next
+    
+    def __bubble_sort_for_loop(self):
+        for i in range(self.length-1, 0, -1):
+            prev_node = self.head 
+            for j in range(0, i):
+                curr_node: Node = prev_node.next
+                if prev_node.value > curr_node.value:
+                    prev_node.value, curr_node.value = curr_node.value, prev_node.value
+                prev_node = curr_node
+
+    def __bubble_sort_while_loop(self):
+        sorted_until = None
+        while self.head.next != sorted_until:
+            prev_node = self.head
+            while prev_node.next != sorted_until:
+                curr_node: Node = prev_node.next
+                if prev_node.value > curr_node.value:
+                    prev_node.value, curr_node.value = curr_node.value, prev_node.value
+                prev_node = curr_node
+            sorted_until = curr_node
+
+    def bubble_sort(self):
+        if self.length < 2:
+            return 
+        
+        self.__bubble_sort_while_loop()

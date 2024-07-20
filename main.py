@@ -20,16 +20,12 @@ from problems.random import remove_element
 
 
 def main():
-    bst = BinarySearchTree()
-    bst.insert(47)
-    bst.insert(21)
-    bst.insert(76)
-    bst.insert(18)
-    bst.insert(27)
-    bst.insert(52)
-    bst.insert(82)
-
-    print(bst.DFS_inorder())
+    ll = LinkedList(4)
+    ll.append(3)
+    ll.append(2)
+    ll.append(1)
+    ll.bubble_sort()
+    print(ll)
 
 if __name__ == "__main__":
     main()
