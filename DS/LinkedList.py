@@ -206,3 +206,22 @@ class LinkedList:
             return 
         
         self.__bubble_sort_while_loop()
+
+    def __selection_sort_while_loop(self):
+        unsorted_head = self.head
+        while unsorted_head.next is not None:
+            min_node = unsorted_head
+            current_node = unsorted_head.next
+            while current_node is not None:
+                if current_node.value < min_node.value:
+                    min_node = current_node
+                current_node = current_node.next
+            if unsorted_head.value != min_node.value:
+                unsorted_head.value, min_node.value = min_node.value, unsorted_head.value
+            unsorted_head = unsorted_head.next
+
+    def selection_sort(self):
+        if self.length < 2:
+            return
+        
+        self.__selection_sort_while_loop()

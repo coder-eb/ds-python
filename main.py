@@ -24,7 +24,7 @@ def main():
     ll.append(3)
     ll.append(2)
     ll.append(1)
-    ll.bubble_sort()
+    ll.selection_sort()
     print(ll)
 
 if __name__ == "__main__":
