@@ -19,11 +19,20 @@ def merge(left, right):
 
     return merged
 
+def merge_sort(items):
+    if len(items) == 1:
+        return items
+    
+    mid_index = len(items) // 2
+    left = merge_sort(items[:mid_index])
+    right = merge_sort(items[mid_index:])
+    
+    return merge(left, right)
+
 def main():
-    left = [2, 8, 10]
-    right = [1, 1, 3, 5, 7, 11]
-    merged = merge(left, right)
-    print(merged)
+    items = [1, 10, 5, 8, 3, 2]
+    sorted = merge_sort(items)
+    print(sorted)
 
 if __name__ == '__main__':
     main()
