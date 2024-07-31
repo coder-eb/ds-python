@@ -18,14 +18,15 @@ from problems.MH import find_kth_smallest, stream_max
 from problems.random import remove_element
 
 
+def fibonacci(n):
+    items = [0, 1]
+    for i in range(2, n+1):
+        new_item = items[-1] + items[-2]
+        items.append(new_item)
+    return items[n]
 
 def main():
-    ll = LinkedList(4)
-    ll.append(3)
-    ll.append(2)
-    ll.append(1)
-    ll.selection_sort()
-    print(ll)
+    print(fibonacci(1))
 
 if __name__ == "__main__":
     main()

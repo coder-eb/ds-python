@@ -11,7 +11,6 @@ def profit_stock(prices):
             buy = sell
     return r_buy, r_sell
 
-
 def main(prices):
     profits = {}
 
@@ -23,6 +22,13 @@ def main(prices):
                 max_profit = profit
             profits[profit] = f"{i}, {j}"
     print(profits[max_profit])
+
+def fibonacci(n):
+    items = [0, 1]
+    for i in range(2, n+1):
+        new_item = items[-1] + items[-2]
+        items.append(new_item)
+    return items[n]
 
 def lengthOfLongestSubstring(s):
     letters = {}
