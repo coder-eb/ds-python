@@ -245,5 +245,37 @@ def evalRPN(tokens):
 
     return stack.pop()
 
+def __evalRPNr(orig, new):
+    if new[-1] in ['+', '-', '*', '/']:
+        token = new.pop()
+        number2 = new.pop()
+        number1 = new.pop()
+        if token == '+':
+            number = number1 + number2
+        elif token == '-':
+            number = number1 - number2
+        elif token == '*':
+            number = number1 * number2
+        else:
+            number = number1 / number2
+
+        number = int(number)
+        if len(orig) == 0:
+            return number
+        
+        new = new + [number]
+    else:
+        pass
+
+    if orig[0] in ['+', '-', '*', '/']:
+        new_1 = orig[0]
+    else:
+        new_1 = int(orig[0])
+
+    return __evalRPNr(orig[1:], new+[new_1])
+
+def evalRPNr(orig):
+    return __evalRPNr(orig[1:], [int(orig[0])])
+
 if __name__ == "__main__":
-    print(evalRPN(["4","13","5","/","+"]))
+    print(evalRPNr(["10","6","9","3","+","-11","*","/","*","17","+","5","+"]))
