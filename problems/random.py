@@ -228,5 +228,22 @@ def longest_consecutive_sequence_by_order(nums):
         prev_num = current_num
     return longest_seq     
 
+def evalRPN(tokens):
+    stack = []
+    for token in tokens:
+        if token == '+':
+            number = stack.pop(-2) + stack.pop(-1)
+        elif token == '-':
+            number = stack.pop(-2) - stack.pop(-1)
+        elif token == '*':
+            number = stack.pop(-2) * stack.pop(-1)
+        elif token == '/':
+            number = stack.pop(-2) / stack.pop(-1)
+        else:
+            number = token
+        stack.append(int(number))
+
+    return stack.pop()
+
 if __name__ == "__main__":
-    print(longest_consecutive_sequence_by_order([1, 2, 2, 3, 4, 10, 21, 22, 23, 24]))
+    print(evalRPN(["4","13","5","/","+"]))
