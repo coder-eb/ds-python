@@ -16,7 +16,20 @@ from problems.HT import (
 )
 from problems.MH import find_kth_smallest, stream_max
 from problems.random import remove_element
+from DS.ListStack import ListStack as Stack
 
+def sort_stack(random_stack: Stack):
+    sorted_stack = Stack()
+    while not random_stack.is_empty():
+        current_num = random_stack.pop()
+        
+        if sorted_stack.is_empty() or sorted_stack.peek() <= current_num:
+            sorted_stack.push(current_num)
+        else:
+            while not sorted_stack.is_empty() and sorted_stack.peek() > current_num:
+                random_stack.push(sorted_stack.pop())
+            sorted_stack.push(current_num)
+    return sorted_stack
 
 def fibonacci(n):
     items = [0, 1]
@@ -26,7 +39,14 @@ def fibonacci(n):
     return items[n]
 
 def main():
-    print(fibonacci(1))
+    random_stack = Stack()
+    random_stack.push(2)
+    random_stack.push(4)
+    random_stack.push(5)
+    random_stack.push(1)
+    random_stack.push(3)
+    sorted_stack = sort_stack(random_stack)
+    print(sorted_stack)
 
 if __name__ == "__main__":
     main()
