@@ -136,3 +136,93 @@ class LinkedList:
             curr_node = curr_node.next
 
         return f"\n(HEAD) {builder}END\n"
+    
+    def find_middle_node(self):
+        fast = slow = self.head 
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+        return slow
+
+    def has_loop(self):
+        fast = slow = self.head 
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+            if fast == slow:
+                return True
+        return False
+    
+    def find_kth_from_end(self, k):
+        fast = slow = self.head
+        for iter in range(k):
+            if fast is None:
+                return None
+                        
+            fast = fast.next
+
+        while fast:
+            fast = fast.next
+            slow = slow.next
+
+        return slow
+
+    def remove_duplicates(self):
+        seen = set()
+
+        prev_node = None
+        curr_node = self.head
+        while curr_node:
+            if curr_node.value not in seen:
+                seen.add(curr_node.value)
+                prev_node = curr_node
+                curr_node = curr_node.next
+                continue
+            else:
+                next_node = curr_node.next
+                while next_node and next_node in seen:
+                    next_node = next_node.next
+                    self.length -= 1
+                prev_node.next = next_node
+                curr_node = prev_node.next
+                self.length -= 1
+    
+    def binary_to_decimal(self):
+        decimal = 0
+
+        curr_node = self.head
+        for index in range(self.length):
+            binary = curr_node.value
+            power = self.length - index - 1
+            converted_value = binary * ( 2 ** power )
+            decimal += converted_value
+
+            curr_node = curr_node.next
+        return decimal
+
+    def partition_list(self, x):
+        if self.head is None:
+            return
+
+        # Two nodes to hold values below and above x
+        small_head = Node(0)
+        large_head = Node(0)
+        small_tail = small_head
+        large_tail = large_head
+
+        curr_node = self.head
+        while curr_node:
+            curr_value = curr_node.value
+            if curr_value < x:
+                small_tail.next = curr_node
+                small_tail = curr_node
+            else:
+                large_tail.next = curr_node
+                large_tail = curr_node
+
+            # Keep traversing
+            curr_node = curr_node.next
+
+        large_tail.next = None
+        small_tail.next = large_head.next
+        self.head = small_head.next
