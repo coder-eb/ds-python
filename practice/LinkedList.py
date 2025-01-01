@@ -226,3 +226,27 @@ class LinkedList:
         large_tail.next = None
         small_tail.next = large_head.next
         self.head = small_head.next
+
+    def reverse_between(self, start_index, end_index):
+        if self.head is None or self.length == 1:
+            return 
+
+        before_start = None
+        start = self.head
+        index = 0
+        while index < start_index:
+            before_start = start
+            start = start.next
+            index += 1
+        
+        before = before_start
+        current = start
+        while index <= end_index:
+            after = current.next
+            current.next = before
+            current = after
+            index += 1
+
+        start.next = after
+        if before_start:
+            before_start.next = before
