@@ -244,9 +244,12 @@ class LinkedList:
         while index <= end_index:
             after = current.next
             current.next = before
+            before = current
             current = after
             index += 1
 
         start.next = after
-        if before_start:
+        if before_start is None:
+            self.head = before
+        else:
             before_start.next = before
