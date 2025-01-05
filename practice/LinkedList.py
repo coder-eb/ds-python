@@ -231,6 +231,26 @@ class LinkedList:
         if self.head is None or self.length == 1:
             return 
 
+        dummy_node = Node(None)
+        dummy_node.next = self.head
+        previous_node = dummy_node
+
+        for i in range(start_index):
+            previous_node = previous_node.next
+
+        current_node = previous_node.next
+        for i in range(end_index-start_index):
+            node_to_move = current_node.next
+            current_node.next = node_to_move.next
+            node_to_move.next = previous_node.next
+            previous_node.next = node_to_move
+            
+        self.head = dummy_node.next
+
+    def reverse_between_1(self, start_index, end_index):
+        if self.head is None or self.length == 1:
+            return 
+
         before_start = None
         start = self.head
         index = 0
