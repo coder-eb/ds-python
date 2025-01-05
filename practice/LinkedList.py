@@ -1,6 +1,7 @@
 from practice.Nodes import ForwardNode as Node
+from practice.BaseLinkedList import BaseLinkedList
 
-class LinkedList:
+class LinkedList(BaseLinkedList):
     def __init__(self) -> None:
         self.head = self.tail = None
         self.length = 0
@@ -127,16 +128,6 @@ class LinkedList:
         
         self.head, self.tail = self.tail, self.head
 
-    def __str__(self):
-        builder = ""
-
-        curr_node = self.head
-        while curr_node:
-            builder += f"{curr_node.value} => "
-            curr_node = curr_node.next
-
-        return f"\n(HEAD) {builder}END\n"
-    
     def find_middle_node(self):
         fast = slow = self.head 
         while fast and fast.next:
