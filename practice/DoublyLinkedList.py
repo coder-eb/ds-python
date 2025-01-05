@@ -4,7 +4,7 @@ from practice.BaseLinkedList import BaseLinkedList
 class DoublyLinkedList(BaseLinkedList):
     def __init__(self, value):
         self.head = self.tail = Node(value)
-        self.length = 0
+        self.length = 1
     
     def append(self, value) -> bool:
         new_node = Node(value)
@@ -64,3 +64,18 @@ class DoublyLinkedList(BaseLinkedList):
 
         prev_head.next = None
         return prev_head
+
+    def get(self, index) -> Node|None:
+        if index < 0 or index >= self.length:
+            return None
+        
+        if index < self.length // 2:
+            current_node = self.head
+            for i in range(index):
+                current_node = current_node.next
+        else:
+            current_node = self.tail
+            for i in range(self.length - index - 1):
+                current_node = current_node.prev
+
+        return current_node
