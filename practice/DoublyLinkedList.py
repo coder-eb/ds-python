@@ -162,4 +162,24 @@ class DoublyLinkedList(BaseLinkedList):
             forward, backward = forward.next, backward.prev
         return True
 
+    def swap_pairs(self):
+       if self.length <= 1:
+           return 
+
+       before = self.head
+       self.head = before.next
+
+       while before and before.next:
+            after = before.next
+            after.prev, before.next = before.prev, after.next
+
+            next = after.next
+            if next:
+                next.prev = before
+            prev = before.prev
+            if prev:
+                prev.next = after
+                
+            before.prev, after.next = after, before
+            before = next
         
