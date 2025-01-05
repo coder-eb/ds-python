@@ -127,3 +127,39 @@ class DoublyLinkedList(BaseLinkedList):
 
         self.length -= 1
         return target_node
+    
+    def swap_first_last(self):
+        if self.length == 0:
+            return False
+        
+        self.head.value, self.tail.value = self.tail.value, self.head.value
+        return True
+    
+    def reverse(self):
+        if self.length <= 1:
+            return
+        
+        prev_node = None
+        curr_node = self.head
+        while curr_node is not None:
+            next_node = curr_node.next
+            curr_node.prev = next_node
+            curr_node.next = prev_node
+
+            prev_node = curr_node
+            curr_node = next_node
+
+        self.head, self.tail = self.tail, self.head
+
+    def is_palindrome(self):
+        forward = self.head
+        backward = self.tail
+
+        for i in range(self.length // 2):
+            if forward.value != backward.value:
+                return False
+            
+            forward, backward = forward.next, backward.prev
+        return True
+
+        

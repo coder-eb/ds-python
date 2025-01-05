@@ -1,12 +1,12 @@
 from practice.DoublyLinkedList import DoublyLinkedList
 
 def main():
-    ll = DoublyLinkedList(0)
-    ll.append(1)
-    ll.append(2)
-    ll.append(3)
+    dll = DoublyLinkedList(0)
+    dll.append(1)
+    dll.append(0)
 
-    print(ll.get(0))
+    print(dll.is_palindrome())
+    print(dll)
 
 if __name__ == '__main__':
     main()
