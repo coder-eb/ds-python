@@ -61,7 +61,7 @@ def missingNumber(nums):
     
     for num in range(len(nums)+1):
         if num not in seen: return num
-        
+
 def removeDuplicates(nums):
     j = 1
     for i in range(1, len(nums)):
@@ -69,7 +69,7 @@ def removeDuplicates(nums):
             nums[j] = nums[i]
             j+=1
     return nums
-   
+
 def isPalindrome(x):
     if x < 0: return False
     
@@ -277,5 +277,25 @@ def __evalRPNr(orig, new):
 def evalRPNr(orig):
     return __evalRPNr(orig[1:], [int(orig[0])])
 
+def airline():
+    tickets = [
+        ["New York", "Washington"],
+        ["Seattle", "Memphis"],
+        ["Hawaii", "New York"],
+        ["Memphis", "Hawaii"],
+    ]
+
+    map = {}
+    for source, destination in tickets:
+        map[source] = destination
+
+    start = set(map.keys()).difference(set(map.values())).pop()
+    route = []
+    while start:
+        route.append(start)
+        start = map.get(start)
+    return route
+
+
 if __name__ == "__main__":
-    print(evalRPNr(["10","6","9","3","+","-11","*","/","*","17","+","5","+"]))
+    print(airline())
