@@ -298,30 +298,21 @@ def airline():
 
 class Problems:
     def topKFrequent(self, nums: list, k: int):
-        occurences = {}
+        count = {}
         for num in nums:
-            occurences[num] = occurences.get(num, 0)+1
+            count[num] = count.get(num, 0)+1
         
-        sorted_by_occurence = [None] * (len(nums)+1)
-        for num, count in occurences.items():
-            existing_entry = sorted_by_occurence[count]
-            if existing_entry:
-                existing_entry.append(num)
-            else:
-                existing_entry = [num]
-            sorted_by_occurence[count] = existing_entry
+        freq = [[] for i in range(len(nums)+1)]
+        for num, count in count.items():
+            freq[count].append(num)
 
-        result = []
-        for i in range(len(nums),-1,-1):
-            print(i)
-            item = sorted_by_occurence[i]
-            if item:
-                result += item
-            if len(result) >= k:
-                return result[:k]
-
-        return result
+        res = []
+        for i in range(len(freq)-1, 0, -1):
+            for number in freq[i]:
+                res.append(number)
+                if len(res) == k:
+                    return res
 
 if __name__ == "__main__":
     problems = Problems()
-    print(problems.topKFrequent([7,7], 1))
+    print(problems.topKFrequent([5,7,7], 2))
