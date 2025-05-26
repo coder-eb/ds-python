@@ -296,6 +296,32 @@ def airline():
         start = map.get(start)
     return route
 
+class Problems:
+    def topKFrequent(self, nums: list, k: int):
+        occurences = {}
+        for num in nums:
+            occurences[num] = occurences.get(num, 0)+1
+        
+        sorted_by_occurence = [None] * (len(nums)+1)
+        for num, count in occurences.items():
+            existing_entry = sorted_by_occurence[count]
+            if existing_entry:
+                existing_entry.append(num)
+            else:
+                existing_entry = [num]
+            sorted_by_occurence[count] = existing_entry
+
+        result = []
+        for i in range(len(nums),-1,-1):
+            print(i)
+            item = sorted_by_occurence[i]
+            if item:
+                result += item
+            if len(result) >= k:
+                return result[:k]
+
+        return result
 
 if __name__ == "__main__":
-    print(airline())
+    problems = Problems()
+    print(problems.topKFrequent([7,7], 1))
