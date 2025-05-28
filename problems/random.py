@@ -313,6 +313,36 @@ class Problems:
                 if len(res) == k:
                     return res
 
+    def longestConsecutive(self, nums):
+        numSet = set(nums)
+
+        longest = 0
+        for num in nums:
+            if (num-1) in numSet:
+                continue
+            
+            length = 0
+            while (num+length) in numSet:
+                length += 1
+                
+            longest = max(longest, length)
+
+        return longest
+
+    def twoSum(self, numbers, target):
+        left_pointer = 0
+        right_pointer = len(numbers)-1
+
+        while left_pointer < right_pointer:
+            sum = numbers[left_pointer] + numbers[right_pointer]
+            if sum == target:
+                return [numbers[left_pointer], numbers[right_pointer]]
+            elif sum > target:
+                right_pointer -= 1
+            else:
+                left_pointer += 1
+        
+
 if __name__ == "__main__":
     problems = Problems()
-    print(problems.topKFrequent([5,7,7], 2))
+    print(problems.twoSum([2,7,11,15], 9))
