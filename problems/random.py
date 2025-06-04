@@ -354,8 +354,17 @@ class Problems:
             longest = max(longest, right-left+1)
         return longest
 
+    def maxSumSubArray(self, arr, k):
+        max_sum = 0
+        current_running_sum = 0
 
-
+        for index in range(0, len(arr)):
+            current_running_sum += arr[index]
+            if index >= k-1:
+                max_sum = max(current_running_sum, max_sum)
+                current_running_sum -= arr[index - (k-1)]
+        return max_sum
+            
 if __name__ == "__main__":
     problems = Problems()
-    print(problems.lengthOfLongestSubstring("zxyzxyz"))
+    print(problems.maxSumSubArray([4, 2, 1, 7, 8, 1, 2, 8, 1, 0], 3))
