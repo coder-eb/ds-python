@@ -341,8 +341,21 @@ class Problems:
                 right_pointer -= 1
             else:
                 left_pointer += 1
-        
+
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        char_set = set()
+        longest = 0
+        left = 0
+        for right in range(len(s)):
+            while s[right] in char_set:
+                char_set.remove(s[left])
+                left += 1
+            char_set.add(s[right])
+            longest = max(longest, right-left+1)
+        return longest
+
+
 
 if __name__ == "__main__":
     problems = Problems()
-    print(problems.twoSum([2,7,11,15], 9))
+    print(problems.lengthOfLongestSubstring("zxyzxyz"))
