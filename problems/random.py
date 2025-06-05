@@ -366,23 +366,19 @@ class Problems:
         return max_sum
 
     def smallestSubArray(self, arr, target):
-        currentSum, smallest = 0, len(arr)
-        left, right = 0, -1
+        current_window_sum = 0
+        min_window_size = len(arr)
+        window_start = 0
+        
+        for window_end in range(0, len(arr)):
+            current_window_sum += arr[window_end]
 
-        while right <= len(arr)-2:
-            if currentSum < target:
-                right+=1
-                currentSum += arr[right]
-            else:
-                currentSum -= arr[left]
-                left+=1
-            
-            if currentSum >= target:
-                smallest = min(smallest, right-left+1)
-                if smallest == 1:
-                    return 1
-                
-        return smallest
+            while current_window_sum >= target:
+                min_window_size = min(min_window_size, window_end-window_start+1)
+                current_window_sum -= arr[window_start]
+                window_start+=1
+
+        return min_window_size
 
 if __name__ == "__main__":
     problems = Problems()
