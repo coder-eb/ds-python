@@ -364,7 +364,26 @@ class Problems:
                 max_sum = max(current_running_sum, max_sum)
                 current_running_sum -= arr[index - (k-1)]
         return max_sum
+
+    def smallestSubArray(self, arr, target):
+        currentSum, smallest = 0, len(arr)
+        left, right = 0, -1
+
+        while right <= len(arr)-2:
+            if currentSum < target:
+                right+=1
+                currentSum += arr[right]
+            else:
+                currentSum -= arr[left]
+                left+=1
             
+            if currentSum >= target:
+                smallest = min(smallest, right-left+1)
+                if smallest == 1:
+                    return 1
+                
+        return smallest
+
 if __name__ == "__main__":
     problems = Problems()
-    print(problems.maxSumSubArray([4, 2, 1, 7, 8, 1, 2, 8, 1, 0], 3))
+    print(problems.smallestSubArray([4, 2, 2, 7, 8, 1, 2, 8, 10], 8))
