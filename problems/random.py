@@ -380,6 +380,27 @@ class Problems:
 
         return min_window_size
 
+    def lengthOfLongestSubstringKDistinct(self, s: str, k: int):
+        counter = {}
+
+        longest_window_size = 0
+        window_start = 0
+        for window_end in range(0, len(s)):
+            letter = s[window_end]
+            counter[letter] = counter.get(letter, 0) + 1
+
+            while len(counter.keys()) > k:
+                letter = s[window_start]
+                if counter[letter] == 1:
+                    del counter[letter]
+                else:
+                    counter[letter] = counter[letter]-1
+                window_start+=1
+            
+            longest_window_size = max(longest_window_size, window_end-window_start+1)
+        return longest_window_size
+
+
 if __name__ == "__main__":
     problems = Problems()
-    print(problems.smallestSubArray([4, 2, 2, 7, 8, 1, 2, 8, 10], 8))
+    print(problems.lengthOfLongestSubstringKDistinct('AAAHHIBC', 2))
