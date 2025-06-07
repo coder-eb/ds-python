@@ -412,46 +412,33 @@ class Problems:
 
         return max_window_size
 
-    def lettersExist(self, current_counter, target_counter):
-        for letter in target_counter.keys():
-            if letter not in current_counter:
-                return False
-            if current_counter[letter] < target_counter[letter]:
-                return False            
-        return True
-
     def minWindow(self, s: str, t: str) -> str:
-        need_counter, have_counter = {}, {}
+        countT, window = {}, {}
         for letter in t:
-            need_counter[letter] = need_counter.get(letter,0)+1
-            have_counter[letter] = 0
+            countT[letter] = countT.get(letter,0)+1
 
-        need_letters, have_letters = len(need_counter.keys()), 0
+        have, need = 0, len(countT.keys()) 
+        res, res_len = [-1,-1], float('infinity')
 
-        window_start, min_window_size = 0, len(s)
-        min_substr = ""
+        window_start = 0
         for window_end, letter in enumerate(s):
-            if letter not in need_counter:
-                continue
-            
-            have_counter[letter] += 1
-            if need_counter[letter] != have_counter[letter]: 
-                continue
+            window[letter] = window.get(letter,0) + 1
+            if letter in countT and window[letter] == countT[letter]: 
+                have += 1
 
-            have_letters += 1
-            while have_letters == need_letters and window_start <= window_end: 
-                if (window_end-window_start+1) <= min_window_size:
-                    min_window_size = window_end-window_start+1
-                    min_substr = s[window_start:window_end+1]
-                
+            while have == need: 
+                if (window_end-window_start+1) <= res_len:
+                    res_len = window_end-window_start+1
+                    res = [window_start, window_end+1]
+
                 letter_to_remove = s[window_start]
+                window[letter_to_remove]-=1
                 window_start+=1
-                if letter_to_remove in have_counter:
-                    have_counter[letter_to_remove]-=1
-                    if have_counter[letter_to_remove] < need_counter[letter_to_remove]:
-                        have_letters -= 1
 
-        return min_substr   
+                if letter_to_remove in countT and window[letter_to_remove] < countT[letter_to_remove]:
+                    have -= 1
+
+        return "" if res_len == float('infinity') else s[res[0]:res[1]]
 
 if __name__ == "__main__":
     problems = Problems()
