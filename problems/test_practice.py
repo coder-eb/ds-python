@@ -196,7 +196,7 @@ def test_minWindow_duplicates_in_t(problems):
     assert problems.minWindow("aaflslflsldkalskaaa", "aaa") == "aaa"
 
 def test_minWindow_case_sensitive(problems):
-    assert problems.minWindow("aAbBcC", "ABC") == ""
+    assert problems.minWindow("aAbBcC", "ABC") == "AbBcC"
 
 def test_minWindow_multiple_possible(problems):
     assert problems.minWindow("abdabca", "abc") == "bca"
