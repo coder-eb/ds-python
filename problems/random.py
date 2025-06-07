@@ -11,18 +11,6 @@ def profit_stock(prices):
             buy = sell
     return r_buy, r_sell
 
-def main(prices):
-    profits = {}
-
-    max_profit = 0
-    for i in range(len(prices)):
-        for j in range(i, len(prices)):
-            profit = prices[j] - prices[i]
-            if profit > max_profit:
-                max_profit = profit
-            profits[profit] = f"{i}, {j}"
-    print(profits[max_profit])
-
 def fibonacci(n):
     items = [0, 1]
     for i in range(2, n+1):
@@ -132,86 +120,6 @@ def removeElement_1(nums, target):
         iteration += 1
     return curr_index
 
-def isAnagram(s, t):
-    l = len(s)
-    if l != len(t): return False
-    
-    letters_s = {}
-    letters_t = {}
-    for index in range(l):
-        letters_s[s[index]] = letters_s.get(s[index], 0) + 1
-        letters_t[t[index]] = letters_t.get(t[index], 0) + 1
-    return letters_s == letters_t
-
-def isAnagram(s, t):
-    alphabets = [0] * 26
-
-    for letter in s:
-        alphabets[ord(letter) - ord('a')] += 1
-    for letter in t:
-        alphabets[ord(letter) - ord('a')] -= 1
-
-    for alphabet in alphabets:
-        if alphabet != 0:
-            return False
-    return True
-
-def groupAnagrams(strs):
-    combinations = {}
-    for word in strs:
-        canonical = "".join(sorted(word))
-        combination = combinations.get(canonical, [])
-        combination.append(word)
-        combinations[canonical] = combination
-    return list(combinations.values())
-
-def isPalindrome_1(s: str) -> bool:
-    left, right = 0, len(s)-1
-    while left < right: 
-        left_char = s[left]
-        right_char = s[right]
-
-        if not left_char.isalnum() or not right_char.isalnum(): 
-            if not left_char.isalnum():
-                left += 1
-            if not right_char.isalnum():
-                right -= 1
-            continue
-
-        if left_char.lower() != right_char.lower():
-            return False
-        left += 1
-        right -= 1
-    return True
-
-def isValid(s):
-    pairs = {
-        ")": "(",
-        "}": "{",
-        "]": "[",
-    }
-    stack = []
-    for bracket in s:
-        if bracket in pairs.keys():
-            expected_bracket = pairs[bracket]
-            if not stack or stack.pop() != expected_bracket:
-                return False
-        else:
-            stack.append(bracket)
-    return len(stack) == 0
-
-def longest_consecutive_sequence(nums):
-    nums = set(nums)
-    longest_sequence = current_sequence = 0
-    for num in nums:
-        current_sequence = 1
-        if num - 1 not in nums:
-            while num + 1 in nums:
-                current_sequence += 1
-                num = num + 1
-        longest_sequence = max(longest_sequence, current_sequence)
-    return longest_sequence    
-
 def longest_consecutive_sequence_by_order(nums):
     if not len(nums): return 0
 
@@ -297,6 +205,74 @@ def airline():
     return route
 
 class Problems:
+    def isAnagram(s, t):
+        l = len(s)
+        if l != len(t): return False
+        
+        letters_s = {}
+        letters_t = {}
+        for index in range(l):
+            letters_s[s[index]] = letters_s.get(s[index], 0) + 1
+            letters_t[t[index]] = letters_t.get(t[index], 0) + 1
+        return letters_s == letters_t
+
+    def isAnagram_1(s, t):
+        alphabets = [0] * 26
+
+        for letter in s:
+            alphabets[ord(letter) - ord('a')] += 1
+        for letter in t:
+            alphabets[ord(letter) - ord('a')] -= 1
+
+        for alphabet in alphabets:
+            if alphabet != 0:
+                return False
+        return True
+
+    def groupAnagrams(strs):
+        combinations = {}
+        for word in strs:
+            canonical = "".join(sorted(word))
+            combination = combinations.get(canonical, [])
+            combination.append(word)
+            combinations[canonical] = combination
+        return list(combinations.values())
+
+    def isPalindrome_1(s: str) -> bool:
+        left, right = 0, len(s)-1
+        while left < right: 
+            left_char = s[left]
+            right_char = s[right]
+
+            if not left_char.isalnum() or not right_char.isalnum(): 
+                if not left_char.isalnum():
+                    left += 1
+                if not right_char.isalnum():
+                    right -= 1
+                continue
+
+            if left_char.lower() != right_char.lower():
+                return False
+            left += 1
+            right -= 1
+        return True
+
+    def isValid(s):
+        pairs = {
+            ")": "(",
+            "}": "{",
+            "]": "[",
+        }
+        stack = []
+        for bracket in s:
+            if bracket in pairs.keys():
+                expected_bracket = pairs[bracket]
+                if not stack or stack.pop() != expected_bracket:
+                    return False
+            else:
+                stack.append(bracket)
+        return len(stack) == 0
+
     def topKFrequent(self, nums: list, k: int):
         count = {}
         for num in nums:
