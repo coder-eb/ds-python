@@ -152,3 +152,27 @@ def test_smallestSubArray_basic(problems):
 
 def test_smallestSubArray_no_valid(problems):
     assert problems.smallestSubArray([1,1,1,1], 10) == 0
+
+def test_characterReplacement_basic(problems):
+    assert problems.characterReplacement("XYYX", 2) == 4  # Replace both X or both Y
+
+def test_characterReplacement_example2(problems):
+    assert problems.characterReplacement("AAABABB", 1) == 5  # Replace one B to get "AAAAA" or "BBBBB"
+
+def test_characterReplacement_no_replacements_needed(problems):
+    assert problems.characterReplacement("AAAA", 2) == 4  # Already all same
+
+def test_characterReplacement_k_zero(problems):
+    assert problems.characterReplacement("AABABBA", 0) == 2  # Longest block of same char is "AA" or "BB"
+
+def test_characterReplacement_all_unique(problems):
+    assert problems.characterReplacement("ABCDE", 2) == 3  # Replace any two to match a third
+
+def test_characterReplacement_entire_string(problems):
+    assert problems.characterReplacement("ABCD", 4) == 4  # Can make all same
+
+def test_characterReplacement_single_char(problems):
+    assert problems.characterReplacement("A", 0) == 1
+
+def test_characterReplacement_long_run(problems):
+    assert problems.characterReplacement("AABABBA", 1) == 4  # Replace one B to get "AABA" or "ABBA"

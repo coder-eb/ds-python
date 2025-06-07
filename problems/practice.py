@@ -398,6 +398,8 @@ class Problems:
                         l+=1
         return res
 
+    def characterReplacement(self, s: str, k: int) -> int:
+        pass
 
 if __name__ == "__main__":
     problems = Problems()
