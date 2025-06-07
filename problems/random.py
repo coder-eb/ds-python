@@ -329,7 +329,7 @@ class Problems:
 
         return longest
 
-    def twoSum(self, numbers, target):
+    def twoSumSorted(self, numbers, target):
         left_pointer = 0
         right_pointer = len(numbers)-1
 
@@ -399,7 +399,6 @@ class Problems:
             
             longest_window_size = max(longest_window_size, window_end-window_start+1)
         return longest_window_size
-
 
 if __name__ == "__main__":
     problems = Problems()
