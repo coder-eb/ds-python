@@ -421,25 +421,37 @@ class Problems:
         return True
 
     def minWindow(self, s: str, t: str) -> str:
-        target_counter = {}
+        need_counter, have_counter = {}, {}
         for letter in t:
-            target_counter[letter] = target_counter.get(letter,0)+1
+            need_counter[letter] = need_counter.get(letter,0)+1
+            have_counter[letter] = 0
+
+        need_letters, have_letters = len(need_counter.keys()), 0
 
         window_start, min_window_size = 0, len(s)
-        current_counter = {}
         min_substr = ""
         for window_end, letter in enumerate(s):
-            current_counter[letter] = current_counter.get(letter,0)+1
+            if letter not in need_counter:
+                continue
+            
+            have_counter[letter] += 1
+            if need_counter[letter] != have_counter[letter]: 
+                continue
 
-            while self.lettersExist(current_counter, target_counter) and window_start <= window_end:
+            have_letters += 1
+            while have_letters == need_letters and window_start <= window_end: 
                 if (window_end-window_start+1) <= min_window_size:
                     min_window_size = window_end-window_start+1
                     min_substr = s[window_start:window_end+1]
-
-                current_counter[s[window_start]]-=1
+                
+                letter_to_remove = s[window_start]
                 window_start+=1
+                if letter_to_remove in have_counter:
+                    have_counter[letter_to_remove]-=1
+                    if have_counter[letter_to_remove] < need_counter[letter_to_remove]:
+                        have_letters -= 1
 
-        return min_substr
+        return min_substr   
 
 if __name__ == "__main__":
     problems = Problems()
