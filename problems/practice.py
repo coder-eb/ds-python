@@ -343,7 +343,7 @@ class Problems:
 
     def smallestSubArray(self, arr, target):
         current_window_sum = 0
-        min_window_size = len(arr)
+        min_window_size = float('infinity')
         window_start = 0
         
         for window_end in range(0, len(arr)):
@@ -354,7 +354,7 @@ class Problems:
                 current_window_sum -= arr[window_start]
                 window_start+=1
 
-        return min_window_size
+        return 0 if min_window_size == float('infinity') else min_window_size
 
     def lengthOfLongestSubstringKDistinct(self, s: str, k: int):
         counter = {}
