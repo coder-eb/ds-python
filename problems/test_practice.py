@@ -67,3 +67,88 @@ def test_threeSum_duplicates(problems):
     result = problems.threeSum([-2,0,0,2,2])
     expected = [[-2,0,2]]
     assert sorted([sorted(triplet) for triplet in result]) == sorted([sorted(triplet) for triplet in expected])
+    
+def test_isAnagram_true():
+    assert Problems.isAnagram("listen", "silent") is True
+    assert Problems.isAnagram("anagram", "nagaram") is True
+    assert Problems.isAnagram("", "") is True
+
+def test_isAnagram_false():
+    assert Problems.isAnagram("rat", "car") is False
+    assert Problems.isAnagram("hello", "helloo") is False
+    assert Problems.isAnagram("a", "A") is False  # case-sensitive
+
+def test_isAnagram_1_true():
+    assert Problems.isAnagram_1("listen", "silent") is True
+    assert Problems.isAnagram_1("anagram", "nagaram") is True
+
+def test_isAnagram_1_false():
+    assert Problems.isAnagram_1("rat", "car") is False
+    assert Problems.isAnagram_1("abc", "def") is False
+
+def test_groupAnagrams_basic():
+    result = Problems.groupAnagrams(["eat", "tea", "tan", "ate", "nat", "bat"])
+    expected = [["eat", "tea", "ate"], ["tan", "nat"], ["bat"]]
+    # Compare as sets for unordered groups
+    assert sorted([sorted(group) for group in result]) == sorted([sorted(group) for group in expected])
+
+def test_groupAnagrams_empty():
+    assert Problems.groupAnagrams([]) == []
+
+def test_isPalindrome_1_true():
+    assert Problems.isPalindrome_1("A man, a plan, a canal: Panama") is True
+    assert Problems.isPalindrome_1("racecar") is True
+    assert Problems.isPalindrome_1("") is True
+
+def test_isPalindrome_1_false():
+    assert Problems.isPalindrome_1("hello") is False
+    assert Problems.isPalindrome_1("race a car") is False
+
+def test_isValid_true():
+    assert Problems.isValid("()") is True
+    assert Problems.isValid("()[]{}") is True
+    assert Problems.isValid("{[]}") is True
+
+def test_isValid_false():
+    assert Problems.isValid("(]") is False
+    assert Problems.isValid("([)]") is False
+    assert Problems.isValid("(((") is False
+
+def test_topKFrequent_basic(problems):
+    assert sorted(problems.topKFrequent([1,1,1,2,2,3], 2)) == [1,2]
+    assert problems.topKFrequent([1], 1) == [1]
+
+def test_topKFrequent_ties(problems):
+    # All numbers appear once, k=2, should return any 2 numbers
+    result = problems.topKFrequent([1,2,3,4], 2)
+    assert len(result) == 2
+    assert set(result).issubset({1,2,3,4})
+
+def test_longestConsecutive_basic(problems):
+    assert problems.longestConsecutive([100, 4, 200, 1, 3, 2]) == 4
+    assert problems.longestConsecutive([0,3,7,2,5,8,4,6,0,1]) == 9
+    assert problems.longestConsecutive([]) == 0
+
+def test_longestConsecutive_single(problems):
+    assert problems.longestConsecutive([10]) == 1
+
+def test_lengthOfLongestSubstring_basic(problems):
+    assert problems.lengthOfLongestSubstring("abcabcbb") == 3
+    assert problems.lengthOfLongestSubstring("bbbbb") == 1
+    assert problems.lengthOfLongestSubstring("pwwkew") == 3
+    assert problems.lengthOfLongestSubstring("") == 0
+
+def test_maxSumSubArray_basic(problems):
+    assert problems.maxSumSubArray([2,1,5,1,3,2], 3) == 9
+    assert problems.maxSumSubArray([2,3,4,1,5], 2) == 6
+
+def test_maxSumSubArray_k_equals_len(problems):
+    arr = [1,2,3,4]
+    assert problems.maxSumSubArray(arr, 4) == sum(arr)
+
+def test_smallestSubArray_basic(problems):
+    assert problems.smallestSubArray([2,1,5,2,3,2], 7) == 2
+    assert problems.smallestSubArray([2,1,5,2,8], 7) == 1
+
+def test_smallestSubArray_no_valid(problems):
+    assert problems.smallestSubArray([1,1,1,1], 10) == 0
