@@ -200,3 +200,9 @@ def test_minWindow_case_sensitive(problems):
 
 def test_minWindow_multiple_possible(problems):
     assert problems.minWindow("abdabca", "abc") == "bca"
+
+def test_minWindow_duplicate_letters(problems):
+    s = "aaaaaaaaaaaabbbbbcdd"
+    t = "abcdd"
+    # The minimal window containing a, b, c, d, d is "abbbbbcdd"
+    assert problems.minWindow(s, t) == "abbbbbcdd"
