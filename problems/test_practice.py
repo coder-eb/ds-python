@@ -176,3 +176,27 @@ def test_characterReplacement_single_char(problems):
 
 def test_characterReplacement_long_run(problems):
     assert problems.characterReplacement("AABABBA", 1) == 4  # Replace one B to get "AABA" or "ABBA"
+
+def test_minWindow_example1(problems):
+    assert problems.minWindow("ADOBECODEBANC", "ABC") == "BANC"
+
+def test_minWindow_example2(problems):
+    assert problems.minWindow("a", "a") == "a"
+
+def test_minWindow_example3(problems):
+    assert problems.minWindow("a", "aa") == ""
+
+def test_minWindow_no_window(problems):
+    assert problems.minWindow("abcdef", "xyz") == ""
+
+def test_minWindow_full_string(problems):
+    assert problems.minWindow("abc", "abc") == "abc"
+
+def test_minWindow_duplicates_in_t(problems):
+    assert problems.minWindow("aaflslflsldkalskaaa", "aaa") == "aaa"
+
+def test_minWindow_case_sensitive(problems):
+    assert problems.minWindow("aAbBcC", "ABC") == ""
+
+def test_minWindow_multiple_possible(problems):
+    assert problems.minWindow("abdabca", "abc") == "bca"

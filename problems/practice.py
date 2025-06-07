@@ -412,6 +412,8 @@ class Problems:
 
         return max_window_size
 
+    def minWindow(self, s: str, t: str) -> str:
+        pass
 
 
 
