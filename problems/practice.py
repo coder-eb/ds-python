@@ -412,12 +412,35 @@ class Problems:
 
         return max_window_size
 
+    def lettersExist(self, current_counter, target_counter):
+        for letter in target_counter.keys():
+            if letter not in current_counter:
+                return False
+            if current_counter[letter] < target_counter[letter]:
+                return False            
+        return True
+
     def minWindow(self, s: str, t: str) -> str:
-        pass
+        target_counter = {}
+        for letter in t:
+            target_counter[letter] = target_counter.get(letter,0)+1
 
+        window_start, min_window_size = 0, len(s)
+        current_counter = {}
+        min_substr = ""
+        for window_end, letter in enumerate(s):
+            current_counter[letter] = current_counter.get(letter,0)+1
 
+            while self.lettersExist(current_counter, target_counter) and window_start <= window_end:
+                if (window_end-window_start+1) <= min_window_size:
+                    min_window_size = window_end-window_start+1
+                    min_substr = s[window_start:window_end+1]
 
+                current_counter[s[window_start]]-=1
+                window_start+=1
+
+        return min_substr
 
 if __name__ == "__main__":
     problems = Problems()
-    print(problems.characterReplacement('AAABABB', 1))
+    print(problems.minWindow('a', 'a'))
