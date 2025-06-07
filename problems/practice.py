@@ -405,22 +405,11 @@ class Problems:
         for window_end, letter in enumerate(s):
             counter[letter] = counter.get(letter, 0)+1
 
-            max_repeated_letter_occurence = counter[max(counter, key=counter.get)]
-            window_size = window_end-window_start+1
-
-            letters_to_replace = window_size - max_repeated_letter_occurence
-            if letters_to_replace <= k:
-                max_window_size = max(max_window_size, window_size)
-
-            while letters_to_replace > k and window_start < window_end:
-                letter_to_remove = s[window_start]
-                counter[letter_to_remove] = counter.get(letter_to_remove, 0)-1
+            while ((window_end-window_start+1) - max(counter.values())) > k:
+                counter[s[window_start]] -= 1
                 window_start+=1
+            max_window_size = max(max_window_size, window_end-window_start+1)            
 
-                max_repeated_letter_occurence = counter[max(counter, key=counter.get)]
-                window_size = window_end-window_start+1
-                letters_to_replace = window_size - max_repeated_letter_occurence
-            
         return max_window_size
 
 
