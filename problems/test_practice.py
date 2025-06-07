@@ -140,7 +140,7 @@ def test_lengthOfLongestSubstring_basic(problems):
 
 def test_maxSumSubArray_basic(problems):
     assert problems.maxSumSubArray([2,1,5,1,3,2], 3) == 9
-    assert problems.maxSumSubArray([2,3,4,1,5], 2) == 6
+    assert problems.maxSumSubArray([2,3,4,1,5], 2) == 7
 
 def test_maxSumSubArray_k_equals_len(problems):
     arr = [1,2,3,4]
