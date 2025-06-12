@@ -452,7 +452,20 @@ class Problems:
             else:
                 l = mid + 1
         return r
+
+    def productExceptSelf(self, nums):
+        prefix = [1]*len(nums)
+        postfix = [1]*len(nums)
+        
+        for l in range(1, len(nums)):
+            r = len(nums)-l-1
+            prefix[l] = prefix[l-1] * nums[l-1]
+            postfix[r] = postfix[r+1] * nums[r+1]
+
+        for i in range(len(nums)):
+            postfix[i] = postfix[i] * prefix[i]
+        return postfix
     
 if __name__ == "__main__":
     problems = Problems()
-    print(problems.mySqrt(8))
+    print(problems.productExceptSelf([-1, 1, 0, -3, 3]))
