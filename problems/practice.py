@@ -454,18 +454,20 @@ class Problems:
         return r
 
     def productExceptSelf(self, nums):
-        prefix = [1]*len(nums)
-        postfix = [1]*len(nums)
+        res = [1]*len(nums)
         
-        for l in range(1, len(nums)):
-            r = len(nums)-l-1
-            prefix[l] = prefix[l-1] * nums[l-1]
-            postfix[r] = postfix[r+1] * nums[r+1]
+        prefix = 1
+        for i in range(0, len(nums)):
+            res[i] *= prefix
+            prefix *= nums[i]
 
-        for i in range(len(nums)):
-            postfix[i] = postfix[i] * prefix[i]
-        return postfix
+        postfix = 1
+        for i in range(len(nums)-1,-1,-1):
+            res[i] *= postfix
+            postfix *= nums[i]
+
+        return res
     
 if __name__ == "__main__":
     problems = Problems()
-    print(problems.productExceptSelf([-1, 1, 0, -3, 3]))
+    print(problems.productExceptSelf([1, 2, 3, 4]))
