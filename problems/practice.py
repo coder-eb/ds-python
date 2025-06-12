@@ -472,17 +472,24 @@ class Problems:
         return res
 
     def isValidSudoku(self, board) -> bool:
-        row_checker = defaultdict(set)
-        column_checker = defaultdict(set) 
-        square_checker = defaultdict(set)
+        row_checker = [None]*len(board)
+        column_checker = [None]*len(board)
+        square_checker = [None]*len(board)
 
         for row in range(len(board)):
+            row_checker[row] = set()
             for column in range(len(board[row])):
+                if row == 0:
+                    column_checker[column] = set()
+
                 cell = board[row][column]
                 if cell == '.':
                     continue 
                 
                 square = (row // 3) * 3 + column // 3
+                if square_checker[square] is None:
+                    square_checker[square] = set()
+                
                 if (
                     cell in row_checker[row]
                     or cell in column_checker[column]
