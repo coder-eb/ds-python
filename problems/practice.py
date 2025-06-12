@@ -1,3 +1,6 @@
+from collections import defaultdict
+
+
 def profit_stock(prices):
     buy = 0
     max_profit = 0
@@ -467,7 +470,42 @@ class Problems:
             postfix *= nums[i]
 
         return res
-    
+
+    def isValidSudoku(self, board) -> bool:
+        row_checker = defaultdict(set)
+        column_checker = defaultdict(set) 
+        square_checker = defaultdict(set)
+
+        for row in range(len(board)):
+            for column in range(len(board[row])):
+                cell = board[row][column]
+                if cell == '.':
+                    continue 
+                
+                square = (row // 3) * 3 + column // 3
+                if (
+                    cell in row_checker[row]
+                    or cell in column_checker[column]
+                    or cell in square_checker[square]
+                ):
+                    return False
+                else: 
+                    row_checker[row].add(cell)
+                    column_checker[column].add(cell)
+                    square_checker[square].add(cell)
+        return True
+ 
 if __name__ == "__main__":
     problems = Problems()
-    print(problems.productExceptSelf([1, 2, 3, 4]))
+    board = [
+        ["5","3",".",".","7",".",".",".","."],
+        ["6",".",".","1","9","5",".",".","."],
+        [".","9","8",".",".",".",".","6","."],
+        ["8",".",".",".","6",".",".",".","3"],
+        ["4",".",".","8",".","3",".",".","1"],
+        ["7",".",".",".","2",".",".",".","6"],
+        [".","6",".",".",".",".","2","8","."],
+        [".",".",".","4","1","9",".",".","5"],
+        [".",".",".",".","8",".",".","7","9"]
+    ]
+    print(problems.isValidSudoku(board))
