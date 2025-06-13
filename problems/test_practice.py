@@ -280,3 +280,35 @@ def test_valid_sudoku_box_duplicate(problems):
         [".",".",".",".","8",".",".","7","5"]  # duplicate '5' in bottom right box
     ]
     assert problems.isValidSudoku(board) is False
+
+def test_container_with_most_water_example1(problems):
+    height = [1,7,2,5,4,7,3,6]
+    assert problems.maxArea(height) == 36
+
+def test_container_with_most_water_example2(problems):
+    height = [2,2,2]
+    assert problems.maxArea(height) == 4
+
+def test_container_with_most_water_minimum(problems):
+    height = [1,1]
+    assert problems.maxArea(height) == 1
+
+def test_container_with_most_water_all_zeros(problems):
+    height = [0,0,0,0]
+    assert problems.maxArea(height) == 0
+
+def test_container_with_most_water_increasing(problems):
+    height = [1,2,3,4,5]
+    assert problems.maxArea(height) == 6
+
+def test_container_with_most_water_decreasing(problems):
+    height = [5,4,3,2,1]
+    assert problems.maxArea(height) == 6
+
+def test_container_with_most_water_single_peak(problems):
+    height = [1,1000,1]
+    assert problems.maxArea(height) == 2
+
+def test_container_with_most_water_large(problems):
+    height = [1000] * 1000
+    assert problems.maxArea(height) == 999000
