@@ -501,18 +501,21 @@ class Problems:
                     column_checker[column].add(cell)
                     square_checker[square].add(cell)
         return True
- 
+    
+    def maxArea(self, heights):
+        max_quantity = 0
+        for l in range(0, len(heights)):
+            for r in range(l+1, len(heights)):
+                height = min(heights[l], heights[r])
+                width = r - l
+
+                max_quantity = max(max_quantity, height*width)
+
+        return max_quantity
+
+
+
 if __name__ == "__main__":
     problems = Problems()
-    board = [
-        ["5","3",".",".","7",".",".",".","."],
-        ["6",".",".","1","9","5",".",".","."],
-        [".","9","8",".",".",".",".","6","."],
-        ["8",".",".",".","6",".",".",".","3"],
-        ["4",".",".","8",".","3",".",".","1"],
-        ["7",".",".",".","2",".",".",".","6"],
-        [".","6",".",".",".",".","2","8","."],
-        [".",".",".","4","1","9",".",".","5"],
-        [".",".",".",".","8",".",".","7","9"]
-    ]
-    print(problems.isValidSudoku(board))
+    
+    print(problems.maxArea([1,2,3,4,5]))
