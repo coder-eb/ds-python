@@ -503,16 +503,19 @@ class Problems:
         return True
     
     def maxArea(self, heights):
-        max_quantity = 0
-        for l in range(0, len(heights)):
-            for r in range(l+1, len(heights)):
-                height = min(heights[l], heights[r])
-                width = r - l
+        max_area = 0
+        
+        l, r = 0, len(heights)-1
 
-                max_quantity = max(max_quantity, height*width)
+        while l < r:
+            area = min(heights[r], heights[l]) * (r-l)
+            max_area = max(max_area, area)
 
-        return max_quantity
-
+            if heights[l] < heights[r]:
+                l+=1
+            else:
+                r-=1
+        return max_area
 
 
 if __name__ == "__main__":
