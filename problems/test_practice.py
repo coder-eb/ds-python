@@ -343,4 +343,8 @@ def test_trapping_rain_water_small(problems):
 
 def test_trapping_rain_water_large(problems):
     height = [0,1,0,2,1,0,1,3,2,1,2,1]
-    assert problems.trap(height)
+    assert problems.trap(height) == 6
+
+def test_trapping_rain_water_edge_case(problems):
+    height = [4,2,3]
+    assert problems.trap(height) == 1
