@@ -312,3 +312,35 @@ def test_container_with_most_water_single_peak(problems):
 def test_container_with_most_water_large(problems):
     height = [1000] * 1000
     assert problems.maxArea(height) == 999000
+
+def test_trapping_rain_water_example1(problems):
+    height = [0,2,0,3,1,0,1,3,2,1]
+    assert problems.trap(height) == 9
+
+def test_trapping_rain_water_all_zeros(problems):
+    height = [0,0,0,0]
+    assert problems.trap(height) == 0
+
+def test_trapping_rain_water_no_trap(problems):
+    height = [1,2,3,4,5]
+    assert problems.trap(height) == 0
+
+def test_trapping_rain_water_single_peak(problems):
+    height = [0,1,0]
+    assert problems.trap(height) == 0
+
+def test_trapping_rain_water_valley(problems):
+    height = [3,0,2,0,4]
+    assert problems.trap(height) == 7
+
+def test_trapping_rain_water_flat(problems):
+    height = [2,2,2,2]
+    assert problems.trap(height) == 0
+
+def test_trapping_rain_water_small(problems):
+    height = [1]
+    assert problems.trap(height) == 0
+
+def test_trapping_rain_water_large(problems):
+    height = [0,1,0,2,1,0,1,3,2,1,2,1]
+    assert problems.trap(height)
