@@ -517,8 +517,39 @@ class Problems:
                 r-=1
         return max_area
 
+    def trap(self, height) -> int:
+        trapped_water = 0
+
+        n = len(height)
+        l = 0
+        while l < n:
+            while height[l] == 0:
+                l+=1
+                if l >= n:
+                    return trapped_water
+
+            r = l+1
+            found_r = False
+            while r < n:
+                if height[r] >= height[l]:
+                    found_r = True
+                    break
+                r+=1
+            
+            if not found_r:
+                l+=1
+                continue
+
+            curr_height = min(height[l], height[r])
+            for i in range(l+1, r):
+                x = abs(curr_height - height[i])
+                trapped_water += (x)
+
+            l=r
+
+        return trapped_water
 
 if __name__ == "__main__":
     problems = Problems()
     
-    print(problems.maxArea([1,2,3,4,5]))
+    print(problems.trap([0,1,0,2,1,0,1,3,2,1,2,1]))
