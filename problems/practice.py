@@ -1,4 +1,5 @@
 from collections import defaultdict
+from typing import List
 
 
 def profit_stock(prices):
@@ -534,11 +535,29 @@ class Problems:
                 r-=1
                 right_max = max(right_max, height[r])
                 trapped_water+= right_max - height[r]
-                
+
         return trapped_water
 
+    def encode(self, strs: List[str]) -> str:
+        res = ""
+        for word in strs:
+            encoded_w = str(len(word)) + "#" + word
+            res += encoded_w
+        return res
+
+    def decode(self, s: str) -> List[str]:
+        res, i = [], 0
+        while i < len(s):
+            j = i
+            while s[j] != '#':
+                j+=1
+            
+            word_len = int(s[i:j]) 
+            res.append(s[j+1:j+1+word_len])
+            i = j+1+word_len
+        return res
+            
 
 if __name__ == "__main__":
-    problems = Problems()
-    
-    print(problems.trap([0,2,0,3,1,0,1,3,2,1]))
+    problems = Problems()  
+    print(problems)
