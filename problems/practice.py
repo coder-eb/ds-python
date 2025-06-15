@@ -518,26 +518,23 @@ class Problems:
         return max_area
 
     def trap(self, height) -> int:
-        n = len(height)
-        if n == 0:
+        if not height:
             return 0
-        prefix_arr = [0]*n
-        suffix_arr = [0]*n
-
-        prefix_arr[0] = height[0]
-        suffix_arr[n-1] = height[n-1]
-        for l in range(1, n):
-            r = n-l-1
-
-            prefix_arr[l] = max(prefix_arr[l-1], height[l-1])
-            suffix_arr[r] = max(suffix_arr[r+1], height[r+1])
-
         trapped_water = 0
-        for i in range(0, n):
-            water = min(prefix_arr[i], suffix_arr[i]) - height[i]
-            if water > 0:
-                trapped_water += water
 
+        l, r = 0, len(height)-1
+        left_max, right_max = height[l], height[r]
+
+        while l < r:
+            if left_max < right_max:
+                l+=1
+                left_max = max(left_max, height[l])
+                trapped_water += left_max - height[l]
+            else:
+                r-=1
+                right_max = max(right_max, height[r])
+                trapped_water+= right_max - height[r]
+                
         return trapped_water
 
 
