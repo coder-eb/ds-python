@@ -558,37 +558,39 @@ class Problems:
         return res
 
     def checkInclusion(self, s1: str, s2: str) -> bool:
-        need, have = {}, {}
-        for letter in s1:
-            need[letter] = need.get(letter, 0)+1
-        
-        need_letters, have_letters = len(need.keys()), 0
-        l, r = 0, 0
-        while r < len(s2):
-            letter = s2[r]
-            if letter not in need:
-                have={}
-                r+=1
-                l=r
-                have_letters=0
-                continue
+        if len(s1) > len(s2):
+            return False
 
-            have[letter] = have.get(letter, 0)+1
-            if have[letter] == need[letter]:
-                have_letters+=1
-                if have_letters == need_letters:
-                    return True
+        s1_count, s2_count = [0]*26, [0]*26
+        for i in range(len(s1)):
+            s1_count[ord(s1[i]) - ord('a')] += 1
+            s2_count[ord(s2[i]) - ord('a')] += 1
 
-            while have[letter] > need[letter] and l < r:
-                remove = s2[l]
-                if remove in have:
-                    if have[remove] == need[remove]:
-                        have_letters-=1
-                    have[remove]-=1
-                l+=1
-            r+=1
+        matches=0
+        for i in range(26):
+            matches += (1 if s1_count[i] == s2_count[i] else 0)
 
-        return False
+        l=0
+        for r in range(len(s1), len(s2)):
+            if matches == 26: return True
+
+            add_index = ord(s2[r]) - ord('a')
+            s2_count[add_index] += 1
+            if s1_count[add_index] == s2_count[add_index]:
+                matches+=1
+            elif s1_count[add_index] == s2_count[add_index]-1:
+                matches-=1
+
+            remove_index = ord(s2[l]) - ord('a')
+            s2_count[remove_index] -= 1
+            if s1_count[remove_index] == s2_count[remove_index]:
+                matches += 1
+            elif s1_count[remove_index] == s2_count[remove_index]+1:
+                matches-=1
+
+            l+=1
+
+        return matches == 26
 
 
 if __name__ == "__main__":
