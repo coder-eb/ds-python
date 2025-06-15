@@ -348,3 +348,45 @@ def test_trapping_rain_water_large(problems):
 def test_trapping_rain_water_edge_case(problems):
     height = [4,2,3]
     assert problems.trap(height) == 1
+
+def test_encode_decode_basic(problems):
+    strs = ["neet", "code", "love", "you"]
+    encoded = problems.encode(strs)
+    decoded = problems.decode(encoded)
+    assert decoded == strs
+
+def test_encode_decode_with_symbols(problems):
+    strs = ["we", "say", ":", "yes"]
+    encoded = problems.encode(strs)
+    decoded = problems.decode(encoded)
+    assert decoded == strs
+
+def test_encode_decode_empty_list(problems):
+    strs = []
+    encoded = problems.encode(strs)
+    decoded = problems.decode(encoded)
+    assert decoded == strs
+
+def test_encode_decode_empty_strings(problems):
+    strs = ["", "", ""]
+    encoded = problems.encode(strs)
+    decoded = problems.decode(encoded)
+    assert decoded == strs
+
+def test_encode_decode_mixed_empty_and_nonempty(problems):
+    strs = ["a", "", "b", ""]
+    encoded = problems.encode(strs)
+    decoded = problems.decode(encoded)
+    assert decoded == strs
+
+def test_encode_decode_utf8(problems):
+    strs = ["你好", "😊", "café", "💡"]
+    encoded = problems.encode(strs)
+    decoded = problems.decode(encoded)
+    assert decoded == strs
+
+def test_encode_decode_long_strings(problems):
+    strs = ["a" * 199, "b" * 150, "c" * 50]
+    encoded = problems.encode(strs)
+    decoded = problems.decode(encoded)
+    assert decoded == strs
