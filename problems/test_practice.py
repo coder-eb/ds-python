@@ -390,3 +390,33 @@ def test_encode_decode_long_strings(problems):
     encoded = problems.encode(strs)
     decoded = problems.decode(encoded)
     assert decoded == strs
+
+def test_check_inclusion_true(problems):
+    assert problems.checkInclusion("ab", "eidbaooo") is True
+
+def test_check_inclusion_false(problems):
+    assert problems.checkInclusion("ab", "eidboaoo") is False
+
+def test_check_inclusion_exact_match(problems):
+    assert problems.checkInclusion("abc", "abc") is True
+
+def test_check_inclusion_substring_at_end(problems):
+    assert problems.checkInclusion("adc", "dcda") is True
+
+def test_check_inclusion_single_char_true(problems):
+    assert problems.checkInclusion("a", "a") is True
+
+def test_check_inclusion_single_char_false(problems):
+    assert problems.checkInclusion("a", "b") is False
+
+def test_check_inclusion_longer_s1(problems):
+    assert problems.checkInclusion("abcd", "abc") is False
+
+def test_check_inclusion_repeated_chars(problems):
+    assert problems.checkInclusion("aabc", "caaebacb") is True
+
+def test_check_inclusion_empty_s2(problems):
+    assert problems.checkInclusion("a", "") is False
+
+def test_check_inclusion_s1_equals_s2(problems):
+    assert problems.checkInclusion("xyz", "xyz") is True

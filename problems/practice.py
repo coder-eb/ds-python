@@ -556,7 +556,15 @@ class Problems:
             res.append(s[j+1:j+1+word_len])
             i = j+1+word_len
         return res
-            
+
+    def checkInclusion(self, s1: str, s2: str) -> bool:
+        required = {}
+        for letter in s1:
+            required[letter] = required.get(letter, 0)+1
+        
+        # for letter in s2:
+
+        pass  
 
 if __name__ == "__main__":
     problems = Problems()  
