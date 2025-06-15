@@ -562,24 +562,31 @@ class Problems:
         for letter in s1:
             need[letter] = need.get(letter, 0)+1
         
+        need_letters, have_letters = len(need.keys()), 0
         l, r = 0, 0
         while r < len(s2):
             letter = s2[r]
-            if letter in need:
-                have[letter] = have.get(letter, 0)+1
-                while have[letter] > need[letter] and l < r:
-                    remove = s2[l]
-                    if remove in have:
-                        have[remove]-=1
-                    l+=1
-
-                if (need == have):
-                    return True
-                r+=1
-            else:
+            if letter not in need:
                 have={}
                 r+=1
                 l=r
+                have_letters=0
+                continue
+
+            have[letter] = have.get(letter, 0)+1
+            if have[letter] == need[letter]:
+                have_letters+=1
+                if have_letters == need_letters:
+                    return True
+
+            while have[letter] > need[letter] and l < r:
+                remove = s2[l]
+                if remove in have:
+                    if have[remove] == need[remove]:
+                        have_letters-=1
+                    have[remove]-=1
+                l+=1
+            r+=1
 
         return False
 
