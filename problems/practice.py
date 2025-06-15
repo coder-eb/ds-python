@@ -558,14 +558,32 @@ class Problems:
         return res
 
     def checkInclusion(self, s1: str, s2: str) -> bool:
-        required = {}
+        need, have = {}, {}
         for letter in s1:
-            required[letter] = required.get(letter, 0)+1
+            need[letter] = need.get(letter, 0)+1
         
-        # for letter in s2:
+        l, r = 0, 0
+        while r < len(s2):
+            letter = s2[r]
+            if letter in need:
+                have[letter] = have.get(letter, 0)+1
+                while have[letter] > need[letter] and l < r:
+                    remove = s2[l]
+                    if remove in have:
+                        have[remove]-=1
+                    l+=1
 
-        pass  
+                if (need == have):
+                    return True
+                r+=1
+            else:
+                have={}
+                r+=1
+                l=r
+
+        return False
+
 
 if __name__ == "__main__":
     problems = Problems()  
-    print(problems)
+    print(problems.checkInclusion('mart','karma'))
