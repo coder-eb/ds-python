@@ -1,5 +1,9 @@
 from collections import defaultdict
 from typing import List
+import sys
+import os
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+from problems.CustomDS import MonotonicQueue
 
 
 def profit_stock(prices):
@@ -591,8 +595,24 @@ class Problems:
             l+=1
 
         return matches == 26
+    
+    def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
+        res=[]
+        queue = MonotonicQueue()
 
+        for i in range(0, k):
+            queue.push(nums[i])
+        res.append(queue.max())
+
+        l=0
+        for r in range(k, len(nums)):
+            queue.push(nums[r])
+            queue.pop(nums[l])
+            res.append(queue.max())
+            
+            l+=1            
+        return res
 
 if __name__ == "__main__":
     problems = Problems()  
-    print(problems.checkInclusion('mart','karma'))
+    print(problems.maxSlidingWindow([1,2,1,0,4,2,6],3))
