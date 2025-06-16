@@ -429,3 +429,33 @@ def test_check_inclusion_leetcode_2(problems):
 
 def test_check_inclusion_leetcode_96(problems):
     assert problems.checkInclusion('hello', 'ooolleoooleh') is False
+
+def test_max_sliding_window_example1(problems):
+    nums = [1,3,-1,-3,5,3,6,7]
+    k = 3
+    assert problems.maxSlidingWindow(nums, k) == [3,3,5,5,6,7]
+
+def test_max_sliding_window_example2(problems):
+    nums = [1]
+    k = 1
+    assert problems.maxSlidingWindow(nums, k) == [1]
+
+def test_max_sliding_window_example3(problems):
+    nums = [1,2,1,0,4,2,6]
+    k = 3
+    assert problems.maxSlidingWindow(nums, k) == [2,2,4,4,6]
+
+def test_max_sliding_window_all_negatives(problems):
+    nums = [-7,-8,-6,-5,-9]
+    k = 2
+    assert problems.maxSlidingWindow(nums, k) == [-7,-6,-5,-5]
+
+def test_max_sliding_window_k_equals_length(problems):
+    nums = [4,2,12,3,8]
+    k = 5
+    assert problems.maxSlidingWindow(nums, k) == [12]
+
+def test_max_sliding_window_k_is_two(problems):
+    nums = [9, 11]
+    k = 2
+    assert problems.maxSlidingWindow(nums, k) == [11]
