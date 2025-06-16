@@ -459,3 +459,13 @@ def test_max_sliding_window_k_is_two(problems):
     nums = [9, 11]
     k = 2
     assert problems.maxSlidingWindow(nums, k) == [11]
+
+def test_max_sliding_window_leetcode_20(problems):
+    nums = [1,-1]
+    k = 1
+    assert problems.maxSlidingWindow(nums, k) == [1,-1]
+
+def test_max_sliding_window_leetcode_22(problems):
+    nums = [1,3,1,2,0,5]
+    k = 3
+    assert problems.maxSlidingWindow(nums, k) == [3,3,2,5]
