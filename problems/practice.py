@@ -617,7 +617,27 @@ class Problems:
         return res
 
     def evalRPN(self, tokens: List[str]) -> int:
-        pass
+        stack = []
+        operation = ['+', '-', '*', '/']
+
+        for token in tokens:
+            if token not in operation:
+                number = token
+            else:
+                num2 = stack.pop()
+                num1 = stack.pop()
+
+                if token == '+':
+                    number = num1 + num2
+                elif token == '-':
+                    number = num1 - num2
+                elif token == '*':
+                    number = num1 * num2
+                elif token == '/':
+                    number = num1 / num2
+            stack.append(int(number))
+        return stack.pop()
+
 
 if __name__ == "__main__":
     problems = Problems()  
