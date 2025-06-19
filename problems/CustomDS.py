@@ -23,7 +23,7 @@ class MonotonicQueue:
 class TrieNode:
     def __init__(self):
         self.children = [None]*26
-        self.terminal = False
+        self.end_of_word = False
 
 class Trie:
     def __init__(self) -> None:
@@ -31,32 +31,27 @@ class Trie:
     
     def insert(self, word: str) -> None:
         curr_node = self.root
-        for i, letter in enumerate(word):
-            terminal = (i == len(word)-1)
+        for letter in word:
             position = ord(letter)-ord('a')
             if not curr_node.children[position]:
                 curr_node.children[position] = TrieNode()
             
             curr_node = curr_node.children[position]
-            if terminal:
-                curr_node.terminal = terminal
+        curr_node.end_of_word = True
 
     def search(self, word: str) -> bool:
         curr_node = self.root
-        for i, letter in enumerate(word):
-            terminal = (i == len(word)-1)
+        for letter in word:
             position = ord(letter)-ord('a')
             if not curr_node.children[position]:
                 return False
             
             curr_node = curr_node.children[position]
-            if terminal and curr_node.terminal:
-                return True 
-        return False
+        return curr_node.end_of_word
 
     def startsWith(self, prefix: str) -> bool:
         curr_node = self.root
-        for i, letter in enumerate(prefix):
+        for letter in prefix:
             position = ord(letter)-ord('a')
             if not curr_node.children[position]:
                 return False
