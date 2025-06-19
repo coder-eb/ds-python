@@ -469,3 +469,45 @@ def test_max_sliding_window_leetcode_22(problems):
     nums = [1,3,1,2,0,5]
     k = 3
     assert problems.maxSlidingWindow(nums, k) == [3,3,2,5]
+
+def test_evalRPN_example1(problems):
+    tokens = ["1","2","+","3","*","4","-"]
+    assert problems.evalRPN(tokens) == 5
+
+def test_evalRPN_simple_add(problems):
+    tokens = ["2", "3", "+"]
+    assert problems.evalRPN(tokens) == 5
+
+def test_evalRPN_simple_subtract(problems):
+    tokens = ["5", "3", "-"]
+    assert problems.evalRPN(tokens) == 2
+
+def test_evalRPN_simple_multiply(problems):
+    tokens = ["4", "2", "*"]
+    assert problems.evalRPN(tokens) == 8
+
+def test_evalRPN_simple_divide(problems):
+    tokens = ["8", "2", "/"]
+    assert problems.evalRPN(tokens) == 4
+
+def test_evalRPN_negative_result(problems):
+    tokens = ["2", "3", "-"]
+    assert problems.evalRPN(tokens) == -1
+
+def test_evalRPN_division_truncate_toward_zero(problems):
+    tokens = ["7", "3", "/"]
+    assert problems.evalRPN(tokens) == 2
+    tokens = ["-7", "3", "/"]
+    assert problems.evalRPN(tokens) == -2
+    tokens = ["7", "-3", "/"]
+    assert problems.evalRPN(tokens) == -2
+    tokens = ["-7", "-3", "/"]
+    assert problems.evalRPN(tokens) == 2
+
+def test_evalRPN_complex(problems):
+    tokens = ["4", "13", "5", "/", "+"]
+    assert problems.evalRPN(tokens) == 6
+
+def test_evalRPN_single_number(problems):
+    tokens = ["42"]
+    assert problems.evalRPN(tokens) == 42
