@@ -615,7 +615,10 @@ class Problems:
                 res.append(deq[0])
             
         return res
-        
+
+    def evalRPN(self, tokens: List[str]) -> int:
+        pass
+
 if __name__ == "__main__":
     problems = Problems()  
     print(problems.maxSlidingWindow([1,3,1,2,0,5],3))
