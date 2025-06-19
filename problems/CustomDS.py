@@ -1,3 +1,5 @@
+from sortedcontainers import SortedList
+
 class MonotonicQueue:
     def __init__(self):
         self.maxq = []
@@ -81,15 +83,98 @@ class MinStack:
     def getMin(self) -> int:
         return self.min_stack[-1]
 
+class DDNode:
+    def __init__(self, val=0):
+        self.val = val
+        self.prev = None
+        self.next = None 
 
-def test_trie():
-    trie = Trie()
-    trie.insert('apple')
-    print(trie.search('applee'))
-    print(trie.startsWith('apple'))
+    def __str__(self) -> str:
+        return f"{self.val}"
+    
+class DoublyLinkedList:
+    def __init__(self):
+        self.head=DDNode()
+        self.tail=DDNode()
+
+        self.head.next = self.tail
+        self.tail.prev = self.head
+    
+    def __str__(self):
+        dd_struct = "HEAD -> "
+        curr_node = self.head
+        
+        while curr_node.next:
+            dd_struct += f"{curr_node.val} -> "
+            curr_node = curr_node.next
+        dd_struct += "TAIL"
+
+        return dd_struct
+    
+    def append(self, val) -> DDNode:
+        new_node = DDNode(val)
+        new_node.next = self.tail
+        new_node.prev = self.tail.prev
+
+        self.tail.prev.next = new_node
+        self.tail.prev = new_node
+
+        return new_node
+    
+    @staticmethod
+    def remove_node(node: DDNode):
+        node.prev.next, node.next.prev = node.next, node.prev
+
+    def pop(self):
+        node: DDNode = self.tail.prev 
+        node.prev.next, node.next.prev = node.next, node.prev
+        return node
+    
+    def peek(self):
+        return self.tail.prev.val
+    
+class MaxStack:
+    def __init__(self):
+        self.stack = DoublyLinkedList()
+        self.sorted_nodes = SortedList(key=lambda x: x.val)
+
+    def push(self, x):
+        node = self.stack.append(x)
+        self.sorted_nodes.add(node)
+
+    def pop(self):
+        node = self.stack.pop()
+        self.sorted_nodes.remove(node)
+        return node.val
+
+    def top(self):
+        return self.stack.peek()
+
+    def peekMax(self):
+        return self.sorted_nodes[-1].val
+
+    def popMax(self):
+        node = self.sorted_nodes.pop()
+        DoublyLinkedList.remove_node(node)
+        return node.val
+
+def test():
+    max_stack = MaxStack()
+    max_stack.push(5)
+    max_stack.push(1)
+    max_stack.push(5)
+
+    print(max_stack.top())
+    print(max_stack.popMax())
+    print(max_stack.top())
+    print(max_stack.peekMax())
+    print(max_stack.pop())
+    print(max_stack.top())
+    
+
 
 def main():
-    test_trie()
+    test()
 
 if __name__ == '__main__':
     main()
