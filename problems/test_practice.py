@@ -511,3 +511,31 @@ def test_evalRPN_complex(problems):
 def test_evalRPN_single_number(problems):
     tokens = ["42"]
     assert problems.evalRPN(tokens) == 42
+
+def test_daily_temperatures_example1(problems):
+    temperatures = [30,38,30,36,35,40,28]
+    assert problems.dailyTemperatures(temperatures) == [1,4,1,2,1,0,0]
+
+def test_daily_temperatures_example2(problems):
+    temperatures = [22,21,20]
+    assert problems.dailyTemperatures(temperatures) == [0,0,0]
+
+def test_daily_temperatures_all_increasing(problems):
+    temperatures = [10,20,30,40]
+    assert problems.dailyTemperatures(temperatures) == [1,1,1,0]
+
+def test_daily_temperatures_all_decreasing(problems):
+    temperatures = [40,30,20,10]
+    assert problems.dailyTemperatures(temperatures) == [0,0,0,0]
+
+def test_daily_temperatures_single_element(problems):
+    temperatures = [50]
+    assert problems.dailyTemperatures(temperatures) == [0]
+
+def test_daily_temperatures_plateau(problems):
+    temperatures = [30,30,30,30]
+    assert problems.dailyTemperatures(temperatures) == [0,0,0,0]
+
+def test_daily_temperatures_mixed(problems):
+    temperatures = [73,74,75,71,69,72,76,73]
+    assert problems.dailyTemperatures(temperatures) == [1,1,4,2,1,1,0,0]
