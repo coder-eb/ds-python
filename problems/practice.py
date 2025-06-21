@@ -640,12 +640,12 @@ class Problems:
 
     def dailyTemperatures(self, temperatures: List[int]) -> List[int]:
         stack = []
-        answer = [0]*len(temperatures)        
-        for index in range(len(temperatures)):
-            while len(stack) and temperatures[stack[-1]] < temperatures[index]:
-                answer[stack[-1]] = index - stack[-1]
-                stack.pop()
-            stack.append(index)
+        answer = [0]*len(temperatures)   
+        for cur_i, cur_t in enumerate(temperatures):
+            while len(stack) and cur_t > stack[-1][1]:
+                prev_i, prev_t = stack.pop()
+                answer[prev_i] = cur_i - prev_i
+            stack.append([cur_i, cur_t])
         return answer
                 
 if __name__ == "__main__":
