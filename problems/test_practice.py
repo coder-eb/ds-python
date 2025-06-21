@@ -586,3 +586,33 @@ def test_car_fleet_edge_case(problems):
     position = [0]
     speed = [1]
     assert problems.carFleet(target, position, speed) == 1
+
+def test_generate_parenthesis_n1(problems):
+    n = 1
+    expected = ["()"]
+    result = problems.generateParenthesis(n)
+    assert sorted(result) == sorted(expected)
+
+def test_generate_parenthesis_n2(problems):
+    n = 2
+    expected = ["(())", "()()"]
+    result = problems.generateParenthesis(n)
+    assert sorted(result) == sorted(expected)
+
+def test_generate_parenthesis_n3(problems):
+    n = 3
+    expected = ["((()))","(()())","(())()","()(())","()()()"]
+    result = problems.generateParenthesis(n)
+    assert sorted(result) == sorted(expected)
+
+def test_generate_parenthesis_n4_length(problems):
+    n = 4
+    # There are 14 valid combinations for n=4 (Catalan number)
+    result = problems.generateParenthesis(n)
+    assert len(result) == 14
+
+def test_generate_parenthesis_unique(problems):
+    n = 3
+    result = problems.generateParenthesis(n)
+    # All combinations should be unique
+    assert len(result) == len(set(result))
