@@ -672,7 +672,23 @@ class Problems:
                 count+=1
                 prev_time = time
         return count
-                
+
+    def bracketBuilder(self, brackets, string, open, close, n):
+        if (open == n) and (close == n):
+            return brackets.append(string)
+        
+        if open == close:
+            self.bracketBuilder(brackets, string+"(", open+1, close, n)
+        elif open > close:
+            if open < n:
+                self.bracketBuilder(brackets, string+"(",open+1,close,n)
+            self.bracketBuilder(brackets, string+")",open,close+1,n)
+        return brackets
+
+
+    def generateParenthesis(self, n: int) -> List[str]:
+        return self.bracketBuilder([], "", 0, 0, n)
+    
 if __name__ == "__main__":
     problems = Problems()  
-    print(problems.maxSlidingWindow([1,3,1,2,0,5],3))
+    print(problems.generateParenthesis(3))
