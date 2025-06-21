@@ -539,3 +539,51 @@ def test_daily_temperatures_plateau(problems):
 def test_daily_temperatures_mixed(problems):
     temperatures = [73,74,75,71,69,72,76,73]
     assert problems.dailyTemperatures(temperatures) == [1,1,4,2,1,1,0,0]
+
+def test_car_fleet_example1(problems):
+    target = 12
+    position = [10,8,0,5,3]
+    speed = [2,4,1,1,3]
+    assert problems.carFleet(target, position, speed) == 3
+
+def test_car_fleet_example2(problems):
+    target = 10
+    position = [3]
+    speed = [3]
+    assert problems.carFleet(target, position, speed) == 1
+
+def test_car_fleet_example3(problems):
+    target = 100
+    position = [0,2,4]
+    speed = [4,2,1]
+    assert problems.carFleet(target, position, speed) == 1
+
+def test_car_fleet_all_separate(problems):
+    target = 10
+    position = [0,2,4,6,8]
+    speed = [1,1,1,1,1]
+    assert problems.carFleet(target, position, speed) == 5
+
+def test_car_fleet_all_one_fleet(problems):
+    target = 10
+    position = [0,1,2,3,4]
+    speed = [5,4,3,2,1]
+    assert problems.carFleet(target, position, speed) == 1
+
+def test_car_fleet_reverse_order(problems):
+    target = 20
+    position = [19,18,17,16]
+    speed = [1,2,3,4]
+    assert problems.carFleet(target, position, speed) == 4
+
+def test_car_fleet_large_gap(problems):
+    target = 100
+    position = [0,50]
+    speed = [1,1]
+    assert problems.carFleet(target, position, speed) == 2
+
+def test_car_fleet_edge_case(problems):
+    target = 1
+    position = [0]
+    speed = [1]
+    assert problems.carFleet(target, position, speed) == 1
