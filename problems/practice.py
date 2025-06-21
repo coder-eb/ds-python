@@ -638,7 +638,16 @@ class Problems:
             stack.append(int(number))
         return stack.pop()
 
-
+    def dailyTemperatures(self, temperatures: List[int]) -> List[int]:
+        stack = []
+        answer = [0]*len(temperatures)        
+        for index in range(len(temperatures)):
+            while len(stack) and temperatures[stack[-1]] < temperatures[index]:
+                answer[stack[-1]] = index - stack[-1]
+                stack.pop()
+            stack.append(index)
+        return answer
+                
 if __name__ == "__main__":
     problems = Problems()  
     print(problems.maxSlidingWindow([1,3,1,2,0,5],3))
