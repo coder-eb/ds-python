@@ -574,8 +574,7 @@ def test_car_fleet_reverse_order(problems):
     target = 20
     position = [19,18,17,16]
     speed = [1,2,3,4]
-    assert problems.carFleet(target, position, speed) == 4
-
+    assert problems.carFleet(target, position, speed) == 1 
 def test_car_fleet_large_gap(problems):
     target = 100
     position = [0,50]

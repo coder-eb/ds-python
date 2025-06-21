@@ -647,6 +647,16 @@ class Problems:
                 answer[prev_i] = cur_i - prev_i
             stack.append([cur_i, cur_t])
         return answer
+
+    def carFleet(self, target: int, position: List[int], speed: List[int]) -> int:
+        cars = sorted([(position,speed) for position, speed in zip(position, speed)], reverse=True)
+        stack = []
+
+        for position, speed in cars:
+            stack.append((target - position)/speed)
+            if len(stack)>1 and stack[-1] <= stack[-2]:
+                stack.pop()
+        return len(stack)
                 
 if __name__ == "__main__":
     problems = Problems()  
