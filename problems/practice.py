@@ -648,15 +648,30 @@ class Problems:
             stack.append([cur_i, cur_t])
         return answer
 
+    # neetcode - stack approach
     def carFleet(self, target: int, position: List[int], speed: List[int]) -> int:
         cars = sorted([(position,speed) for position, speed in zip(position, speed)], reverse=True)
         stack = []
 
         for position, speed in cars:
-            stack.append((target - position)/speed)
+            time = (target - position)/speed
+            stack.append(time)
             if len(stack)>1 and stack[-1] <= stack[-2]:
                 stack.pop()
         return len(stack)
+    
+    # algomonster - no stack approach
+    def carFleet_1(self, target: int, position: List[int], speed: List[int]) -> int:
+        cars = sorted([(position,speed) for position, speed in zip(position, speed)], reverse=True)
+
+        count = 0
+        prev_time = 0
+        for position, speed in cars:
+            time = (target - position)/speed
+            if time > prev_time:
+                count+=1
+                prev_time = time
+        return count
                 
 if __name__ == "__main__":
     problems = Problems()  
