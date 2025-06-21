@@ -674,20 +674,22 @@ class Problems:
         return count
 
     def generateParenthesis(self, n: int) -> List[str]:
-        def bracketBuilder(brackets, string, open, close, n):
+        brackets = []
+        def bracketBuilder(string, open, close):
             if (open == n) and (close == n):
-                return brackets.append(string)
+                brackets.append(string)
+                return
             
             if open == close:
-                bracketBuilder(brackets, string+"(", open+1, close, n)
+                bracketBuilder(string+"(", open+1, close)
             elif open > close:
                 if open < n:
-                    bracketBuilder(brackets, string+"(",open+1,close,n)
-                bracketBuilder(brackets, string+")",open,close+1,n)
-            return brackets
-        
-        return bracketBuilder([], "", 0, 0, n)
+                    bracketBuilder(string+"(",open+1,close)
+                bracketBuilder(string+")",open,close+1)
+
+        bracketBuilder("", 0, 0)
+        return brackets
     
 if __name__ == "__main__":
     problems = Problems()  
-    print(problems.generateParenthesis(3))
+    print(problems.generateParenthesis(2))
