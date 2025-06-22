@@ -690,6 +690,9 @@ class Problems:
         bracketBuilder("", 0, 0)
         return brackets
     
+    def largestRectangleArea(self, heights: List[int]) -> int:
+        pass
+    
 if __name__ == "__main__":
     problems = Problems()  
     print(problems.generateParenthesis(2))

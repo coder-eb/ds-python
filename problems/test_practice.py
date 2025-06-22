@@ -616,3 +616,35 @@ def test_generate_parenthesis_unique(problems):
     result = problems.generateParenthesis(n)
     # All combinations should be unique
     assert len(result) == len(set(result))
+
+def test_largest_rectangle_area_example1(problems):
+    heights = [2,1,5,6,2,3]
+    assert problems.largestRectangleArea(heights) == 10
+
+def test_largest_rectangle_area_example2(problems):
+    heights = [2,4]
+    assert problems.largestRectangleArea(heights) == 4
+
+def test_largest_rectangle_area_all_same(problems):
+    heights = [3,3,3,3]
+    assert problems.largestRectangleArea(heights) == 12
+
+def test_largest_rectangle_area_single_bar(problems):
+    heights = [7]
+    assert problems.largestRectangleArea(heights) == 7
+
+def test_largest_rectangle_area_increasing(problems):
+    heights = [1,2,3,4,5]
+    assert problems.largestRectangleArea(heights) == 9
+
+def test_largest_rectangle_area_decreasing(problems):
+    heights = [5,4,3,2,1]
+    assert problems.largestRectangleArea(heights) == 9
+
+def test_largest_rectangle_area_with_zero(problems):
+    heights = [0,2,0,2]
+    assert problems.largestRectangleArea(heights) == 2
+
+def test_largest_rectangle_area_large_gap(problems):
+    heights = [2,1,2]
+    assert problems.largestRectangleArea(heights) == 3
