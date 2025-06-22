@@ -691,8 +691,28 @@ class Problems:
         return brackets
     
     def largestRectangleArea(self, heights: List[int]) -> int:
-        pass
-    
+        largest_rectangle = 0
+        for cur_index, cur_height in enumerate(heights):
+            prev_small, next_small = None, None
+            for i in range(cur_index-1, -1, -1):
+                if heights[i] < cur_height:
+                    prev_small = i
+                    break
+            for i in range(cur_index+1, len(heights)):
+                if heights[i] < cur_height:
+                    next_small = i
+                    break
+            
+            if prev_small is None:
+                prev_small = -1
+            if next_small is None:
+                next_small = len(heights)
+
+            cur_rectangle = (next_small-prev_small-1)*cur_height
+            largest_rectangle = max(cur_rectangle, largest_rectangle)
+
+        return largest_rectangle
+
 if __name__ == "__main__":
     problems = Problems()  
-    print(problems.generateParenthesis(2))
+    print(problems.largestRectangleArea([7,1,7,2,2,4]))
