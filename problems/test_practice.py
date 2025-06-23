@@ -676,3 +676,39 @@ def test_next_greater_elements_single_element(problems):
 def test_next_greater_elements_with_negatives(problems):
     nums = [-1,0,1]
     assert problems.nextGreaterElements(nums) == [0,1,-1]
+
+def test_asteroid_collision_example1(problems):
+    asteroids = [5,10,-5]
+    assert problems.asteroidCollision(asteroids) == [5,10]
+
+def test_asteroid_collision_example2(problems):
+    asteroids = [8,-8]
+    assert problems.asteroidCollision(asteroids) == []
+
+def test_asteroid_collision_example3(problems):
+    asteroids = [10,2,-5]
+    assert problems.asteroidCollision(asteroids) == [10]
+
+def test_asteroid_collision_no_collision(problems):
+    asteroids = [1,2,3]
+    assert problems.asteroidCollision(asteroids) == [1,2,3]
+
+def test_asteroid_collision_all_left(problems):
+    asteroids = [-2,-1,-3]
+    assert problems.asteroidCollision(asteroids) == [-2,-1,-3]
+
+def test_asteroid_collision_chain_reaction(problems):
+    asteroids = [1,-2,-2,-2]
+    assert problems.asteroidCollision(asteroids) == [-2,-2,-2]
+
+def test_asteroid_collision_large_right_hits_left(problems):
+    asteroids = [3,5,-7]
+    assert problems.asteroidCollision(asteroids) == [-7]
+
+def test_asteroid_collision_equal_size(problems):
+    asteroids = [4,-4]
+    assert problems.asteroidCollision(asteroids) == []
+
+def test_asteroid_collision_multiple_collisions(problems):
+    asteroids = [10, 2, -5, -15, 20]
+    assert problems.asteroidCollision(asteroids) == [-15, 20]
