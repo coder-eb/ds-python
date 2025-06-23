@@ -690,7 +690,7 @@ class Problems:
         bracketBuilder("", 0, 0)
         return brackets
     
-    def largestRectangleArea(self, heights: List[int]) -> int:
+    def largestRectangleArea_brute(self, heights: List[int]) -> int:
         largest_rectangle = 0
         for cur_index, cur_height in enumerate(heights):
             prev_small, next_small = None, None
@@ -712,6 +712,24 @@ class Problems:
             largest_rectangle = max(cur_rectangle, largest_rectangle)
 
         return largest_rectangle
+    
+    def largestRectangleArea(self, heights: List[int]) -> int:
+        max_area = 0
+        stack = []
+        for cur_index, cur_height in enumerate(heights):
+            start = cur_index
+            while stack and stack[-1][1] > cur_height:
+                prev_index, prev_height = stack.pop()
+                area = prev_height * (cur_index - prev_index)
+                max_area = max(max_area, area)
+                start = prev_index
+            stack.append([start, cur_height])
+
+        for start, cur_height in stack:
+            max_area = max(max_area, cur_height * (len(heights) - start))
+
+        return max_area
+
 
 if __name__ == "__main__":
     problems = Problems()  
