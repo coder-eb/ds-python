@@ -744,15 +744,17 @@ class Problems:
 
     def asteroidCollision(self, asteroids: List[int]) -> List[int]:
         stack = []
-        for asteroid in asteroids:
-            stack.append(asteroid)
-            while len(stack) > 1 and stack[-1] < 0 and stack[-2] > 0:
-                reverse = stack.pop()
-                if abs(reverse) == stack[-1]:
+        for a in asteroids:
+            while stack and a < 0 < stack[-1]:
+                if -a > stack[-1]:
                     stack.pop()
-                elif abs(reverse) > stack[-1]:
-                    stack[-1] = reverse
+                    continue
 
+                if -a == stack[-1]:
+                    stack.pop()
+                break
+            else:
+                stack.append(a)
         return stack
                     
 
