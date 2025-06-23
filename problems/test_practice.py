@@ -648,3 +648,31 @@ def test_largest_rectangle_area_with_zero(problems):
 def test_largest_rectangle_area_large_gap(problems):
     heights = [2,1,2]
     assert problems.largestRectangleArea(heights) == 3
+
+def test_next_greater_elements_example1(problems):
+    nums = [1,2,1]
+    assert problems.nextGreaterElements(nums) == [2,-1,2]
+
+def test_next_greater_elements_example2(problems):
+    nums = [1,2,3,4,3]
+    assert problems.nextGreaterElements(nums) == [2,3,4,-1,4]
+
+def test_next_greater_elements_all_same(problems):
+    nums = [5,5,5,5]
+    assert problems.nextGreaterElements(nums) == [-1,-1,-1,-1]
+
+def test_next_greater_elements_strictly_decreasing(problems):
+    nums = [4,3,2,1]
+    assert problems.nextGreaterElements(nums) == [-1,4,4,4]
+
+def test_next_greater_elements_strictly_increasing(problems):
+    nums = [1,2,3,4]
+    assert problems.nextGreaterElements(nums) == [2,3,4,-1]
+
+def test_next_greater_elements_single_element(problems):
+    nums = [10]
+    assert problems.nextGreaterElements(nums) == [-1]
+
+def test_next_greater_elements_with_negatives(problems):
+    nums = [-1,0,1]
+    assert problems.nextGreaterElements(nums) == [0,1,-1]
