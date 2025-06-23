@@ -730,7 +730,23 @@ class Problems:
 
         return max_area
 
+    def nextGreaterElements(self, nums: List[int]) -> List[int]:
+        stack = []
+        res = [-1]*len(nums)
+
+        for i, num in enumerate(nums):
+            while stack and stack[-1][1] < num:
+                prev_index, _ = stack.pop()
+                res[prev_index] = num
+            stack.append([i, num])
+
+        for i, num in enumerate(nums):
+            while stack and stack[-1][1] < num:
+                prev_index, _ = stack.pop()
+                res[prev_index] = num
+
+        return res
 
 if __name__ == "__main__":
     problems = Problems()  
-    print(problems.largestRectangleArea([7,1,7,2,2,4]))
+    print(problems.nextGreaterElements([4,5,2,3]))
