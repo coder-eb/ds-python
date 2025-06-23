@@ -731,20 +731,15 @@ class Problems:
         return max_area
 
     def nextGreaterElements(self, nums: List[int]) -> List[int]:
+        n = len(nums)
         stack = []
         res = [-1]*len(nums)
 
-        for i, num in enumerate(nums):
-            while stack and stack[-1][1] < num:
-                prev_index, _ = stack.pop()
-                res[prev_index] = num
-            stack.append([i, num])
-
-        for i, num in enumerate(nums):
-            while stack and stack[-1][1] < num:
-                prev_index, _ = stack.pop()
-                res[prev_index] = num
-
+        for i in range(2*n):
+            while stack and nums[stack[-1]] < nums[i%n]:
+                res[stack.pop()] = nums[i%n]
+            if i < n:
+                stack.append(i)
         return res
 
 if __name__ == "__main__":
