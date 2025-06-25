@@ -712,3 +712,36 @@ def test_asteroid_collision_equal_size(problems):
 def test_asteroid_collision_multiple_collisions(problems):
     asteroids = [10, 2, -5, -15, 20]
     assert problems.asteroidCollision(asteroids) == [-15, 20]
+
+def test_sum_subarray_mins_example1(problems):
+    arr = [3,1,2,4]
+    assert problems.sumSubarrayMins(arr) == 17
+
+def test_sum_subarray_mins_example2(problems):
+    arr = [11,81,94,43,3]
+    assert problems.sumSubarrayMins(arr) == 444
+
+def test_sum_subarray_mins_single_element(problems):
+    arr = [5]
+    assert problems.sumSubarrayMins(arr) == 5
+
+def test_sum_subarray_mins_all_same(problems):
+    arr = [2,2,2]
+    # All subarrays: [2],[2],[2],[2,2],[2,2],[2,2,2] -> mins: 2,2,2,2,2,2 = 12
+    assert problems.sumSubarrayMins(arr) == 12
+
+def test_sum_subarray_mins_strictly_increasing(problems):
+    arr = [1,2,3]
+    # [1],[2],[3],[1,2],[2,3],[1,2,3] -> mins: 1,2,3,1,2,1 = 10
+    assert problems.sumSubarrayMins(arr) == 10
+
+def test_sum_subarray_mins_strictly_decreasing(problems):
+    arr = [3,2,1]
+    # [3],[2],[1],[3,2],[2,1],[3,2,1] -> mins: 3,2,1,2,1,1 = 10
+    assert problems.sumSubarrayMins(arr) == 10
+
+def test_sum_subarray_mins_large_values(problems):
+    arr = [30000, 30000, 30000]
+    # All subarrays: [30000],[30000],[30000],[30000,30000],[30000,30000],[30000,30000,30000]
+    # mins: 30000,30000,30000,30000,30000,30000 = 180000
+    assert problems.sumSubarrayMins(arr) == 180000
