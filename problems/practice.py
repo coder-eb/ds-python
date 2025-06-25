@@ -758,6 +758,7 @@ class Problems:
         return stack
 
     def sumSubarrayMins(self, arr: List[int]) -> int:
+        MOD = 10**9+7
         stack = []
         totalSum = 0
         currentSum = 0
@@ -772,8 +773,8 @@ class Problems:
                 currentSum+=num
 
             totalSum += currentSum
-        return totalSum
+        return totalSum % MOD
 
 if __name__ == "__main__":
     problems = Problems()  
-    print(problems.sumSubarrayMins([3,1,2,7,4]))
+    print(problems.sumSubarrayMins([3,1,2,4]))
