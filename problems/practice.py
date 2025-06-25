@@ -758,11 +758,22 @@ class Problems:
         return stack
 
     def sumSubarrayMins(self, arr: List[int]) -> int:
-        pass
+        stack = []
+        totalSum = 0
+        currentSum = 0
+        for num in arr:
+            popped = 0
+            while stack and stack[-1] > num:
+                currentSum-=stack.pop()
+                popped+=1
 
+            for i in range(0,popped+1):
+                stack.append(num)
+                currentSum+=num
 
-                
+            totalSum += currentSum
+        return totalSum
 
 if __name__ == "__main__":
     problems = Problems()  
-    print(problems.asteroidCollision([5,10,-5]))
+    print(problems.sumSubarrayMins([3,1,2,7,4]))
