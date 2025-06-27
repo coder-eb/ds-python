@@ -772,7 +772,7 @@ class Problems:
             
         return sum(res) % (10**9+7)
     
-    def maximumSubarraySum(self, nums: List[int], k: int) -> int:
+    def maximumSubarraySum_self(self, nums: List[int], k: int) -> int:
         if len(nums) < k:
             return 0
         
@@ -808,6 +808,26 @@ class Problems:
                 l+=1
             
         return maxSum
+
+    def maximumSubarraySum(self, nums: List[int], k: int) -> int:
+        seen = set()
+        max_sum, current_sum = 0, 0
+        l = 0
+        for r in range(len(nums)):
+            while nums[r] in seen:
+                current_sum -= nums[l]
+                seen.remove(nums[l])
+                l+=1
+            
+            seen.add(nums[r])
+            current_sum += nums[r]
+            if (r - l + 1) == k:
+                max_sum = max(max_sum, current_sum)
+                current_sum -= nums[l]
+                seen.remove(nums[l])
+                l+=1
+        return max_sum
+
 
 if __name__ == "__main__":
     problems = Problems()  
