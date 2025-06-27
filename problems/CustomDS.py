@@ -133,7 +133,7 @@ class DoublyLinkedList:
     def peek(self):
         return self.tail.prev.val
     
-class MaxStack:
+class MaxStack1:
     def __init__(self):
         self.stack = DoublyLinkedList()
         self.sorted_nodes = SortedList(key=lambda x: x.val)
@@ -158,11 +158,62 @@ class MaxStack:
         DoublyLinkedList.remove_node(node)
         return node.val
 
+class MaxStack:
+    def __init__(self):
+        self.stack = []
+        self.max_stack = []
+
+    """
+    @param: number: An integer
+    @return: nothing
+    """
+    def push(self, x):
+        max_value = x if not self.max_stack else max(self.max_stack[-1], x)
+
+        self.stack.append(x)
+        self.max_stack.append(max_value)
+        
+    """
+    @return: An integer
+    """
+    def pop(self):
+        self.max_stack.pop()
+        return self.stack.pop()
+
+    """
+    @return: An integer
+    """
+    def top(self):
+        return self.stack[-1]
+
+    """
+    @return: An integer
+    """
+    def peekMax(self):
+        return self.max_stack[-1]
+
+    """
+    @return: An integer
+    """
+    def popMax(self):
+        max_val = self.peekMax()
+        buffer_stack = []
+
+        while self.stack and self.stack[-1] != max_val:
+            buffer_stack.append(self.pop())
+        self.pop()
+
+        while buffer_stack:
+            self.push(buffer_stack.pop())
+        
+        return max_val
+
 def test():
     max_stack = MaxStack()
     max_stack.push(5)
-    max_stack.push(1)
-    max_stack.push(5)
+    max_stack.push(4)
+    max_stack.push(6)
+    max_stack.push(3)
 
     print(max_stack.top())
     print(max_stack.popMax())
