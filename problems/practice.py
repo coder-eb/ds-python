@@ -788,8 +788,44 @@ class Problems:
             stack.append(i)
             
         return sum(res) % (10**9+7)
+    
+    def maximumSubarraySum(self, nums: List[int], k: int) -> int:
+        if len(nums) < k:
+            return 0
+        
+        counter = {}
+        have_letters = 0
+        maxSum, currentSum = 0, 0
+        
+        l=0
+        for r in range(0, len(nums)):
+            num = nums[r]
+            if counter.get(num,0) == 0:
+                have_letters+=1
+                currentSum+=num
+            elif counter.get(num,0) == 1:
+                have_letters-=1
+                currentSum-=num
+
+            counter[num] = counter.get(num, 0)+1
             
+            
+            if r+1 >= k:
+                if have_letters == k:
+                    maxSum = max(maxSum, currentSum)
+
+                num = nums[l]
+                counter[num]-=1
+                if counter[num] == 0:
+                    have_letters-=1
+                    currentSum-=num
+                elif counter[num] == 1:
+                    have_letters+=1
+                    currentSum+=num
+                l+=1
+            
+        return maxSum
 
 if __name__ == "__main__":
     problems = Problems()  
-    print(problems.sumSubarrayMins([3,1,2,4]))
+    print(problems.maximumSubarraySum([1,5,4,2,9,9,9],3))
