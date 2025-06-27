@@ -824,6 +824,90 @@ def test_maximumSubarraySum_large_input_duplicates(problems):
     # All subarrays have duplicates
     assert problems.maximumSubarraySum(nums, k) == 0
 
+def test_maximumSubarraysum_self_example1(problems):
+    nums = [1, 5, 4, 2, 9, 9, 9]
+    k = 3
+    # Valid subarrays: [1,5,4]=10, [5,4,2]=11, [4,2,9]=15
+    # [2,9,9] and [9,9,9] are invalid (duplicates)
+    assert problems.maximumSubarraySum_self(nums, k) == 15
+
+def test_maximumSubarraysum_self_example2(problems):
+    nums = [4, 4, 4]
+    k = 3
+    # Only subarray is [4,4,4] which has duplicates
+    assert problems.maximumSubarraySum_self(nums, k) == 0
+
+def test_maximumSubarraysum_self_all_unique(problems):
+    nums = [1, 2, 3, 4, 5]
+    k = 2
+    # All subarrays of length 2 are unique: [1,2]=3, [2,3]=5, [3,4]=7, [4,5]=9
+    assert problems.maximumSubarraySum_self(nums, k) == 9
+
+def test_maximumSubarraysum_self_k_equals_1(problems):
+    nums = [7, 8, 9]
+    k = 1
+    # Each element is a subarray, all unique
+    assert problems.maximumSubarraySum_self(nums, k) == 9
+
+def test_maximumSubarraysum_self_no_valid_subarray(problems):
+    nums = [2, 2, 2, 2]
+    k = 2
+    # All subarrays have duplicates
+    assert problems.maximumSubarraySum_self(nums, k) == 0
+
+def test_maximumSubarraysum_self_entire_array(problems):
+    nums = [1, 2, 3, 4]
+    k = 4
+    # Only subarray is [1,2,3,4], all unique
+    assert problems.maximumSubarraySum_self(nums, k) == 10
+
+def test_maximumSubarraysum_self_large_k_with_duplicates(problems):
+    nums = [1, 2, 3, 2, 1, 4, 5]
+    k = 5
+    # [1,2,3,2,1] (duplicates), [2,3,2,1,4] (duplicates), [3,2,1,4,5] (all unique, sum=15)
+    assert problems.maximumSubarraySum_self(nums, k) == 15
+
+def test_maximumSubarraysum_self_single_element(problems):
+    nums = [42]
+    k = 1
+    assert problems.maximumSubarraySum_self(nums, k) == 42
+
+def test_maximumSubarraysum_self_k_greater_than_unique_elements(problems):
+    nums = [1, 2, 2, 3, 4]
+    k = 3
+    # [1,2,2] (duplicates), [2,2,3] (duplicates), [2,3,4] (all unique, sum=9)
+    assert problems.maximumSubarraySum_self(nums, k) == 9
+
+def test_maximumSubarraysum_self_multiple_max_subarrays(problems):
+    nums = [1, 2, 3, 1, 2, 3]
+    k = 3
+    # [1,2,3]=6, [2,3,1]=6, [3,1,2]=6, [1,2,3]=6
+    assert problems.maximumSubarraySum_self(nums, k) == 6
+
+def test_maximumSubarraysum_self_all_elements_same(problems):
+    nums = [5, 5, 5, 5, 5]
+    k = 2
+    # All subarrays have duplicates
+    assert problems.maximumSubarraySum_self(nums, k) == 0
+
+def test_maximumSubarraysum_self_k_equals_len(problems):
+    nums = [10, 20, 30]
+    k = 3
+    # Only subarray is [10,20,30], all unique
+    assert problems.maximumSubarraySum_self(nums, k) == 60
+
+def test_maximumSubarraysum_self_large_input_unique(problems):
+    nums = list(range(1, 1001))
+    k = 1000
+    # Only subarray is all unique, sum = sum 1..1000
+    assert problems.maximumSubarraySum_self(nums, k) == sum(range(1, 1001))
+
+def test_maximumSubarraysum_self_large_input_duplicates(problems):
+    nums = [1]*1000
+    k = 2
+    # All subarrays have duplicates
+    assert problems.maximumSubarraySum_self(nums, k) == 0
+
 def test_profit_stock_basic():
     assert profit_stock([7,1,5,3,6,4]) == (1, 4)
     assert profit_stock([7,6,4,3,1]) == (0, 0)
