@@ -1,7 +1,7 @@
 import sys
 import os
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from problems.practice import Problems
+from problems.practice import Problems, airline, containsNearbyDuplicate, evalRPN, evalRPNr, fibonacci, isPalindrome, longest_consecutive_sequence_by_order, missingNumber, profit_stock, remove_element, removeDuplicates, removeElement, removeElement_1, romanToInt
 
 import pytest
 
@@ -837,3 +837,97 @@ def test_maximumSubarraySum_large_input_duplicates(problems):
     k = 2
     # All subarrays have duplicates
     assert problems.maximumSubarraySum(nums, k) == 0
+
+def test_profit_stock_basic():
+    assert profit_stock([7,1,5,3,6,4]) == (1, 4)
+    assert profit_stock([7,6,4,3,1]) == (0, 0)
+    assert profit_stock([1,2,3,4,5]) == (0, 4)
+
+def test_fibonacci_basic():
+    assert fibonacci(2) == 1
+    assert fibonacci(3) == 2
+    assert fibonacci(4) == 3
+    assert fibonacci(5) == 5
+    assert fibonacci(10) == 55
+
+def test_containsNearbyDuplicate_basic():
+    assert containsNearbyDuplicate([1,2,3,1], 3) is True
+    assert containsNearbyDuplicate([1,0,1,1], 1) is True
+    assert containsNearbyDuplicate([1,2,3,1,2,3], 2) is False
+
+def test_missingNumber_basic():
+    assert missingNumber([3,0,1]) == 2
+    assert missingNumber([0,1]) == 2
+    assert missingNumber([9,6,4,2,3,5,7,0,1]) == 8
+
+def test_removeDuplicates_basic():
+    assert removeDuplicates([1,1,2]) == [1,2,2]
+    assert removeDuplicates([0,0,1,1,1,2,2,3,3,4]) == [0,1,2,3,4,2,2,3,3,4]
+
+def test_isPalindrome_basic():
+    assert isPalindrome(121) is True
+    assert isPalindrome(-121) is False
+    assert isPalindrome(10) is False
+
+def test_romanToInt_basic():
+    assert romanToInt("III") == 3
+    assert romanToInt("LVIII") == 58
+    assert romanToInt("MCMXCIV") == 1994
+
+def test_remove_element_basic():
+    nums = [3,2,2,3]
+    val = 3
+    assert remove_element(nums, val) == 2
+    assert nums == [2,2]
+
+def test_removeElement_basic():
+    nums = [0,1,2,2,3,0,4,2]
+    val = 2
+    new_nums, length = removeElement(nums, val)
+    assert length == 5
+    assert new_nums[:length] == [0,1,3,0,4]
+
+def test_removeElement_1_basic():
+    nums = [3,2,2,3]
+    target = 3
+    assert removeElement_1(nums, target) == 2
+    assert nums[:2] == [2,2]
+
+def test_longest_consecutive_sequence_by_order_basic():
+    assert longest_consecutive_sequence_by_order([100, 4, 200, 1, 3, 2]) == 1
+    assert longest_consecutive_sequence_by_order([0,3,7,2,5,8,4,6,0,1]) == 2
+
+def test_evalRPN_practice_basic(problems):
+    assert evalRPN(["2","1","+","3","*"]) == 9
+    assert evalRPN(["4","13","5","/","+"]) == 6
+
+def test_evalRPNr_basic():
+    assert evalRPNr(["2","1","+","3","*"]) == 9
+    assert evalRPNr(["4","13","5","/","+"]) == 6
+
+def test_airline_basic():
+    assert airline() == ['Seattle', 'Memphis', 'Hawaii', 'New York', 'Washington']
+
+def test_mySqrt_basic(problems):
+    assert problems.mySqrt(4) == 2
+    assert problems.mySqrt(8) == 2
+    assert problems.mySqrt(0) == 0
+    assert problems.mySqrt(1) == 1
+
+def test_productExceptSelf_basic(problems):
+    assert problems.productExceptSelf([1,2,3,4]) == [24,12,8,6]
+    assert problems.productExceptSelf([-1,1,0,-3,3]) == [0,0,9,0,0]
+
+def test_carFleet_1_basic(problems):
+    target = 12
+    position = [10,8,0,5,3]
+    speed = [2,4,1,1,3]
+    assert problems.carFleet_1(target, position, speed) == 3
+
+def test_largestRectangleArea_brute_basic(problems):
+    heights = [2,1,5,6,2,3]
+    assert problems.largestRectangleArea_brute(heights) == 10
+
+def test_sumSubarrayMins_self_basic(problems):
+    arr = [3,1,2,4]
+    assert problems.sumSubarrayMins_self(arr) == 17
