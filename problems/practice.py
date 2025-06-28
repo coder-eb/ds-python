@@ -837,6 +837,21 @@ class Problems:
             gas = max(gas, gas_found)
             gas -= 1
         return True
+
+    def sortedSquares(self, nums: List[int]) -> List[int]:
+        res = [0]*len(nums)
+
+        l, r, i = 0, len(nums)-1, len(nums)-1
+        while l <= r:
+            if (nums[l] * nums[l]) > (nums[r] * nums[r]):
+                res[i] = nums[l] * nums[l]
+                l+=1
+            else:
+                res[i] = nums[r] * nums[r]
+                r-=1
+            i-=1
+        return res
+            
     
 if __name__ == "__main__":
     problems = Problems()  

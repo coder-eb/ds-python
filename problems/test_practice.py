@@ -1034,3 +1034,35 @@ def test_can_jump_not_reachable_due_to_zeros(problems):
 def test_can_jump_all_ones(problems):
     nums = [1,1,1,1,1]
     assert problems.canJump(nums) is True
+
+def test_sorted_squares_example1(problems):
+    nums = [-4,-1,0,3,10]
+    assert problems.sortedSquares(nums) == [0,1,9,16,100]
+
+def test_sorted_squares_example2(problems):
+    nums = [-7,-3,2,3,11]
+    assert problems.sortedSquares(nums) == [4,9,9,49,121]
+
+def test_sorted_squares_all_positive(problems):
+    nums = [1,2,3,4,5]
+    assert problems.sortedSquares(nums) == [1,4,9,16,25]
+
+def test_sorted_squares_all_negative(problems):
+    nums = [-5,-4,-3,-2,-1]
+    assert problems.sortedSquares(nums) == [1,4,9,16,25]
+
+def test_sorted_squares_single_zero(problems):
+    nums = [0]
+    assert problems.sortedSquares(nums) == [0]
+
+def test_sorted_squares_single_negative(problems):
+    nums = [-3]
+    assert problems.sortedSquares(nums) == [9]
+
+def test_sorted_squares_single_positive(problems):
+    nums = [7]
+    assert problems.sortedSquares(nums) == [49]
+
+def test_sorted_squares_mixed_with_duplicates(problems):
+    nums = [-2,-2,0,2,2]
+    assert problems.sortedSquares(nums) == [0,4,4,4,4]
