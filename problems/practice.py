@@ -828,6 +828,8 @@ class Problems:
                 l+=1
         return max_sum
 
+    def canJump(self, nums: List[int]) -> bool:
+        pass
 
 if __name__ == "__main__":
     problems = Problems()  

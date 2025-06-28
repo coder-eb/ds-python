@@ -1001,3 +1001,36 @@ def test_largestRectangleArea_brute_basic(problems):
 def test_sumSubarrayMins_self_basic(problems):
     arr = [3,1,2,4]
     assert problems.sumSubarrayMins_self(arr) == 17
+
+
+def test_can_jump_example1(problems):
+    nums = [2,3,1,1,4]
+    assert problems.canJump(nums) is True
+
+def test_can_jump_example2(problems):
+    nums = [3,2,1,0,4]
+    assert problems.canJump(nums) is False
+
+def test_can_jump_single_element(problems):
+    nums = [0]
+    assert problems.canJump(nums) is True
+
+def test_can_jump_all_zeros_except_first(problems):
+    nums = [1,0,0,0]
+    assert problems.canJump(nums) is False
+
+def test_can_jump_large_jump_at_start(problems):
+    nums = [5,0,0,0,0,0]
+    assert problems.canJump(nums) is True
+
+def test_can_jump_last_zero_but_reachable(problems):
+    nums = [2,0,0]
+    assert problems.canJump(nums) is True
+
+def test_can_jump_not_reachable_due_to_zeros(problems):
+    nums = [1,1,0,1]
+    assert problems.canJump(nums) is False
+
+def test_can_jump_all_ones(problems):
+    nums = [1,1,1,1,1]
+    assert problems.canJump(nums) is True
