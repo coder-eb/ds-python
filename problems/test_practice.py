@@ -1066,3 +1066,44 @@ def test_sorted_squares_single_positive(problems):
 def test_sorted_squares_mixed_with_duplicates(problems):
     nums = [-2,-2,0,2,2]
     assert problems.sortedSquares(nums) == [0,4,4,4,4]
+
+
+def test_move_zeroes_example1(problems):
+    nums = [0,1,0,3,12]
+    problems.moveZeroes(nums)
+    assert nums == [1,3,12,0,0]
+
+def test_move_zeroes_example2(problems):
+    nums = [0]
+    problems.moveZeroes(nums)
+    assert nums == [0]
+
+def test_move_zeroes_no_zeroes(problems):
+    nums = [1,2,3]
+    problems.moveZeroes(nums)
+    assert nums == [1,2,3]
+
+def test_move_zeroes_all_zeroes(problems):
+    nums = [0,0,0]
+    problems.moveZeroes(nums)
+    assert nums == [0,0,0]
+
+def test_move_zeroes_zeros_at_end(problems):
+    nums = [1,2,3,0,0]
+    problems.moveZeroes(nums)
+    assert nums == [1,2,3,0,0]
+
+def test_move_zeroes_zeros_at_start(problems):
+    nums = [0,0,1,2,3]
+    problems.moveZeroes(nums)
+    assert nums == [1,2,3,0,0]
+
+def test_move_zeroes_alternating(problems):
+    nums = [0,1,0,2,0,3]
+    problems.moveZeroes(nums)
+    assert nums == [1,2,3,0,0,0]
+
+def test_move_zeroes_single_element_nonzero(problems):
+    nums = [5]
+    problems.moveZeroes(nums)
+    assert nums == [5]
