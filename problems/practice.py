@@ -829,8 +829,15 @@ class Problems:
         return max_sum
 
     def canJump(self, nums: List[int]) -> bool:
-        pass
-
+        gas = 0
+        for gas_found in nums:
+            if gas < 0:
+                return False
+            
+            gas = max(gas, gas_found)
+            gas -= 1
+        return True
+    
 if __name__ == "__main__":
     problems = Problems()  
-    print(problems.maximumSubarraySum([1,5,4,2,9,9,9],3))
+    print(problems.canJump([2,3,1,1,4]))
