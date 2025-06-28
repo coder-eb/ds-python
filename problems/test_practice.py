@@ -1107,3 +1107,8 @@ def test_move_zeroes_single_element_nonzero(problems):
     nums = [5]
     problems.moveZeroes(nums)
     assert nums == [5]
+
+def test_move_zeroes_negatives_and_zeros(problems):
+    nums = [-1,0,0,1,0]
+    problems.moveZeroes(nums)
+    assert nums == [-1,1,0,0,0]

@@ -851,8 +851,17 @@ class Problems:
                 r-=1
             i-=1
         return res
-            
+
+    def moveZeroes(self, nums: List[int]) -> None:
+        l = r = 0
+        while r < len(nums):
+            if nums[l] == 0 and nums[r] != 0:
+                nums[l], nums[r] = nums[r], nums[l]
+            if nums[l] != 0:
+                l+=1
+            r+=1
+        return nums
     
 if __name__ == "__main__":
     problems = Problems()  
-    print(problems.canJump([2,3,1,1,4]))
+    print(problems.moveZeroes([1,0,2]))
