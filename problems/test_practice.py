@@ -1,7 +1,7 @@
 import sys
 import os
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from problems.CustomDS import ListNode
+from problems.CustomDS import ListNode, linked_to_list, list_to_linked
 from problems.practice import Problems, airline, containsNearbyDuplicate, evalRPN, evalRPNr, fibonacci, isPalindrome, longest_consecutive_sequence_by_order, missingNumber, profit_stock, remove_element, removeDuplicates, removeElement, removeElement_1, romanToInt
 
 import pytest
@@ -1113,24 +1113,6 @@ def test_move_zeroes_negatives_and_zeros(problems):
     nums = [-1,0,0,1,0]
     problems.moveZeroes(nums)
     assert nums == [-1,1,0,0,0]
-
-
-
-def list_to_linked(lst):
-    dummy = ListNode()
-    curr = dummy
-    for v in lst:
-        curr.next = ListNode(v)
-        curr = curr.next
-    return dummy.next
-
-def linked_to_list(node):
-    out = []
-    while node:
-        out.append(node.val)
-        node = node.next
-    return out
-
 
 def test_merge_two_lists_both_nonempty(problems):
     l1 = list_to_linked([1,2,4])

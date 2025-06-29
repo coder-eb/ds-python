@@ -3,7 +3,7 @@ from typing import List, Optional
 import sys
 import os
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from problems.CustomDS import ListNode, MonotonicQueue
+from problems.CustomDS import ListNode, MonotonicQueue, list_to_linked
 
 
 def profit_stock(prices):
@@ -866,5 +866,7 @@ class Problems:
         pass
 
 if __name__ == "__main__":
-    problems = Problems()  
-    print(problems.moveZeroes([1,0,2]))
+    problems = Problems()
+    l1 = list_to_linked([1,2,4])
+    l2 = list_to_linked([1,3,4])
+    print(problems.mergeTwoLists(l1, l2))

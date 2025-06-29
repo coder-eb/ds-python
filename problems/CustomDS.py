@@ -213,6 +213,21 @@ class ListNode:
         self.val = val
         self.next = next
 
+def list_to_linked(lst):
+    dummy = ListNode()
+    curr = dummy
+    for v in lst:
+        curr.next = ListNode(v)
+        curr = curr.next
+    return dummy.next
+
+def linked_to_list(node):
+    out = []
+    while node:
+        out.append(node.val)
+        node = node.next
+    return out
+
 def test():
     max_stack = MaxStack()
     max_stack.push(5)
