@@ -863,39 +863,24 @@ class Problems:
         return nums
 
     def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
-        header = prev_p = ListNode(0)
-        p1, p2 = list1, list2
-        while p1 and p2:
-            if (p1.val < p2.val):
-                next_p = p1.next
-                cur_p = p1
-                cur_p.next = None
-                prev_p.next = cur_p
+        dummy = ListNode()
+        tail = dummy
 
-                p1 = next_p
+        while list1 and list2:
+            if list1.val < list2.val:
+                tail.next = list1
+                list1 = list1.next
             else:
-                next_p = p2.next
-                cur_p = p2
-                cur_p.next = None
-                prev_p.next = cur_p
-
-                p2 = next_p  
-            prev_p = prev_p.next
-
-        remaining = p1 if p1 else p2
-        while remaining:
-            next_p = remaining.next
-            cur_p = remaining
-            cur_p.next = None
-            prev_p.next = cur_p
-
-            remaining = next_p
-            prev_p = prev_p.next
+                tail.next = list2
+                list2 = list2.next
+            tail = tail.next
         
-        return header.next
+        tail.next = list1 if list1 else list2
+
+        return dummy.next
 
 if __name__ == "__main__":
     problems = Problems()
-    l1 = list_to_linked([1,2,4,6,7])
-    l2 = list_to_linked([1,3,4,5])
+    l1 = list_to_linked([1,2,5])
+    l2 = list_to_linked([2,4,6])
     print(linked_to_list(problems.mergeTwoLists(l1, l2)))
