@@ -5,20 +5,6 @@ import os
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from problems.CustomDS import ListNode, MonotonicQueue, linked_to_list, list_to_linked
 
-
-def profit_stock(prices):
-    buy = 0
-    max_profit = 0
-    r_buy, r_sell = 0, 0
-    for sell in range(len(prices)):
-        profit = prices[sell] - prices[buy]
-        if profit > max_profit:
-            max_profit = profit
-            r_buy, r_sell = buy, sell
-        if prices[sell] < prices[buy]:
-            buy = sell
-    return r_buy, r_sell
-
 def fibonacci(n):
     items = [0, 1]
     for i in range(2, n+1):
@@ -40,14 +26,6 @@ def missingNumber(nums):
     
     for num in range(len(nums)+1):
         if num not in seen: return num
-
-def removeDuplicates(nums):
-    j = 1
-    for i in range(1, len(nums)):
-        if nums[i] != nums[i-1]:
-            nums[j] = nums[i]
-            j+=1
-    return nums
 
 def isPalindrome(x):
     if x < 0: return False
@@ -78,38 +56,6 @@ def romanToInt(s):
             total += map[s[index]]
 
     return total
-
-def remove_element(nums, val):
-    target_index = 0
-    for index in range(len(nums)):
-        if nums[index] != val:
-            nums[target_index] = nums[index]
-            target_index += 1
-
-    for index in range(target_index, len(nums)):
-        nums.pop()
-    return target_index
-
-def removeElement(nums, val):
-    replace_index = 0
-    for num in nums:
-        if num != val:
-            nums[replace_index] = num
-            replace_index += 1
-    return nums, replace_index
-
-def removeElement_1(nums, target):
-    l = len(nums)
-    curr_index = 0
-    iteration = 0
-    while iteration < l:
-        if nums[curr_index] == target:
-            del nums[curr_index]
-            nums.append(target)
-        else:
-            curr_index+=1
-        iteration += 1
-    return curr_index
 
 def longest_consecutive_sequence_by_order(nums):
     if not len(nums): return 0
@@ -908,8 +854,12 @@ class Problems:
         return nums1
 
     def removeDuplicates(self, nums: List[int]) -> int:
-        pass
+        l=r=1
+        for r in range(1, len(nums)):
+            if (nums[l] == nums[l-1]) and nums[r] != nums[l]:
+                nums[l], nums[r] = nums[r], nums[l]
+
 
 if __name__ == "__main__":
     problems = Problems()
-    print(problems.merge([0],0,[1],1))
+    print(problems.removeDuplicates([1,1,2]))

@@ -2,7 +2,7 @@ import sys
 import os
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from problems.CustomDS import ListNode, linked_to_list, list_to_linked
-from problems.practice import Problems, airline, containsNearbyDuplicate, evalRPN, evalRPNr, fibonacci, isPalindrome, longest_consecutive_sequence_by_order, missingNumber, profit_stock, remove_element, removeDuplicates, removeElement, removeElement_1, romanToInt
+from problems.practice import Problems, airline, containsNearbyDuplicate, evalRPN, evalRPNr, fibonacci, isPalindrome, longest_consecutive_sequence_by_order, missingNumber, romanToInt
 
 import pytest
 
@@ -909,11 +909,6 @@ def test_maximumSubarraysum_self_large_input_duplicates(problems):
     # All subarrays have duplicates
     assert problems.maximumSubarraySum_self(nums, k) == 0
 
-def test_profit_stock_basic():
-    assert profit_stock([7,1,5,3,6,4]) == (1, 4)
-    assert profit_stock([7,6,4,3,1]) == (0, 0)
-    assert profit_stock([1,2,3,4,5]) == (0, 4)
-
 def test_fibonacci_basic():
     assert fibonacci(2) == 1
     assert fibonacci(3) == 2
@@ -931,10 +926,6 @@ def test_missingNumber_basic():
     assert missingNumber([0,1]) == 2
     assert missingNumber([9,6,4,2,3,5,7,0,1]) == 8
 
-def test_removeDuplicates_basic():
-    assert removeDuplicates([1,1,2]) == [1,2,2]
-    assert removeDuplicates([0,0,1,1,1,2,2,3,3,4]) == [0,1,2,3,4,2,2,3,3,4]
-
 def test_isPalindrome_basic():
     assert isPalindrome(121) is True
     assert isPalindrome(-121) is False
@@ -944,25 +935,6 @@ def test_romanToInt_basic():
     assert romanToInt("III") == 3
     assert romanToInt("LVIII") == 58
     assert romanToInt("MCMXCIV") == 1994
-
-def test_remove_element_basic():
-    nums = [3,2,2,3]
-    val = 3
-    assert remove_element(nums, val) == 2
-    assert nums == [2,2]
-
-def test_removeElement_basic():
-    nums = [0,1,2,2,3,0,4,2]
-    val = 2
-    new_nums, length = removeElement(nums, val)
-    assert length == 5
-    assert new_nums[:length] == [0,1,3,0,4]
-
-def test_removeElement_1_basic():
-    nums = [3,2,2,3]
-    target = 3
-    assert removeElement_1(nums, target) == 2
-    assert nums[:2] == [2,2]
 
 def test_longest_consecutive_sequence_by_order_basic():
     assert longest_consecutive_sequence_by_order([100, 4, 200, 1, 3, 2]) == 1
