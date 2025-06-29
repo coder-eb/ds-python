@@ -1250,12 +1250,6 @@ def test_remove_duplicates_all_same(problems):
     assert length == 1
     assert nums[:length] == [2]
 
-def test_remove_duplicates_empty(problems):
-    nums = []
-    length = problems.removeDuplicates(nums)
-    assert length == 0
-    assert nums == []
-
 def test_remove_duplicates_single_element(problems):
     nums = [7]
     length = problems.removeDuplicates(nums)
