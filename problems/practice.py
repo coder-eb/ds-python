@@ -880,10 +880,15 @@ class Problems:
         return dummy.next
     
     def removeElement(self, nums: List[int], val: int) -> int:
-        pass
+        l = 0
+        for r in range(len(nums)):
+            if nums[l] == val and nums[r] != val:
+                nums[l], nums[r] = nums[r], nums[l]
+            
+            if nums[l] != val:
+                l+=1
+        return l
 
 if __name__ == "__main__":
     problems = Problems()
-    l1 = list_to_linked([1,2,5])
-    l2 = list_to_linked([2,4,6])
-    print(linked_to_list(problems.mergeTwoLists(l1, l2)))
+    print(problems.removeElement([0,1,2,2,3,0,4,2],2))
