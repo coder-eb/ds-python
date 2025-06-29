@@ -1252,3 +1252,40 @@ def test_merge_sorted_array_duplicates(problems):
     n = 3
     problems.merge(nums1, m, nums2, n)
     assert nums1 == [1,2,2,2,2,3]
+
+
+def test_remove_duplicates_example1(problems):
+    nums = [1,1,2]
+    length = problems.removeDuplicates(nums)
+    assert length == 2
+    assert nums[:length] == [1,2]
+
+def test_remove_duplicates_example2(problems):
+    nums = [0,0,1,1,1,2,2,3,3,4]
+    length = problems.removeDuplicates(nums)
+    assert length == 5
+    assert nums[:length] == [0,1,2,3,4]
+
+def test_remove_duplicates_no_duplicates(problems):
+    nums = [1,2,3,4,5]
+    length = problems.removeDuplicates(nums)
+    assert length == 5
+    assert nums[:length] == [1,2,3,4,5]
+
+def test_remove_duplicates_all_same(problems):
+    nums = [2,2,2,2]
+    length = problems.removeDuplicates(nums)
+    assert length == 1
+    assert nums[:length] == [2]
+
+def test_remove_duplicates_empty(problems):
+    nums = []
+    length = problems.removeDuplicates(nums)
+    assert length == 0
+    assert nums == []
+
+def test_remove_duplicates_single_element(problems):
+    nums = [7]
+    length = problems.removeDuplicates(nums)
+    assert length == 1
+    assert nums[:length] == [7]
