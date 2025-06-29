@@ -1149,3 +1149,49 @@ def test_merge_two_lists_duplicates(problems):
     l2 = list_to_linked([1,1,2])
     merged = problems.mergeTwoLists(l1, l2)
     assert linked_to_list(merged) == [1,1,1,1,2,2]
+
+def test_remove_element_example1(problems):
+    nums = [3,2,2,3]
+    val = 3
+    length = problems.removeElement(nums, val)
+    assert length == 2
+    assert sorted(nums[:length]) == [2,2]
+
+def test_remove_element_example2(problems):
+    nums = [0,1,2,2,3,0,4,2]
+    val = 2
+    length = problems.removeElement(nums, val)
+    assert length == 5
+    assert sorted(nums[:length]) == [0,0,1,3,4]
+
+def test_remove_element_no_removal(problems):
+    nums = [1,2,3,4]
+    val = 5
+    length = problems.removeElement(nums, val)
+    assert length == 4
+    assert sorted(nums[:length]) == [1,2,3,4]
+
+def test_remove_element_all_removed(problems):
+    nums = [2,2,2]
+    val = 2
+    length = problems.removeElement(nums, val)
+    assert length == 0
+
+def test_remove_element_empty(problems):
+    nums = []
+    val = 1
+    length = problems.removeElement(nums, val)
+    assert length == 0
+
+def test_remove_element_single_element(problems):
+    nums = [1]
+    val = 1
+    length = problems.removeElement(nums, val)
+    assert length == 0
+
+def test_remove_element_single_element_not_removed(problems):
+    nums = [1]
+    val = 2
+    length = problems.removeElement(nums, val)
+    assert length == 1
+    assert nums[0] == 1

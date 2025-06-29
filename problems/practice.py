@@ -878,6 +878,9 @@ class Problems:
         tail.next = list1 if list1 else list2
 
         return dummy.next
+    
+    def removeElement(self, nums: List[int], val: int) -> int:
+        pass
 
 if __name__ == "__main__":
     problems = Problems()
