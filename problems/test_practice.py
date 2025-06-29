@@ -1112,3 +1112,61 @@ def test_move_zeroes_negatives_and_zeros(problems):
     nums = [-1,0,0,1,0]
     problems.moveZeroes(nums)
     assert nums == [-1,1,0,0,0]
+
+
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+def list_to_linked(lst):
+    dummy = ListNode()
+    curr = dummy
+    for v in lst:
+        curr.next = ListNode(v)
+        curr = curr.next
+    return dummy.next
+
+def linked_to_list(node):
+    out = []
+    while node:
+        out.append(node.val)
+        node = node.next
+    return out
+
+
+def test_merge_two_lists_both_nonempty(problems):
+    l1 = list_to_linked([1,2,4])
+    l2 = list_to_linked([1,3,4])
+    merged = problems.mergeTwoLists(l1, l2)
+    assert linked_to_list(merged) == [1,1,2,3,4,4]
+
+def test_merge_two_lists_one_empty(problems):
+    l1 = list_to_linked([])
+    l2 = list_to_linked([0])
+    merged = problems.mergeTwoLists(l1, l2)
+    assert linked_to_list(merged) == [0]
+
+def test_merge_two_lists_both_empty(problems):
+    l1 = list_to_linked([])
+    l2 = list_to_linked([])
+    merged = problems.mergeTwoLists(l1, l2)
+    assert linked_to_list(merged) == []
+
+def test_merge_two_lists_disjoint(problems):
+    l1 = list_to_linked([1,2,3])
+    l2 = list_to_linked([4,5,6])
+    merged = problems.mergeTwoLists(l1, l2)
+    assert linked_to_list(merged) == [1,2,3,4,5,6]
+
+def test_merge_two_lists_interleaved(problems):
+    l1 = list_to_linked([1,3,5])
+    l2 = list_to_linked([2,4,6])
+    merged = problems.mergeTwoLists(l1, l2)
+    assert linked_to_list(merged) == [1,2,3,4,5,6]
+
+def test_merge_two_lists_duplicates(problems):
+    l1 = list_to_linked([1,1,2])
+    l2 = list_to_linked([1,1,2])
+    merged = problems.mergeTwoLists(l1, l2)
+    assert linked_to_list(merged) == [1,1,1,1,2,2]
