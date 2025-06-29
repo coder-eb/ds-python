@@ -1195,3 +1195,60 @@ def test_remove_element_single_element_not_removed(problems):
     length = problems.removeElement(nums, val)
     assert length == 1
     assert nums[0] == 1
+
+
+def test_merge_sorted_array_example1(problems):
+    nums1 = [1,2,3,0,0,0]
+    m = 3
+    nums2 = [2,5,6]
+    n = 3
+    problems.merge(nums1, m, nums2, n)
+    assert nums1 == [1,2,2,3,5,6]
+
+def test_merge_sorted_array_example2(problems):
+    nums1 = [1]
+    m = 1
+    nums2 = []
+    n = 0
+    problems.merge(nums1, m, nums2, n)
+    assert nums1 == [1]
+
+def test_merge_sorted_array_example3(problems):
+    nums1 = [0]
+    m = 0
+    nums2 = [1]
+    n = 1
+    problems.merge(nums1, m, nums2, n)
+    assert nums1 == [1]
+
+def test_merge_sorted_array_all_nums2_smaller(problems):
+    nums1 = [4,5,6,0,0,0]
+    m = 3
+    nums2 = [1,2,3]
+    n = 3
+    problems.merge(nums1, m, nums2, n)
+    assert nums1 == [1,2,3,4,5,6]
+
+def test_merge_sorted_array_all_nums2_larger(problems):
+    nums1 = [1,2,3,0,0,0]
+    m = 3
+    nums2 = [4,5,6]
+    n = 3
+    problems.merge(nums1, m, nums2, n)
+    assert nums1 == [1,2,3,4,5,6]
+
+def test_merge_sorted_array_interleaved(problems):
+    nums1 = [2,4,6,0,0,0]
+    m = 3
+    nums2 = [1,3,5]
+    n = 3
+    problems.merge(nums1, m, nums2, n)
+    assert nums1 == [1,2,3,4,5,6]
+
+def test_merge_sorted_array_duplicates(problems):
+    nums1 = [1,2,3,0,0,0]
+    m = 3
+    nums2 = [2,2,2]
+    n = 3
+    problems.merge(nums1, m, nums2, n)
+    assert nums1 == [1,2,2,2,2,3]

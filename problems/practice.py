@@ -888,6 +888,9 @@ class Problems:
             if nums[l] != val:
                 l+=1
         return l
+    
+    def merge(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:
+        pass
 
 if __name__ == "__main__":
     problems = Problems()
