@@ -861,6 +861,9 @@ class Problems:
                 l+=1
         return l
 
+    def maxProfit(self, prices: List[int]) -> int:
+        pass
+    
 if __name__ == "__main__":
     problems = Problems()
     print(problems.removeDuplicates([0,0,1,1,1,2,2,3,3,4]))

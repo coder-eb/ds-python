@@ -1255,3 +1255,35 @@ def test_remove_duplicates_single_element(problems):
     length = problems.removeDuplicates(nums)
     assert length == 1
     assert nums[:length] == [7]
+
+def test_max_profit_example1(problems):
+    prices = [7,1,5,3,6,4]
+    assert problems.maxProfit(prices) == 5  # Buy at 1, sell at 6
+
+def test_max_profit_example2(problems):
+    prices = [7,6,4,3,1]
+    assert problems.maxProfit(prices) == 0  # No profit possible
+
+def test_max_profit_single_day(problems):
+    prices = [5]
+    assert problems.maxProfit(prices) == 0
+
+def test_max_profit_two_days_profit(problems):
+    prices = [1,2]
+    assert problems.maxProfit(prices) == 1
+
+def test_max_profit_two_days_loss(problems):
+    prices = [2,1]
+    assert problems.maxProfit(prices) == 0
+
+def test_max_profit_all_same(problems):
+    prices = [3,3,3,3]
+    assert problems.maxProfit(prices) == 0
+
+def test_max_profit_profit_at_end(problems):
+    prices = [5,4,3,2,10]
+    assert problems.maxProfit(prices) == 8
+
+def test_max_profit_profit_at_start(problems):
+    prices = [1,10,2,1,0]
+    assert problems.maxProfit(prices) == 9
