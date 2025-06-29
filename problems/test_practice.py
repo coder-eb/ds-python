@@ -1,6 +1,7 @@
 import sys
 import os
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+from problems.CustomDS import ListNode
 from problems.practice import Problems, airline, containsNearbyDuplicate, evalRPN, evalRPNr, fibonacci, isPalindrome, longest_consecutive_sequence_by_order, missingNumber, profit_stock, remove_element, removeDuplicates, removeElement, removeElement_1, romanToInt
 
 import pytest
@@ -1114,10 +1115,6 @@ def test_move_zeroes_negatives_and_zeros(problems):
     assert nums == [-1,1,0,0,0]
 
 
-class ListNode:
-    def __init__(self, val=0, next=None):
-        self.val = val
-        self.next = next
 
 def list_to_linked(lst):
     dummy = ListNode()

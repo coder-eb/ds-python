@@ -208,6 +208,11 @@ class MaxStack:
         
         return max_val
 
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
 def test():
     max_stack = MaxStack()
     max_stack.push(5)

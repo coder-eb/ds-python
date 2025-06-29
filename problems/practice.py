@@ -1,9 +1,9 @@
 from collections import deque
-from typing import List
+from typing import List, Optional
 import sys
 import os
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from problems.CustomDS import MonotonicQueue
+from problems.CustomDS import ListNode, MonotonicQueue
 
 
 def profit_stock(prices):
@@ -861,7 +861,10 @@ class Problems:
                 l+=1
             r+=1
         return nums
-    
+
+    def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
+        pass
+
 if __name__ == "__main__":
     problems = Problems()  
     print(problems.moveZeroes([1,0,2]))
