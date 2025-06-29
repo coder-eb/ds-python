@@ -3,7 +3,7 @@ from typing import List, Optional
 import sys
 import os
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from problems.CustomDS import ListNode, MonotonicQueue, list_to_linked
+from problems.CustomDS import ListNode, MonotonicQueue, linked_to_list, list_to_linked
 
 
 def profit_stock(prices):
@@ -863,10 +863,39 @@ class Problems:
         return nums
 
     def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
-        pass
+        header = prev_p = ListNode(0)
+        p1, p2 = list1, list2
+        while p1 and p2:
+            if (p1.val < p2.val):
+                next_p = p1.next
+                cur_p = p1
+                cur_p.next = None
+                prev_p.next = cur_p
+
+                p1 = next_p
+            else:
+                next_p = p2.next
+                cur_p = p2
+                cur_p.next = None
+                prev_p.next = cur_p
+
+                p2 = next_p  
+            prev_p = prev_p.next
+
+        remaining = p1 if p1 else p2
+        while remaining:
+            next_p = remaining.next
+            cur_p = remaining
+            cur_p.next = None
+            prev_p.next = cur_p
+
+            remaining = next_p
+            prev_p = prev_p.next
+        
+        return header.next
 
 if __name__ == "__main__":
     problems = Problems()
-    l1 = list_to_linked([1,2,4])
-    l2 = list_to_linked([1,3,4])
-    print(problems.mergeTwoLists(l1, l2))
+    l1 = list_to_linked([1,2,4,6,7])
+    l2 = list_to_linked([1,3,4,5])
+    print(linked_to_list(problems.mergeTwoLists(l1, l2)))
