@@ -228,24 +228,43 @@ def linked_to_list(node):
         node = node.next
     return out
 
-def test():
-    max_stack = MaxStack()
-    max_stack.push(5)
-    max_stack.push(4)
-    max_stack.push(6)
-    max_stack.push(3)
+class TreeNode:
+    def __init__(self, val=None, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
 
-    print(max_stack.top())
-    print(max_stack.popMax())
-    print(max_stack.top())
-    print(max_stack.peekMax())
-    print(max_stack.pop())
-    print(max_stack.top())
-    
+class BinaryTree:
+    def __init__(self, val):
+        self.root = TreeNode(val)
 
+    def _r_insert(self, cur_node, val):
+        if cur_node is None:
+            return TreeNode(val)
+        
+        if val ==  cur_node.val:
+            return cur_node
+
+        if val < cur_node.val:
+            cur_node.left = self._r_insert(cur_node.left,val)
+        else:
+            cur_node.right = self._r_insert(cur_node.right, val)
+        return cur_node
+        
+    def insert(self, val):
+        return self._r_insert(self.root, val)
 
 def main():
-    test()
+    bt = BinaryTree(4)
+    bt.insert(2)
+    bt.insert(7)
+    bt.insert(7)
+    bt.insert(1)
+    bt.insert(3)
+    bt.insert(6)
+    bt.insert(9)
+    bt.insert(5)
+    print(bt)
 
 if __name__ == '__main__':
     main()
