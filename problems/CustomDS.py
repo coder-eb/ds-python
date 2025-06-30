@@ -238,7 +238,7 @@ class BinaryTree:
     def __init__(self, val):
         self.root = TreeNode(val)
 
-    def _r_insert(self, cur_node, val):
+    def __r_insert(self, cur_node, val):
         if cur_node is None:
             return TreeNode(val)
         
@@ -246,13 +246,27 @@ class BinaryTree:
             return cur_node
 
         if val < cur_node.val:
-            cur_node.left = self._r_insert(cur_node.left,val)
+            cur_node.left = self.__r_insert(cur_node.left,val)
         else:
-            cur_node.right = self._r_insert(cur_node.right, val)
+            cur_node.right = self.__r_insert(cur_node.right, val)
         return cur_node
-        
+  
     def insert(self, val):
-        return self._r_insert(self.root, val)
+        return self.__r_insert(self.root, val)
+
+    def __invert_tree(self, cur_node):
+        if cur_node is None:
+            return None
+        
+        left = self.__invert_tree(cur_node.right)
+        right = self.__invert_tree(cur_node.left)
+        cur_node.left = left
+        cur_node.right = right
+        return cur_node
+    
+    def invertTree(self, root):
+        return self.__invert_tree(root)
+
 
 def main():
     bt = BinaryTree(4)
@@ -264,6 +278,7 @@ def main():
     bt.insert(6)
     bt.insert(9)
     bt.insert(5)
+    bt.invertTree(bt.root)
     print(bt)
 
 if __name__ == '__main__':
