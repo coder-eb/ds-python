@@ -1323,3 +1323,36 @@ def test_binary_search_empty(problems):
     nums = []
     target = 1
     assert problems.search(nums, target) == -1
+
+
+def test_find_min_rotated_example1(problems):
+    nums = [3,4,5,1,2]
+    assert problems.findMin(nums) == 1
+
+def test_find_min_rotated_example2(problems):
+    nums = [4,5,6,7,0,1,2]
+    assert problems.findMin(nums) == 0
+
+def test_find_min_rotated_not_rotated(problems):
+    nums = [1,2,3,4,5]
+    assert problems.findMin(nums) == 1
+
+def test_find_min_rotated_single_element(problems):
+    nums = [10]
+    assert problems.findMin(nums) == 10
+
+def test_find_min_rotated_two_elements(problems):
+    nums = [2,1]
+    assert problems.findMin(nums) == 1
+
+def test_find_min_rotated_at_end(problems):
+    nums = [2,3,4,5,1]
+    assert problems.findMin(nums) == 1
+
+def test_find_min_rotated_at_start(problems):
+    nums = [1,2,3,4,5]
+    assert problems.findMin(nums) == 1
+
+def test_find_min_rotated_large(problems):
+    nums = list(range(101, 200)) + list(range(1, 101))
+    assert problems.findMin(nums) == 1
