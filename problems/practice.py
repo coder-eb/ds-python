@@ -862,8 +862,17 @@ class Problems:
         return l
 
     def maxProfit(self, prices: List[int]) -> int:
-        pass
-    
+        max_profit = 0
+        min_buy_index = 0
+        for i in range(1, len(prices)):
+            profit = prices[i] - prices[min_buy_index]
+            max_profit = max(max_profit, profit)
+
+            if prices[i] < prices[min_buy_index]:
+                min_buy_index = i
+
+        return max_profit
+
 if __name__ == "__main__":
     problems = Problems()
-    print(problems.removeDuplicates([0,0,1,1,1,2,2,3,3,4]))
+    print(problems.maxProfit([7,1,5,3,6,4]))
