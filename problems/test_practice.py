@@ -1287,3 +1287,39 @@ def test_max_profit_profit_at_end(problems):
 def test_max_profit_profit_at_start(problems):
     prices = [1,10,2,1,0]
     assert problems.maxProfit(prices) == 9
+
+
+def test_binary_search_found_middle(problems):
+    nums = [-1,0,3,5,9,12]
+    target = 9
+    assert problems.search(nums, target) == 4
+
+def test_binary_search_found_left(problems):
+    nums = [-1,0,3,5,9,12]
+    target = -1
+    assert problems.search(nums, target) == 0
+
+def test_binary_search_found_right(problems):
+    nums = [-1,0,3,5,9,12]
+    target = 12
+    assert problems.search(nums, target) == 5
+
+def test_binary_search_not_found(problems):
+    nums = [-1,0,3,5,9,12]
+    target = 2
+    assert problems.search(nums, target) == -1
+
+def test_binary_search_single_element_found(problems):
+    nums = [1]
+    target = 1
+    assert problems.search(nums, target) == 0
+
+def test_binary_search_single_element_not_found(problems):
+    nums = [1]
+    target = 2
+    assert problems.search(nums, target) == -1
+
+def test_binary_search_empty(problems):
+    nums = []
+    target = 1
+    assert problems.search(nums, target) == -1
