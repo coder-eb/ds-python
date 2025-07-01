@@ -900,9 +900,18 @@ class Problems:
                 left = mid
         return nums[left]
 
-    def candies(n, arr):
-        pass
+    def candies(self, ratings):
+        candies = [1]*len(ratings)
+        for i in range(1, len(ratings)):
+            if ratings[i] > ratings[i-1]:
+                candies[i] = candies[i-1]+1
+        
+        for i in range(len(ratings)-2, -1, -1):
+            if ratings[i] > ratings[i+1]:
+                candies[i] = max(candies[i], candies[i+1]+1)
+
+        return sum(candies)
     
 if __name__ == "__main__":
     problems = Problems()
-    print(problems.findMin([5,1,2,3,4]))
+    print(problems.candies([2,4,2,6,1,7,8,9,2,1]))
