@@ -1365,44 +1365,44 @@ def test_find_min_rotated_leetcode_88(problems):
 def test_candies_example1(problems):
     n = 3
     arr = [1, 2, 2]
-    assert problems.candies(n, arr) == 4  # [1,2,1]
+    assert problems.candies(arr) == 4  # [1,2,1]
 
 def test_candies_example2(problems):
     n = 10
     arr = [2, 4, 2, 6, 1, 7, 8, 9, 2, 1]
-    assert problems.candies(n, arr) == 19
+    assert problems.candies(arr) == 19
 
 def test_candies_all_same(problems):
     n = 5
     arr = [1, 1, 1, 1, 1]
-    assert problems.candies(n, arr) == 5  # [1,1,1,1,1]
+    assert problems.candies(arr) == 5  # [1,1,1,1,1]
 
 def test_candies_strictly_increasing(problems):
     n = 4
     arr = [1, 2, 3, 4]
-    assert problems.candies(n, arr) == 10  # [1,2,3,4]
+    assert problems.candies(arr) == 10  # [1,2,3,4]
 
 def test_candies_strictly_decreasing(problems):
     n = 4
     arr = [4, 3, 2, 1]
-    assert problems.candies(n, arr) == 10  # [4,3,2,1]
+    assert problems.candies(arr) == 10  # [4,3,2,1]
 
 def test_candies_valley(problems):
     n = 5
     arr = [2, 1, 2, 1, 2]
-    assert problems.candies(n, arr) == 7  # [2,1,2,1,2]
+    assert problems.candies(arr) == 8  # [2,1,2,1,2]
 
 def test_candies_single_child(problems):
     n = 1
     arr = [5]
-    assert problems.candies(n, arr) == 1
+    assert problems.candies(arr) == 1
 
 def test_candies_two_children_same(problems):
     n = 2
     arr = [2, 2]
-    assert problems.candies(n, arr) == 2  # [1,1]
+    assert problems.candies(arr) == 2  # [1,1]
 
 def test_candies_two_children_different(problems):
     n = 2
     arr = [1, 2]
-    assert problems.candies(n, arr) == 3  # [1,2]
+    assert problems.candies(arr) == 3  # [1,2]
