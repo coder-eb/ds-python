@@ -900,6 +900,9 @@ class Problems:
                 left = mid
         return nums[left]
 
+    def candies(n, arr):
+        pass
+    
 if __name__ == "__main__":
     problems = Problems()
     print(problems.findMin([5,1,2,3,4]))
