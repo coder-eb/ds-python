@@ -1356,3 +1356,7 @@ def test_find_min_rotated_at_start(problems):
 def test_find_min_rotated_large(problems):
     nums = list(range(101, 200)) + list(range(1, 101))
     assert problems.findMin(nums) == 1
+
+def test_find_min_rotated_leetcode_88(problems):
+    nums = [5,1,2,3,4]
+    assert problems.findMin(nums) == 1

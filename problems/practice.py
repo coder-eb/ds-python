@@ -886,6 +886,20 @@ class Problems:
                 r=m-1
         return -1
 
+    def findMin(self, nums: List[int]) -> int:
+        left, right = 0, len(nums)-1
+        while left < right:
+            temp = nums[left:right+1]
+            mid = left + (right-left)//2
+            if right - left == 1:
+                return min(nums[left], nums[right])
+
+            if nums[right] > nums[mid]:
+                right = mid
+            else:
+                left = mid
+        return nums[left]
+
 if __name__ == "__main__":
     problems = Problems()
-    print(problems.search([-1,0,3,5,9,12],5))
+    print(problems.findMin([5,1,2,3,4]))
