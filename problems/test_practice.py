@@ -1451,3 +1451,54 @@ def test_search_rotated_leetcode_159(problems):
     nums = [1,3,5]
     target = 3
     assert problems.searchRotated(nums, target) == 1
+
+
+def test_search_rotated_ii_found_middle(problems):
+    nums = [2,5,6,0,0,1,2]
+    target = 0
+    assert problems.searchRotatedII(nums, target) is True
+
+def test_search_rotated_ii_not_found(problems):
+    nums = [2,5,6,0,0,1,2]
+    target = 3
+    assert problems.searchRotatedII(nums, target) is False
+
+def test_search_rotated_ii_duplicates(problems):
+    nums = [1,1,1,1,1,2,1,1]
+    target = 2
+    assert problems.searchRotatedII(nums, target) is True
+
+def test_search_rotated_ii_all_duplicates(problems):
+    nums = [1,1,1,1,1,1,1]
+    target = 2
+    assert problems.searchRotatedII(nums, target) is False
+
+def test_search_rotated_ii_single_element_found(problems):
+    nums = [1]
+    target = 1
+    assert problems.searchRotatedII(nums, target) is True
+
+def test_search_rotated_ii_single_element_not_found(problems):
+    nums = [1]
+    target = 2
+    assert problems.searchRotatedII(nums, target) is False
+
+def test_search_rotated_ii_not_rotated(problems):
+    nums = [1,2,3,4,5,6,7]
+    target = 5
+    assert problems.searchRotatedII(nums, target) is True
+
+def test_search_rotated_ii_empty(problems):
+    nums = []
+    target = 1
+    assert problems.searchRotatedII(nums, target) is False
+
+def test_search_rotated_ii_target_at_end(problems):
+    nums = [2,2,2,3,4,2]
+    target = 4
+    assert problems.searchRotatedII(nums, target) is True
+
+def test_search_rotated_ii_target_at_start(problems):
+    nums = [4,5,6,7,0,1,2,4,4]
+    target = 4
+    assert problems.searchRotatedII(nums, target) is True
