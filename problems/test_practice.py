@@ -1406,3 +1406,48 @@ def test_candies_two_children_different(problems):
     n = 2
     arr = [1, 2]
     assert problems.candies(arr) == 3  # [1,2]
+
+def test_search_rotated_found_middle(problems):
+    nums = [4,5,6,7,0,1,2]
+    target = 0
+    assert problems.searchRotated(nums, target) == 4
+
+def test_search_rotated_found_left(problems):
+    nums = [4,5,6,7,0,1,2]
+    target = 4
+    assert problems.searchRotated(nums, target) == 0
+
+def test_search_rotated_found_right(problems):
+    nums = [4,5,6,7,0,1,2]
+    target = 2
+    assert problems.searchRotated(nums, target) == 6
+
+def test_search_rotated_not_found(problems):
+    nums = [4,5,6,7,0,1,2]
+    target = 3
+    assert problems.searchRotated(nums, target) == -1
+
+def test_search_rotated_single_element_found(problems):
+    nums = [1]
+    target = 1
+    assert problems.searchRotated(nums, target) == 0
+
+def test_search_rotated_single_element_not_found(problems):
+    nums = [1]
+    target = 2
+    assert problems.searchRotated(nums, target) == -1
+
+def test_search_rotated_not_rotated(problems):
+    nums = [1,2,3,4,5,6,7]
+    target = 5
+    assert problems.searchRotated(nums, target) == 4
+
+def test_search_rotated_two_elements(problems):
+    nums = [5,1]
+    target = 1
+    assert problems.searchRotated(nums, target) == 1
+
+def test_search_rotated_leetcode_159(problems):
+    nums = [1,3,5]
+    target = 3
+    assert problems.searchRotated(nums, target) == 1
