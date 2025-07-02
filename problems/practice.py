@@ -911,7 +911,29 @@ class Problems:
                 candies[i] = max(candies[i], candies[i+1]+1)
 
         return sum(candies)
-    
+
+    def searchRotated(self, nums: List[int], target: int) -> int:
+        left, right = 0, len(nums)-1
+        while left <= right:
+            middle = left + (right - left)//2
+            if target == nums[middle]:
+                return middle
+            
+            visualize = nums[left],nums[middle],nums[right]
+            if nums[middle] >= nums[left]:
+                if (target <= nums[middle]) and (target >= nums[left]):
+                    right = middle-1
+                else:
+                    left = middle+1
+            else:
+                if (target >= nums[middle]) and (target <= nums[right]):
+                    left = middle+1
+                else:
+                    right = middle-1
+        return -1
+
+
+
 if __name__ == "__main__":
     problems = Problems()
-    print(problems.candies([2,4,2,6,1,7,8,9,2,1]))
+    print(problems.searchRotated([1,3,5],1))
