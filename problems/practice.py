@@ -932,8 +932,30 @@ class Problems:
                     right = middle-1
         return -1
 
+    def searchRotatedII(self, nums: List[int], target: int) -> int:
+        left, right = 0, len(nums)-1
+        while left <= right:
+            middle = left + (right - left)//2
+            if target == nums[middle]:
+                return True
+
+            if nums[middle] >= nums[left]:
+                if nums[middle] == nums[left]:
+                    left+=1
+                elif (target <= nums[middle]) and (target >= nums[left]):
+                    right = middle-1
+                else:
+                    left = middle+1
+            else:
+                if nums[middle] == nums[right]:
+                    right-=1
+                elif (target >= nums[middle]) and (target <= nums[right]):
+                    left = middle+1
+                else:
+                    right = middle-1
+        return False
 
 
 if __name__ == "__main__":
     problems = Problems()
-    print(problems.searchRotated([1,3,5],1))
+    print(problems.searchRotatedII([1,0,1,1,1],0))
