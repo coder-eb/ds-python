@@ -956,8 +956,21 @@ class Problems:
         return False
 
     def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
-        pass
+        prev, slow, fast = None, head, head
+        for _ in range(n):
+            fast = fast.next
+        
+        while fast:
+            prev, slow, fast = slow, slow.next, fast.next
+
+        if prev is None:
+            head = slow.next
+        else:
+            prev.next = slow.next
+        slow.next = None
+
+        return head
 
 if __name__ == "__main__":
     problems = Problems()
-    print(problems.searchRotatedII([1,0,1,1,1],0))
+    print(linked_to_list(problems.removeNthFromEnd(list_to_linked([1,2,3,4,5]), 2)))
