@@ -1502,3 +1502,39 @@ def test_search_rotated_ii_target_at_start(problems):
     nums = [4,5,6,7,0,1,2,4,4]
     target = 4
     assert problems.searchRotatedII(nums, target) is True
+
+def test_remove_nth_from_end_middle(problems):
+    head = list_to_linked([1,2,3,4,5])
+    n = 2
+    result = problems.removeNthFromEnd(head, n)
+    assert linked_to_list(result) == [1,2,3,5]
+
+def test_remove_nth_from_end_head(problems):
+    head = list_to_linked([1,2,3,4,5])
+    n = 5
+    result = problems.removeNthFromEnd(head, n)
+    assert linked_to_list(result) == [2,3,4,5]
+
+def test_remove_nth_from_end_tail(problems):
+    head = list_to_linked([1,2,3,4,5])
+    n = 1
+    result = problems.removeNthFromEnd(head, n)
+    assert linked_to_list(result) == [1,2,3,4]
+
+def test_remove_nth_from_end_single_element(problems):
+    head = list_to_linked([1])
+    n = 1
+    result = problems.removeNthFromEnd(head, n)
+    assert linked_to_list(result) == []
+
+def test_remove_nth_from_end_two_elements_remove_first(problems):
+    head = list_to_linked([1,2])
+    n = 2
+    result = problems.removeNthFromEnd(head, n)
+    assert linked_to_list(result) == [2]
+
+def test_remove_nth_from_end_two_elements_remove_last(problems):
+    head = list_to_linked([1,2])
+    n = 1
+    result = problems.removeNthFromEnd(head, n)
+    assert linked_to_list(result) == [1]

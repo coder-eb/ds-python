@@ -955,6 +955,8 @@ class Problems:
                     right = middle-1
         return False
 
+    def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
+        pass
 
 if __name__ == "__main__":
     problems = Problems()
