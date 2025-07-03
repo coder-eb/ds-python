@@ -970,7 +970,23 @@ class Problems:
         return start.next
 
     def reorderList(self, head: Optional[ListNode]) -> None:
-        pass
+        stack = []
+        node = head
+        while node:
+            stack.append(node)
+            node=node.next
+
+        length = len(stack)
+        dummy = ListNode(0,head)
+        current = dummy.next
+        for _ in range(0, length//2):
+            next = current.next
+            current.next = stack.pop()
+            current.next.next = next
+            current = next
+        current.next = None
+        return dummy.next
+            
 
 if __name__ == "__main__":
     problems = Problems()
