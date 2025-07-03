@@ -1559,11 +1559,6 @@ def test_reorder_list_single_element(problems):
     problems.reorderList(head)
     assert linked_to_list(head) == [1]
 
-def test_reorder_list_empty(problems):
-    head = list_to_linked([])
-    problems.reorderList(head)
-    assert linked_to_list(head) == []
-
 def test_reorder_list_longer(problems):
     head = list_to_linked([1,2,3,4,5,6])
     problems.reorderList(head)

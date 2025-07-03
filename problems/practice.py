@@ -969,6 +969,29 @@ class Problems:
 
         return start.next
 
+    def reorderList_leetcode(self, head: Optional[ListNode]) -> None:
+        slow, fast = head, head
+        while fast and fast.next:
+            slow, fast = slow.next, fast.next.next
+
+        current = slow.next
+        second = current
+        slow.next = None
+        prev = None
+        while current:
+            next = current.next
+            current.next = prev
+            prev = current
+            second = current
+            current = next
+
+        first = head
+        while second:
+            temp1, temp2 = first.next, second.next
+            first.next, second.next = second, temp1
+            first, second = temp1, temp2
+        return head
+
     def reorderList(self, head: Optional[ListNode]) -> None:
         stack = []
         node = head
@@ -986,8 +1009,7 @@ class Problems:
             current = next
         current.next = None
         return dummy.next
-            
-
+    
 if __name__ == "__main__":
     problems = Problems()
     print(linked_to_list(problems.reorderList(list_to_linked([1,2,3,4,5]))))
