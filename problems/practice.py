@@ -956,20 +956,18 @@ class Problems:
         return False
 
     def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
-        prev, slow, fast = None, head, head
+        start = ListNode(0, head)
+        slow, fast = start, head
+        
         for _ in range(n):
             fast = fast.next
         
         while fast:
-            prev, slow, fast = slow, slow.next, fast.next
+            slow, fast = slow.next, fast.next
 
-        if prev is None:
-            head = slow.next
-        else:
-            prev.next = slow.next
-        slow.next = None
+        slow.next = slow.next.next
 
-        return head
+        return start.next
 
 if __name__ == "__main__":
     problems = Problems()
