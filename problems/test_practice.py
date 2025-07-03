@@ -1538,3 +1538,33 @@ def test_remove_nth_from_end_two_elements_remove_last(problems):
     n = 1
     result = problems.removeNthFromEnd(head, n)
     assert linked_to_list(result) == [1]
+
+def test_reorder_list_even_length(problems):
+    head = list_to_linked([1,2,3,4])
+    problems.reorderList(head)
+    assert linked_to_list(head) == [1,4,2,3]
+
+def test_reorder_list_odd_length(problems):
+    head = list_to_linked([1,2,3,4,5])
+    problems.reorderList(head)
+    assert linked_to_list(head) == [1,5,2,4,3]
+
+def test_reorder_list_two_elements(problems):
+    head = list_to_linked([1,2])
+    problems.reorderList(head)
+    assert linked_to_list(head) == [1,2]
+
+def test_reorder_list_single_element(problems):
+    head = list_to_linked([1])
+    problems.reorderList(head)
+    assert linked_to_list(head) == [1]
+
+def test_reorder_list_empty(problems):
+    head = list_to_linked([])
+    problems.reorderList(head)
+    assert linked_to_list(head) == []
+
+def test_reorder_list_longer(problems):
+    head = list_to_linked([1,2,3,4,5,6])
+    problems.reorderList(head)
+    assert linked_to_list(head) == [1,6,2,5,3,4]

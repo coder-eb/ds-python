@@ -969,6 +969,9 @@ class Problems:
 
         return start.next
 
+    def reorderList(self, head: Optional[ListNode]) -> None:
+        pass
+
 if __name__ == "__main__":
     problems = Problems()
-    print(linked_to_list(problems.removeNthFromEnd(list_to_linked([1,2,3,4,5]), 2)))
+    print(linked_to_list(problems.reorderList(list_to_linked([1,2,3,4,5]))))
