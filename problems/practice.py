@@ -974,18 +974,15 @@ class Problems:
         while fast and fast.next:
             slow, fast = slow.next, fast.next.next
 
-        current = slow.next
-        second = current
-        slow.next = None
-        prev = None
-        while current:
-            next = current.next
-            current.next = prev
-            prev = current
-            second = current
-            current = next
+        second = slow.next
+        prev = slow.next = None
+        while second:
+            next = second.next
+            second.next = prev
+            prev = second
+            second = next
 
-        first = head
+        first, second = head, prev
         while second:
             temp1, temp2 = first.next, second.next
             first.next, second.next = second, temp1
