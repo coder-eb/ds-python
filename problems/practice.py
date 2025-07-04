@@ -1006,7 +1006,20 @@ class Problems:
             current = next
         current.next = None
         return dummy.next
-    
+
+    def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
+        if len(lists) == 0:
+            return None
+
+        if len(lists) == 1:
+            return lists[0]
+        
+        prevLinkedList = None
+        for linkedList in lists:
+            prevLinkedList = self.mergeTwoLists(prevLinkedList, linkedList)
+        return prevLinkedList
+
 if __name__ == "__main__":
     problems = Problems()
-    print(linked_to_list(problems.reorderList(list_to_linked([1,2,3,4,5]))))
+    lists = [list_to_linked([1,4,5]), list_to_linked([1,3,4]), list_to_linked([2,6])]
+    print(linked_to_list(problems.mergeKLists(lists)))
