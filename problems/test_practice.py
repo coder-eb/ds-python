@@ -1563,3 +1563,59 @@ def test_reorder_list_longer(problems):
     head = list_to_linked([1,2,3,4,5,6])
     problems.reorderList(head)
     assert linked_to_list(head) == [1,6,2,5,3,4]
+
+def test_merge_k_lists_all_empty(problems):
+    lists = [list_to_linked([]), list_to_linked([]), list_to_linked([])]
+    merged = problems.mergeKLists(lists)
+    assert linked_to_list(merged) == []
+
+def test_merge_k_lists_single_list(problems):
+    lists = [list_to_linked([1,2,3])]
+    merged = problems.mergeKLists(lists)
+    assert linked_to_list(merged) == [1,2,3]
+
+def test_merge_k_lists_two_lists(problems):
+    lists = [list_to_linked([1,4,5]), list_to_linked([1,3,4])]
+    merged = problems.mergeKLists(lists)
+    assert linked_to_list(merged) == [1,1,3,4,4,5]
+
+def test_merge_k_lists_three_lists(problems):
+    lists = [
+        list_to_linked([1,4,5]),
+        list_to_linked([1,3,4]),
+        list_to_linked([2,6])
+    ]
+    merged = problems.mergeKLists(lists)
+    assert linked_to_list(merged) == [1,1,2,3,4,4,5,6]
+
+def test_merge_k_lists_some_empty(problems):
+    lists = [
+        list_to_linked([]),
+        list_to_linked([1]),
+        list_to_linked([0,2])
+    ]
+    merged = problems.mergeKLists(lists)
+    assert linked_to_list(merged) == [0,1,2]
+
+def test_merge_k_lists_all_single_element(problems):
+    lists = [
+        list_to_linked([1]),
+        list_to_linked([0]),
+        list_to_linked([2])
+    ]
+    merged = problems.mergeKLists(lists)
+    assert linked_to_list(merged) == [0,1,2]
+
+def test_merge_k_lists_duplicates(problems):
+    lists = [
+        list_to_linked([1,4,5]),
+        list_to_linked([1,3,4]),
+        list_to_linked([2,6,6])
+    ]
+    merged = problems.mergeKLists(lists)
+    assert linked_to_list(merged) == [1,1,2,3,4,4,5,6,6]
+
+def test_merge_k_lists_empty_input(problems):
+    lists = []
+    merged = problems.mergeKLists(lists)
+    assert linked_to_list(merged) == []
