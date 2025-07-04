@@ -1010,14 +1010,16 @@ class Problems:
     def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
         if len(lists) == 0:
             return None
-
-        if len(lists) == 1:
-            return lists[0]
         
-        prevLinkedList = None
-        for linkedList in lists:
-            prevLinkedList = self.mergeTwoLists(prevLinkedList, linkedList)
-        return prevLinkedList
+        while len(lists) > 1:
+            merged_lists = []
+            for i in range(0, len(lists), 2):
+                l1 = lists[i]
+                l2 = lists[i+1] if i+1 < len(lists) else None
+                merged_lists.append(self.mergeTwoLists(l1, l2))
+            lists = merged_lists
+            
+        return lists[0]
 
 if __name__ == "__main__":
     problems = Problems()
