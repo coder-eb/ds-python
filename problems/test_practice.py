@@ -1,7 +1,7 @@
 import sys
 import os
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from problems.CustomDS import ListNode, linked_to_list, list_to_linked
+from problems.CustomDS import ListNode, linked_to_list, list_to_linked, list_to_tree
 from problems.practice import Problems, airline, containsNearbyDuplicate, evalRPN, evalRPNr, fibonacci, isPalindrome, longest_consecutive_sequence_by_order, missingNumber, romanToInt
 
 import pytest
@@ -1619,3 +1619,26 @@ def test_merge_k_lists_empty_input(problems):
     lists = []
     merged = problems.mergeKLists(lists)
     assert linked_to_list(merged) == []
+
+def test_max_depth_empty(problems):
+    assert problems.maxDepth(None) == 0
+
+def test_max_depth_single_node(problems):
+    root = list_to_tree([1])
+    assert problems.maxDepth(root) == 1
+
+def test_max_depth_balanced(problems):
+    root = list_to_tree([3,9,20,None,None,15,7])
+    assert problems.maxDepth(root) == 3
+
+def test_max_depth_left_skewed(problems):
+    root = list_to_tree([1,2,None,3,None,4,None])
+    assert problems.maxDepth(root) == 4
+
+def test_max_depth_right_skewed(problems):
+    root = list_to_tree([1,None,2,None,3,None,4])
+    assert problems.maxDepth(root) == 4
+
+def test_max_depth_full_tree(problems):
+    root = list_to_tree([1,2,3,4,5,6,7])
+    assert problems.maxDepth(root) == 3
