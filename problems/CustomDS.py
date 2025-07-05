@@ -285,6 +285,24 @@ def list_to_tree(lst):
             if kids: node.right = kids.pop()
     return root
 
+def tree_to_list(root):
+    if not root:
+        return []
+    result = []
+    queue = [root]
+    while queue:
+        node = queue.pop(0)
+        if node:
+            result.append(node.val)
+            queue.append(node.left)
+            queue.append(node.right)
+        else:
+            result.append(None)
+    # Remove trailing None values for LeetCode-style output
+    while result and result[-1] is None:
+        result.pop()
+    return result
+
 def main():
     bt = BinaryTree(4)
     bt.insert(2)
