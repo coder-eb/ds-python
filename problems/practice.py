@@ -1025,8 +1025,19 @@ class Problems:
         if root is None:
             return 0
         
-        return 1+max(self.maxDepth(root.left), self.maxDepth(root.right))
-
+        level = 0
+        q = deque([root])
+        while q:
+            for _ in range(len(q)):
+                node = q.popleft()
+                if node.left:
+                    q.append(node.left)
+                if node.right:
+                    q.append(node.right)
+                
+            level += 1
+        return level
+        
     def __bfs(self, node: Optional[ListNode], current_sum):
         if node is None:
             print(current_sum)
@@ -1042,4 +1053,4 @@ class Problems:
 
 if __name__ == "__main__":
     problems = Problems()
-    print(problems.bfs(list_to_tree([3,9,20,None,None,15,7,None,None,4])))
+    print(problems.maxDepth(list_to_tree([3,9,20,None,None,15,7,None,None])))
