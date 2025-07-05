@@ -3,7 +3,7 @@ from typing import List, Optional
 import sys
 import os
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from problems.CustomDS import ListNode, MonotonicQueue, TreeNode, linked_to_list, list_to_linked
+from problems.CustomDS import ListNode, MonotonicQueue, TreeNode, linked_to_list, list_to_linked, list_to_tree
 
 def fibonacci(n):
     items = [0, 1]
@@ -1022,9 +1022,24 @@ class Problems:
         return lists[0]
 
     def maxDepth(self, root: Optional[TreeNode]) -> int:
-        pass
+        if root is None:
+            return 0
+        
+        return 1+max(self.maxDepth(root.left), self.maxDepth(root.right))
+
+    def __bfs(self, node: Optional[ListNode], current_sum):
+        if node is None:
+            print(current_sum)
+            return None
+
+        self.__bfs(node.left, current_sum+1)
+        self.__bfs(node.right, current_sum+1)
+        return
+    
+    def bfs(self, root: Optional[TreeNode]) -> int:
+        self.__bfs(root, 0)
+        
 
 if __name__ == "__main__":
     problems = Problems()
-    lists = [list_to_linked([1,4,5]), list_to_linked([1,3,4]), list_to_linked([2,6])]
-    print(linked_to_list(problems.mergeKLists(lists)))
+    print(problems.bfs(list_to_tree([3,9,20,None,None,15,7,None,None,4])))
