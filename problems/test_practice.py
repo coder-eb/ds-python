@@ -1642,3 +1642,31 @@ def test_max_depth_right_skewed(problems):
 def test_max_depth_full_tree(problems):
     root = list_to_tree([1,2,3,4,5,6,7])
     assert problems.maxDepth(root) == 3
+
+def test_diameter_of_binary_tree_example1(problems):
+    root = list_to_tree([1,2,3,4,5])
+    assert problems.diameterOfBinaryTree(root) == 3  # Path: 4-2-1-3 or 5-2-1-3
+
+def test_diameter_of_binary_tree_single_node(problems):
+    root = list_to_tree([1])
+    assert problems.diameterOfBinaryTree(root) == 0
+
+def test_diameter_of_binary_tree_two_nodes(problems):
+    root = list_to_tree([1,2])
+    assert problems.diameterOfBinaryTree(root) == 1
+
+def test_diameter_of_binary_tree_left_skewed(problems):
+    root = list_to_tree([1,2,None,3,None,4,None])
+    assert problems.diameterOfBinaryTree(root) == 3
+
+def test_diameter_of_binary_tree_right_skewed(problems):
+    root = list_to_tree([1,None,2,None,3,None,4])
+    assert problems.diameterOfBinaryTree(root) == 3
+
+def test_diameter_of_binary_tree_balanced(problems):
+    root = list_to_tree([1,2,3,4,5,6,7])
+    assert problems.diameterOfBinaryTree(root) == 4  # Path: 4-2-1-3-7
+
+def test_diameter_of_binary_tree_empty(problems):
+    root = list_to_tree([])
+    assert problems.diameterOfBinaryTree(root) == 0
