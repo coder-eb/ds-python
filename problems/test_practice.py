@@ -1670,3 +1670,52 @@ def test_diameter_of_binary_tree_balanced(problems):
 def test_diameter_of_binary_tree_empty(problems):
     root = list_to_tree([])
     assert problems.diameterOfBinaryTree(root) == 0
+
+def find_node(root, val):
+    if not root:
+        return None
+    if root.val == val:
+        return root
+    return find_node(root.left, val) or find_node(root.right, val)
+
+def test_lca_bst_example1(problems):
+    root = list_to_tree([6,2,8,0,4,7,9,None,None,3,5])
+    p = find_node(root, 2)
+    q = find_node(root, 8)
+    lca = problems.lowestCommonAncestor(root, p, q)
+    assert lca.val == 6
+
+def test_lca_bst_example2(problems):
+    root = list_to_tree([6,2,8,0,4,7,9,None,None,3,5])
+    p = find_node(root, 2)
+    q = find_node(root, 4)
+    lca = problems.lowestCommonAncestor(root, p, q)
+    assert lca.val == 2
+
+def test_lca_bst_root_and_leaf(problems):
+    root = list_to_tree([2,1])
+    p = find_node(root, 2)
+    q = find_node(root, 1)
+    lca = problems.lowestCommonAncestor(root, p, q)
+    assert lca.val == 2
+
+def test_lca_bst_left_skewed(problems):
+    root = list_to_tree([3,2,None,1])
+    p = find_node(root, 1)
+    q = find_node(root, 2)
+    lca = problems.lowestCommonAncestor(root, p, q)
+    assert lca.val == 2
+
+def test_lca_bst_right_skewed(problems):
+    root = list_to_tree([1,None,2,None,3])
+    p = find_node(root, 2)
+    q = find_node(root, 3)
+    lca = problems.lowestCommonAncestor(root, p, q)
+    assert lca.val == 2
+
+def test_lca_bst_same_node(problems):
+    root = list_to_tree([2,1,3])
+    p = find_node(root, 1)
+    q = find_node(root, 1)
+    lca = problems.lowestCommonAncestor(root, p, q)
+    assert lca.val == 1
