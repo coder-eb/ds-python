@@ -1022,6 +1022,15 @@ class Problems:
         return lists[0]
 
     def maxDepth(self, root: Optional[TreeNode]) -> int:
+        if root is None:
+            return 0
+
+        a_val = root.val 
+        left_length = self.maxDepth(root.left)
+        right_length = self.maxDepth(root.right)
+        max_length = max(left_length, right_length)
+        return 1+max_length
+    
         res = 0
         stack = [[root,1]]
         while stack:
@@ -1056,8 +1065,22 @@ class Problems:
     
     def bfs(self, root: Optional[TreeNode]) -> int:
         self.__bfs(root, 0)
-        
 
+    def diameterOfBinaryTree(self, root: Optional[TreeNode]) -> int:
+        self.max_diameter = 0
+        def dfs(node, height):
+            if node is None:
+                return 0
+
+            left_height = dfs(node.left, height)
+            right_height = dfs(node.right, height)
+            self.max_diameter = max(self.max_diameter, left_height+right_height)
+
+            return 1+max(left_height,right_height)
+
+        dfs(root,0)
+        return self.max_diameter
+    
 if __name__ == "__main__":
     problems = Problems()
-    print(problems.maxDepth(list_to_tree([3,9,20,None,None,15,7,None,None])))
+    print(problems.diameterOfBinaryTree(list_to_tree([1,2])))
