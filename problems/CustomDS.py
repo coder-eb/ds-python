@@ -303,18 +303,65 @@ def tree_to_list(root):
         result.pop()
     return result
 
+# root -> left -> right
+def DFS_preoder(root):
+    nodes = []
+    def dfs(node):
+        if node is None:
+            return
+        
+        # root
+        nodes.append(node.val)
+        # left
+        dfs(node.left)
+        # right
+        dfs(node.right)
+        return 
+    dfs(root)
+    return nodes
+
+# left -> root -> right
+def DFS_inorder(root):
+    nodes = []
+    def dfs(node):
+        if node is None:
+            return
+        
+        # left
+        dfs(node.left)
+        # root
+        nodes.append(node.val)
+        # right
+        dfs(node.right)
+        return 
+    dfs(root)
+    return nodes
+
+# left -> right -> root
+def DFS_postorder(root):
+    nodes = []
+    def dfs(node):
+        if node is None:
+            return
+        
+        # left
+        dfs(node.left)
+        # right
+        dfs(node.right)
+        # root
+        nodes.append(node.val)
+
+        return 
+    dfs(root)
+    return nodes
+
+
 def main():
-    bt = BinaryTree(4)
-    bt.insert(2)
-    bt.insert(7)
-    bt.insert(7)
-    bt.insert(1)
-    bt.insert(3)
-    bt.insert(6)
-    bt.insert(9)
-    bt.insert(5)
-    bt.invertTree(bt.root)
-    print(bt)
+    # root (1), left(2), right(3)
+    tree = list_to_tree([1,2,3])
+    print(DFS_preoder(tree))
+    print(DFS_inorder(tree))
+    print(DFS_postorder(tree))
 
 if __name__ == '__main__':
     main()
