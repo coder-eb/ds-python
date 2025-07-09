@@ -303,6 +303,14 @@ def tree_to_list(root):
         result.pop()
     return result
 
+
+def find_node(root, val):
+    if not root:
+        return None
+    if root.val == val:
+        return root
+    return find_node(root.left, val) or find_node(root.right, val)
+
 # root -> left -> right
 def DFS_preoder(root):
     nodes = []

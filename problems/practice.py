@@ -2,8 +2,9 @@ from collections import deque
 from typing import List, Optional
 import sys
 import os
+
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from problems.CustomDS import ListNode, MonotonicQueue, TreeNode, linked_to_list, list_to_linked, list_to_tree
+from problems.CustomDS import ListNode, TreeNode, list_to_tree, find_node
 
 def fibonacci(n):
     items = [0, 1]
@@ -1080,7 +1081,30 @@ class Problems:
 
         dfs(root,0)
         return self.max_diameter
+
+    def lowestCommonAncestor(self, root: TreeNode, p: TreeNode, q: TreeNode) -> TreeNode:
+        if root is None:
+            return None
+                    
+        left = self.lowestCommonAncestor(root.left, p, q)
+        right = self.lowestCommonAncestor(root.right, p, q)
+        if root == p or root == q:
+            return root
+        
+        if left is None and right is None:
+            return None
+        if left is not None and right is not None:
+            return root
+        # if left is not None and right is None: 
+        if left is not None:
+            return left
+        # if left is None and right is not None:
+        else:
+            return right
     
 if __name__ == "__main__":
     problems = Problems()
-    print(problems.diameterOfBinaryTree(list_to_tree([1,2])))
+    root = list_to_tree([6,2,8,0,4,7,4])
+    p = find_node(root, 2)
+    q = find_node(root, 4)
+    print(problems.lowestCommonAncestor(root, p, q))

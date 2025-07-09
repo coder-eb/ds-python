@@ -1,7 +1,7 @@
 import sys
 import os
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from problems.CustomDS import ListNode, linked_to_list, list_to_linked, list_to_tree
+from problems.CustomDS import ListNode, find_node, linked_to_list, list_to_linked, list_to_tree
 from problems.practice import Problems, airline, containsNearbyDuplicate, evalRPN, evalRPNr, fibonacci, isPalindrome, longest_consecutive_sequence_by_order, missingNumber, romanToInt
 
 import pytest
@@ -1670,13 +1670,6 @@ def test_diameter_of_binary_tree_balanced(problems):
 def test_diameter_of_binary_tree_empty(problems):
     root = list_to_tree([])
     assert problems.diameterOfBinaryTree(root) == 0
-
-def find_node(root, val):
-    if not root:
-        return None
-    if root.val == val:
-        return root
-    return find_node(root.left, val) or find_node(root.right, val)
 
 def test_lca_bst_example1(problems):
     root = list_to_tree([6,2,8,0,4,7,9,None,None,3,5])
