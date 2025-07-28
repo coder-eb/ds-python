@@ -4,7 +4,7 @@ import sys
 import os
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from problems.CustomDS import ListNode, TreeNode, list_to_tree, find_node
+from problems.CustomDS import ListNode, TreeNode, list_to_tree, find_node, tree_to_list
 
 def fibonacci(n):
     items = [0, 1]
@@ -406,35 +406,25 @@ class Problems:
 
         return res
 
-    def isValidSudoku(self, board) -> bool:
-        row_checker = [None]*len(board)
-        column_checker = [None]*len(board)
-        square_checker = [None]*len(board)
+    def isValidSudoku(self, board: List[List[str]]) -> bool:
+        row_memory = [set() for _ in range(9)]
+        col_memory = [set() for _ in range(9)]
+        sq_memory = [set() for _ in range(9)]
 
-        for row in range(len(board)):
-            row_checker[row] = set()
-            for column in range(len(board[row])):
-                if row == 0:
-                    column_checker[column] = set()
-
-                cell = board[row][column]
+        for row_index in range(len(board)):
+            for col_index in range(len(board[row_index])):
+                sq_index = (row_index//3)*3 + (col_index//3)
+                cell = board[row_index][col_index]
                 if cell == '.':
-                    continue 
-                
-                square = (row // 3) * 3 + column // 3
-                if square_checker[square] is None:
-                    square_checker[square] = set()
-                
-                if (
-                    cell in row_checker[row]
-                    or cell in column_checker[column]
-                    or cell in square_checker[square]
-                ):
+                    continue
+
+                if (cell in row_memory[row_index]) or (cell in col_memory[col_index]) or (cell in sq_memory[sq_index]):
                     return False
-                else: 
-                    row_checker[row].add(cell)
-                    column_checker[column].add(cell)
-                    square_checker[square].add(cell)
+
+                row_memory[row_index].add(cell)
+                col_memory[col_index].add(cell)
+                sq_memory[sq_index].add(cell)
+                                
         return True
     
     def maxArea(self, heights):
@@ -1102,9 +1092,26 @@ class Problems:
         else:
             return right
     
+    def buildTree(self, preorder: List[int], inorder: List[int]) -> Optional[TreeNode]:
+        preorder = [3, 9, 10]
+        inorder = [10, 9, 3]
+
+        start = preorder[0]
+        inorder_index = 0
+        while inorder[inorder_index] != start:
+            inorder_index+=1
+        
+        
+        
+        
+
+
+
+
+
+    
+    
 if __name__ == "__main__":
     problems = Problems()
-    root = list_to_tree([6,2,8,0,4,7,4])
-    p = find_node(root, 2)
-    q = find_node(root, 4)
-    print(problems.lowestCommonAncestor(root, p, q))
+    root = problems.buildTree([3,9,10,20,15,11,7], [10,9,3,11,15,20,7])
+    print(tree_to_list(root))
