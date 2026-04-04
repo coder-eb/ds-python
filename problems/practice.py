@@ -1100,18 +1100,63 @@ class Problems:
         inorder_index = 0
         while inorder[inorder_index] != start:
             inorder_index+=1
-        
-        
-        
-        
-
-
-
-
-
     
+    def characterReplacement1(self, s: str, k: int) -> int:
+        counter = {}
+        max_length = 0
+        left = 0
+        for right in range(len(s)):
+            letter = s[right]
+            counter[letter] = counter.get(letter,0)+1
+            frequent = max(counter, key=counter.get)
+
+            while (right-left+1)-counter[frequent]>k:
+                remove = s[left]
+                counter[remove]-=1
+                left+=1
+            max_length = max(max_length, right-left+1)
+        return max_length
+
+    def nearestSmallerElement(self, nums) -> List[int]:
+        res = [-1]*len(nums)
+        stack = []
+        for index in range(len(nums)):
+            while stack and nums[stack[-1]] >= nums[index]:
+                stack.pop()
+
+            if stack:
+                res[index] = nums[stack[-1]]
+            stack.append(index)
+        return res       
     
+    def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
+        def search(nums):
+            print('entered search')
+            left, right = 0, len(nums)-1
+            while left <= right:
+                mid = (left+right)//2
+                if nums[mid] == target:
+                    return True
+                if nums[mid] > target:
+                    right=mid-1
+                else:
+                    left=mid+1
+            return False
+
+        left, right = 0, len(matrix)-1
+        while left <= right:
+            mid = (left+right)//2
+            print("index",left,mid,right)
+            if left==mid:
+                return search(matrix[mid])
+            if matrix[left][0] <= target <= matrix[mid][0]:
+                right=mid-1
+            else:
+                left=mid+1
+        return False
+
 if __name__ == "__main__":
     problems = Problems()
-    root = problems.buildTree([3,9,10,20,15,11,7], [10,9,3,11,15,20,7])
-    print(tree_to_list(root))
+    matrix = [[1],[3]]
+    target = 3
+    print(problems.searchMatrix(matrix, target))
