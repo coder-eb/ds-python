@@ -4,7 +4,7 @@ import sys
 import os
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from problems.CustomDS import ListNode, TreeNode, list_to_tree, find_node, tree_to_list
+from problems.CustomDS import ListNode, TreeNode, linked_to_list, list_to_linked, list_to_tree, find_node, tree_to_list
 
 def fibonacci(n):
     items = [0, 1]
@@ -1155,8 +1155,87 @@ class Problems:
                 left=mid+1
         return False
 
+    def reorderList(self, head: Optional[ListNode]) -> None:
+        """
+        Do not return anything, modify head in-place instead.
+        """
+        # Step 1: Find the middle of the list
+        slow = fast = head
+        while fast and fast.next:
+            slow, fast = slow.next, fast.next.next
+
+        # Step 2: Reverse the second half of the list
+        # slow is mid. now reverse from mid
+        prev, curr = None, slow.next
+        while curr:
+            next = curr.next
+            curr.next = prev
+            prev, curr = curr, next
+        slow.next = None
+
+        # Step 3: Merge the two halves
+        first, second = head, prev
+        print("first", linked_to_list(first))
+        print("second", linked_to_list(second))
+        while second:
+            temp1, temp2 = first.next, second.next
+            first.next, second.next = second, temp1
+            first, second = temp1, temp2
+        return head
+    
+    def isPalindrome(self, head: Optional[ListNode]) -> bool:
+        slow = fast = head
+        while fast and fast.next and fast.next.next:
+            slow, fast = slow.next, fast.next.next
+        
+        prev, curr = None, slow.next
+        slow.next = None
+
+        while curr:
+            next = curr.next
+            curr.next = prev
+            prev, curr = curr, next
+        
+        first, second = head, prev
+        
+        print("first", linked_to_list(first))
+        print("second", linked_to_list(second))
+        # if not second:
+        #     return True
+        
+        while first and second:
+            if first.val != second.val:
+                return False
+
+            first, second = first.next, second.next
+        return True 
+    
+    def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
+        dummy = ListNode(0, head)
+        fast, slow = dummy.next, dummy
+        for i in range(n):
+            fast = fast.next
+        while fast:
+            slow, fast = slow.next, fast.next
+        
+        prev, curr = slow, slow.next
+        next = curr.next
+        prev.next = next
+        return dummy.next
+    
+    def minCostClimbingStairs(self, cost: List[int]) -> int:
+        totalStairs = len(cost)
+        def minCost(index):
+            if index == totalStairs-1:
+                return cost[index]
+            if index > totalStairs - 1:
+                return 0
+            
+            currentCost = 0 if index == -1 else cost[index] 
+            return currentCost + min(minCost(index+1), minCost(index+2))
+        return minCost(-1)
+
 if __name__ == "__main__":
     problems = Problems()
-    matrix = [[1],[3]]
-    target = 3
-    print(problems.searchMatrix(matrix, target))
+    print(problems.minCostClimbingStairs([1,100,1,1,1,100,1,1,100,1]))
+    # print(linked_to_list(problems.reorderList(head)))
