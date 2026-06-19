@@ -1235,6 +1235,8 @@ class Problems:
             return currentCost + min(minCost(index+1), minCost(index+2))
         return minCost(-1)
 
+    def rob(self, nums: List[int]) -> int:
+
 if __name__ == "__main__":
     problems = Problems()
     print(problems.minCostClimbingStairs([1,100,1,1,1,100,1,1,100,1]))
