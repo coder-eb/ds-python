@@ -1,0 +1,29 @@
+[
+  {
+    "label": "Debug Current File",
+    "adapter": "debugpy",
+    "request": "launch",
+    "program": "${file}",
+    "python": "${workspaceFolder}/venv/bin/python",
+    "cwd": "${workspaceFolder}",
+    "console": "integratedTerminal"
+  },
+  {
+    "label": "Debug practice.py",
+    "adapter": "debugpy",
+    "request": "launch",
+    "program": "${workspaceFolder}/problems/practice.py",
+    "python": "${workspaceFolder}/venv/bin/python",
+    "cwd": "${workspaceFolder}",
+    "console": "integratedTerminal"
+  },
+  {
+    "label": "Debug main.py",
+    "adapter": "debugpy",
+    "request": "launch",
+    "program": "${workspaceFolder}/main.py",
+    "python": "${workspaceFolder}/venv/bin/python",
+    "cwd": "${workspaceFolder}",
+    "console": "integratedTerminal"
+  }
+]
