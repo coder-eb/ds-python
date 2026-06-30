@@ -1236,8 +1236,20 @@ class Problems:
         return minCost(-1)
 
     def rob(self, nums: List[int]) -> int:
+        memo = {}
+        totalHouses = len(nums)
+        def maxMoney(index):
+            if index in memo:
+                return memo[index]
+            if index > totalHouses-1:
+                return 0
+            
+            money = 0 if index == -2 else nums[index] 
+            memo[index] = money + max(maxMoney(index+2), maxMoney(index+3))
+            return memo[index]
+        return maxMoney(-2)
 
 if __name__ == "__main__":
     problems = Problems()
-    print(problems.minCostClimbingStairs([1,100,1,1,1,100,1,1,100,1]))
+    print(problems.rob([7,1,1,10]))
     # print(linked_to_list(problems.reorderList(head)))
