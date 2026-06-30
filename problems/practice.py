@@ -1,4 +1,5 @@
 from collections import deque
+from functools import cache
 from typing import List, Optional
 import sys
 import os
@@ -1236,20 +1237,21 @@ class Problems:
         return minCost(-1)
 
     def rob(self, nums: List[int]) -> int:
+        lastHouse = len(nums)-1
         memo = {}
-        totalHouses = len(nums)
         def maxMoney(index):
             if index in memo:
                 return memo[index]
-            if index > totalHouses-1:
+            if index > lastHouse:
                 return 0
-            
-            money = 0 if index == -2 else nums[index] 
-            memo[index] = money + max(maxMoney(index+2), maxMoney(index+3))
+
+            robCurrent = nums[index] + maxMoney(index+2)
+            skipCurrent = maxMoney(index+1)
+            memo[index] = max(robCurrent, skipCurrent)
             return memo[index]
-        return maxMoney(-2)
+        return maxMoney(0)
 
 if __name__ == "__main__":
     problems = Problems()
-    print(problems.rob([7,1,1,10]))
+    print(problems.rob([1,2,3,1]))
     # print(linked_to_list(problems.reorderList(head)))
